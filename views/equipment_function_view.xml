@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    
+    <data>
+
+		<!-- Create view for rules -->
+		<record model="ir.ui.view" id="it_equipment_function_form">
+			<field name="name">it.equipment.function.form</field>
+			<field name="model">it.equipment.function</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Function">
+					<field name="name" colspan="4"/>
+				</form>
+			</field>
+		</record>
+
+		<!-- Tree view for rules grill on equipments -->
+		<record model="ir.ui.view" id="it_equipment_function_tree">
+			<field name="name">it.equipment.function.tree</field>
+			<field name="model">it.equipment.function</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Function">
+					<field name="name" colspan="4"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="it_equipment_function_action" model="ir.actions.act_window">
+			<field name="name">Function</field>
+			<field name="res_model">it.equipment.function</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem action="it_equipment_function_action" id="it_equipment_function" sequence="30" parent="it_menu_others"/>
+
+    </data>
+    
+</openerp>

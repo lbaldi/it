@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+	
+    <data>
+
+		<!-- Create view for changes -->
+		<record model="ir.ui.view" id="it_equipment_change_form">
+			<field name="name">it.equipment.component.form</field>
+			<field name="model">it.equipment.component</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Enter a component">
+					<separator string="Component entry" colspan="4" />
+					<field name="product_id" colspan="4"/>
+					<field name="serial_number"/>
+					<field name="partner_id"/>
+					<separator string="Note" colspan="4"/>
+					<field name="note" colspan="4" nolabel="1" />
+				</form>
+			</field>
+		</record>
+
+		<!-- Tree view for changes grill on equipments -->
+		<record model="ir.ui.view" id="it_equipment_change_tree">
+			<field name="name">it.equipment.component.tree</field>
+			<field name="model">it.equipment.component</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Components">
+					<field name="product_id"/>
+					<field name="serial_number"/>
+					<field name="partner_id"/>
+					<field name="note"/>
+				</tree>
+			</field>
+		</record>
+
+    </data>
+</openerp>

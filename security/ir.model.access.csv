@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+it_rule_1,it_equipment,model_it_equipment,,1,1,1,1
+it_rule_2,it_equipment_change,model_it_equipment_change,,1,1,1,1
+it_rule_3,it_equipment_component,model_it_equipment_component,,1,1,1,1
+it_rule_4,it_equipment_function,model_it_equipment_function,,1,1,1,1
+it_rule_5,it_equipment_network,model_it_equipment_network,,1,1,1,1
+it_rule_6,it_equipment_partition,model_it_equipment_partition,,1,1,1,1
+it_rule_7,it_equipment_partition_mount,model_it_equipment_partition_mount,,1,1,1,1
+it_rule_8,it_equipment_rule,model_it_equipment_rule,,1,1,1,1
+it_rule_9,it_access,model_it_access,,1,1,1,1
+it_rule_10,it_backup,model_it_backup,,1,1,1,1
+it_rule_11,it_equipment_forward,model_it_equipment_forward,,1,1,1,1
+it_rule_12,it_equipment_nat,model_it_equipment_nat,,1,1,1,1
+it_rule_13,it_equipment_mapping,model_it_equipment_mapping,,1,1,1,1

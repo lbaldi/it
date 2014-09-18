@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+	
+    <data>
+
+		<!-- Create view for forwards -->
+		<record model="ir.ui.view" id="it_equipment_forward_form">
+			<field name="name">it.equipment.forward.form</field>
+			<field name="model">it.equipment.forward</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Rule">
+					<separator string="Rules Registry" colspan="4" />
+					<field name="name" colspan="4"/>
+					<field name="source_port"/>
+					<field name="destination_port"/>
+					<field name="source_address"/>
+					<field name="destination_address"/>
+					<field name="type"/>
+					<field name="permission"/>
+				</form>
+			</field>
+		</record>
+
+		<!-- Tree view for rules grill on equipments -->
+		<record model="ir.ui.view" id="it_equipment_forward_tree">
+			<field name="name">it.equipment.forward.tree</field>
+			<field name="model">it.equipment.forward</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Rules Registry">
+					<field name="name" colspan="4"/>
+					<field name="source_port"/>
+					<field name="destination_port"/>
+					<field name="source_address"/>
+					<field name="destination_address"/>
+					<field name="permission"/>
+					<field name="type"/>
+				</tree>
+			</field>
+		</record>
+
+    </data>
+</openerp>
