@@ -59,8 +59,8 @@
 							<h1>
 							<field name="name" placeholder="NAME"/>
 							<field name="description" placeholder="DESCRIPTION"/>
-							<field name="function_ids" widget="many2many_tags" placeholder="Functions..." />
 							<field name="partner_id" placeholder="OWNER" />
+							<field name="function_ids" widget="many2many_tags" placeholder="Functions..." />
 							</h1>
 						</div>
 						<div class="oe_right oe_button_box" name="button_box">
@@ -159,10 +159,11 @@
 									</group>
 								</group>
 							</page>
-							<page string="Configuration">
+							<page string="Configuration" groups="it.group_it_mod">
 								<group>
 									<group string="Basic Configuration">
 										<field name="active" />
+										<field name="company_id" string="Company" groups="base.group_multi_company"/>
 										<field name="is_contracted"/>
 										<field name="is_dhcp"/>
 										<field name="is_partitioned"/>

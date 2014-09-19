@@ -61,10 +61,11 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Configuration">
+                            <page string="Configuration" groups="it.group_it_mod">
                                 <group>
                                     <group>
                                         <field name="active" />
+                                        <field name="company_id" string="Company" groups="base.group_multi_company"/>
                                     </group>
                                 </group>
                             </page>

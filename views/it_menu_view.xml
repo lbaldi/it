@@ -5,13 +5,13 @@
     <data>
 
 		<!-- Top menu item -->
-		<menuitem name="Infrastructure" id="it.menu_main_itm" sequence="42"/>
+		<menuitem name="Infrastructure" id="it.menu_main_itm" groups="group_it_user" sequence="42"/>
 
 		<!-- General Menu -->
-		<menuitem name="General Menu" id="it_menu_general" parent="it.menu_main_itm" sequence="10" />
+		<menuitem name="General Menu" id="it_menu_general" parent="it.menu_main_itm" groups="group_it_user" sequence="10" />
 
 		<!-- Others -->
-		<menuitem name="Other" id="it_menu_others" parent="it.menu_main_itm" sequence="20" />
+		<menuitem name="Other" id="it_menu_others" parent="it.menu_main_itm" groups="group_it_manager" sequence="20" />
 
     </data>
     

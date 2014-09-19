@@ -4,7 +4,7 @@
     
     <data>
 
-		<!-- Partner -->
+		<!-- Customer -->
 		<record id="it_partner_customer_action" model="ir.actions.act_window">
 			<field name="name">Customers</field>
 			<field name="res_model">res.partner</field>
@@ -13,7 +13,7 @@
 			<field name="context">{"search_default_customer":1}</field>
 		</record>
 
-		<!-- Partner -->
+		<!-- Supplier -->
 		<record id="it_partner_supplier_action" model="ir.actions.act_window">
 			<field name="name">Suppliers</field>
 			<field name="res_model">res.partner</field>
@@ -57,9 +57,9 @@
 			<field name="arch" type="xml">
 				<data>
 					<xpath expr="//div[@name='buttons']" position="inside">
-						<button name="%(act_partner_2_equipment)d" string="Equipments" type="action" />
-						<button name="%(act_partner_2_access)d" string="Access" type="action" />
-						<button name="%(act_partner_2_backup)d" string="Backups" type="action" />
+						<button name="%(act_partner_2_equipment)d" string="Equipments" type="action" groups="it.group_it_user" />
+						<button name="%(act_partner_2_access)d" string="Access" type="action" groups="it.group_it_user" />
+						<button name="%(act_partner_2_backup)d" string="Backups" type="action" groups="it.group_it_user" />
 					</xpath>
 				</data>
 			</field>

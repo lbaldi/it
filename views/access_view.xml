@@ -68,10 +68,11 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Configuration">
+                            <page string="Configuration" groups="it.group_it_mod">
                                 <group>
                                     <group>
                                         <field name="active" />
+                                        <field name="company_id" string="Company" groups="base.group_multi_company"/>
                                     </group>
                                 </group>
                             </page>
@@ -85,7 +86,7 @@
             <field name="name">it.access.search</field>
             <field name="model">it.access</field>
             <field name="arch" type="xml">
-                <search string="Acess">
+                <search string="Access">
                     <field name="equipment_id" string="Equipment"/>
                     <field name="name" string="Access Name"/>
                     <field name="partner_id" string="Partner"/>

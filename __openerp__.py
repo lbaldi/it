@@ -41,6 +41,11 @@
 			- Equipments
 			- Access
 			- Backups
+		
+		Three roles and multicompany security:
+			- User ( 1,0,0,0)
+			- Moderator (1,1,1,0)
+			- Manager (1,1,1,1)
         
         Equipments in general as:
 			- Physical Servers
@@ -88,6 +93,7 @@
 
     'data': [
         
+        'security/it_security.xml',
         'security/ir.model.access.csv',
         'views/it_menu_view.xml',
         'views/equipment_view.xml',

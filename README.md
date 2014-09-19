@@ -1,5 +1,5 @@
-Odoo Infrastructure Module
-===================
+ODOO INFRASTRUCTURE MODULE
+===========================
 
 This module is used for Infrastructure management.
     
@@ -7,6 +7,11 @@ This module is used for Infrastructure management.
 			- Equipments
 			- Access
 			- Backups
+			
+		Three roles and multicompany security:
+			- User ( 1,0,0,0)
+			- Moderator (1,1,1,0)
+			- Manager (1,1,1,1)
         
         Equipments in general as:
 			- Physical Servers
@@ -48,9 +53,8 @@ This module is used for Infrastructure management.
 
 TODO LIST
 -----------
-- Add company_id to view and set group acess
-- Fix access and create 2 role
 - Fix Default Image
 - Add applications (software)
 - Think about configuration page and all posibles configuration
 - More information for printers
+- View of changes
