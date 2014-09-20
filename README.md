@@ -1,10 +1,7 @@
 # ODOO INFRASTRUCTURE MODULE
 
-This module is used for Infrastructure management. You can registry severtal types of equipments, access, and backups. Quick access data in partner form and server form. Tree access roles: User ( with read permission) , Moderator ( with read, write, create permission and config pages) and Manager with all features. 
+This module is used for Infrastructure management. You can registry several types of equipments, access, and backups. 
 
-* Can set an equipment as Physical Server or Virtual Server and play with parents equipment ( host and virtuals)
-* Can registry another type of equipment as Routers. Setting an equipment as router it shows other page for that feature
-* Can registry Switch , Printer ( by now poor data )
 
 ## EQUIPMENTS
 
