@@ -114,3 +114,5 @@ Quick data access from partners.
 - [ ] Think about configuration page and all posibles configuration.
 - [ ] More information for printers and other devices.
 - [ ] Fix View of server changes.
+- [ ] Test.
+- [ ] Travis or runbot integration.
