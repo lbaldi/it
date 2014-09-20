@@ -59,7 +59,7 @@ This module is used for Infrastructure management. You can registry several type
   * Password
   * Port
   * Link
-*SSL Page ( binaries)
+* SSL Page ( binaries)
   * CSR 
   * CRT
   * PUBLIC KEY
