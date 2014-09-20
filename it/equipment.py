@@ -34,15 +34,6 @@ class it_equipment(osv.osv):
 
     _rec_name = 'identification'
 
-    def _get_image(self, cr, uid, ids, name, args, context=None):
-        result = dict.fromkeys(ids, False)
-        for obj in self.browse(cr, uid, ids, context=context):
-            result[obj.id] = tools.image_get_resized_images(obj.image)
-        return result
-
-    def _set_image(self, cr, uid, id, name, value, args, context=None):
-        return self.write(cr, uid, [id], {'image': tools.image_resize_image_big(value)}, context=context)
-
     def _get_identification(self, cr, uid, ids, name, args, context=None):
         result = dict.fromkeys(ids, False)
         for obj in self.browse(cr, uid, ids, context=context):
@@ -71,18 +62,6 @@ class it_equipment(osv.osv):
         'description': fields.char('Description', size=200, required=False),
         'note': fields.text('Note'),
         'image': fields.binary("Photo",help="Equipment Photo, limited to 1024x1024px."),
-        'image_medium': fields.function(_get_image, fnct_inv=_set_image,
-                        string="Medium-sized photo", type="binary", multi="_get_image",
-                        store = {'it.equipment': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10),},
-                        help="Medium-sized Equipment Photo. It is automatically "\
-                        "resized as a 128x128px image, with aspect ratio preserved. "\
-                        "Use this field in form views or some kanban views."),
-        'image_small': fields.function(_get_image, fnct_inv=_set_image,
-                        string="Smal-sized photo", type="binary", multi="_get_image",
-                        store = {'it.equipment': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10),},
-                        help="Small-sized Equipment Photo. It is automatically "\
-                        "resized as a 64x64px image, with aspect ratio preserved. "\
-                        "Use this field anywhere a small image is required."),
                         
         # Config Page
         'equipment_type': fields.selection([('physical','PHYSICAL'),('virtual','VIRTUAL'),('other','OTHER')],'Equipment Type',required=True),
