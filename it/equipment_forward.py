@@ -26,9 +26,9 @@ from openerp.osv import fields, osv
 from openerp import tools
 _logger = logging.getLogger(__name__)
 
-class it_equipment_nat(osv.osv):
+class it_equipment_forward(osv.osv):
 
-    _name = 'it.equipment.nat'
+    _name = 'it.equipment.forward'
 
     _description = 'Equipment Rules'
 
@@ -41,15 +41,13 @@ class it_equipment_nat(osv.osv):
 		'source_address': fields.char('Source Address'),
 		'destination_address': fields.char('Destination Address'),
 		'type': fields.selection([('tcp','TCP'),('udp','UDP'),('both','BOTH')],'Type'),
-		'permission': fields.selection([('allow','ALLOW'),('deny','DENY')],'Permission'),
-    
+
     }
 
     _defaults = {
     
 		'type': 'both',
-		'permission': 'allow',
-    
+		
     }
 	
-it_equipment_nat()
+it_equipment_forward()

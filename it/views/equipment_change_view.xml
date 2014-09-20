@@ -10,7 +10,7 @@
 			<field name="model">it.equipment.change</field>
 			<field name="type">form</field>
 			<field name="arch" type="xml">
-				<form string="Enter a change entry">
+				<form string="Change">
 					<separator string="Change entry" colspan="4" />
 					<field name="name" colspan="4" select="1" />
 					<field name="date" select="1"/>
@@ -27,10 +27,10 @@
 			<field name="model">it.equipment.change</field>
 			<field name="type">tree</field>
 			<field name="arch" type="xml">
-				<tree string="Interventions">
+				<tree string="Changes">
+					<field name="name"/>
 					<field name="date"/>
 					<field name="user_id"/>
-					<field name="name"/>
 				</tree>
 			</field>
 		</record>

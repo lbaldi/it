@@ -49,11 +49,20 @@ This module is used for Infrastructure management.
 			- Domain Controller
 			- Operational System
 			- Changes
+			
+		![Alt text](/docs/img/server_example.jpg?raw=true "Server Example")
 
+		![Alt text](/docs/img/access_example.jpg?raw=true "Access Example")
+		
+		![Alt text](/docs/img/backup_example.jpg?raw=true "Backup Example")
+		
+		![Alt text](/docs/img/partner_example.jpg?raw=true "Partner Example")
+		
+		![Alt text](/docs/img/router_example.jpg?raw=true "Router Example")
+		
 
 TODO LIST
 -----------
-- Fix Default Image
 - Add applications (software)
 - Think about configuration page and all posibles configuration
 - More information for printers

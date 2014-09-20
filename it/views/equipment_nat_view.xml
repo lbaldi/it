@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+ 
+    <data>
+
+		<!-- Create view for nats -->
+		<record model="ir.ui.view" id="it_equipment_nat_form">
+			<field name="name">it.equipment.nat.form</field>
+			<field name="model">it.equipment.nat</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Nat Registry">
+					<separator string="Nat Registry" colspan="4" />
+					<field name="name" colspan="4"/>
+					<field name="source_address"/>
+					<field name="destination_address"/>
+				</form>
+			</field>
+		</record>
+
+		<!-- Tree view for nats grill on equipments -->
+		<record model="ir.ui.view" id="it_equipment_nat_tree">
+			<field name="name">it.equipment.nat.tree</field>
+			<field name="model">it.equipment.nat</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Nat Registry">
+					<field name="name" colspan="4"/>
+					<field name="source_address"/>
+					<field name="destination_address"/>
+				</tree>
+			</field>
+		</record>
+
+    </data>
+    
+</openerp>

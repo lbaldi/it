@@ -10,14 +10,13 @@
 			<field name="model">it.equipment.rule</field>
 			<field name="type">form</field>
 			<field name="arch" type="xml">
-				<form string="Rule">
+				<form string="Rules Registry">
 					<separator string="Rules Registry" colspan="4" />
 					<field name="name" colspan="4"/>
 					<field name="source_port"/>
 					<field name="destination_port"/>
 					<field name="source_address"/>
 					<field name="destination_address"/>
-					<field name="type"/>
 					<field name="permission"/>
 				</form>
 			</field>
@@ -36,7 +35,6 @@
 					<field name="source_address"/>
 					<field name="destination_address"/>
 					<field name="permission"/>
-					<field name="type"/>
 				</tree>
 			</field>
 		</record>

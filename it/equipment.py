@@ -70,17 +70,17 @@ class it_equipment(osv.osv):
         'function_ids': fields.many2many('it.equipment.function','equipment_function_rel','equipment_id','function_id','Functions'),
         'description': fields.char('Description', size=200, required=False),
         'note': fields.text('Note'),
-        'image': fields.binary("Photo",help="This field holds the image used as photo for the employee, limited to 1024x1024px."),
+        'image': fields.binary("Photo",help="Equipment Photo, limited to 1024x1024px."),
         'image_medium': fields.function(_get_image, fnct_inv=_set_image,
                         string="Medium-sized photo", type="binary", multi="_get_image",
                         store = {'it.equipment': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10),},
-                        help="Medium-sized photo of the employee. It is automatically "\
+                        help="Medium-sized Equipment Photo. It is automatically "\
                         "resized as a 128x128px image, with aspect ratio preserved. "\
                         "Use this field in form views or some kanban views."),
         'image_small': fields.function(_get_image, fnct_inv=_set_image,
                         string="Smal-sized photo", type="binary", multi="_get_image",
                         store = {'it.equipment': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10),},
-                        help="Small-sized photo of the employee. It is automatically "\
+                        help="Small-sized Equipment Photo. It is automatically "\
                         "resized as a 64x64px image, with aspect ratio preserved. "\
                         "Use this field anywhere a small image is required."),
                         
@@ -151,7 +151,7 @@ class it_equipment(osv.osv):
     }
 
     def _get_default_image(context=None):
-        image_path = addons.get_module_resource('it', 'static/src/img', 'default_image_equipment.png')
+        image_path = addons.get_module_resource('it', 'static/src/img/', 'default_image_equipment.png')
         return tools.image_resize_image_big(open(image_path, 'rb').read().encode('base64'))
 
     _defaults = {

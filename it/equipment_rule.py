@@ -26,30 +26,28 @@ from openerp.osv import fields, osv
 from openerp import tools
 _logger = logging.getLogger(__name__)
 
-class it_equipment_forward(osv.osv):
+class it_equipment_rule(osv.osv):
 
-    _name = 'it.equipment.forward'
+    _name = 'it.equipment.rule'
 
     _description = 'Equipment Rules'
 
     _columns = {
-
+    
     	'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
 		'name': fields.char('Name', required=True),
 		'source_port': fields.char('Source Port'),
 		'destination_port': fields.char('Destination Port'),
 		'source_address': fields.char('Source Address'),
 		'destination_address': fields.char('Destination Address'),
-		'type': fields.selection([('tcp','TCP'),('udp','UDP'),('both','BOTH')],'Type'),
 		'permission': fields.selection([('allow','ALLOW'),('deny','DENY')],'Permission'),
-		
+    
     }
 
     _defaults = {
     
-		'type': 'both',
 		'permission': 'allow',
 		
     }
 	
-it_equipment_forward()
+it_equipment_rule()

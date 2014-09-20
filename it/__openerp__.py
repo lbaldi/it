@@ -82,7 +82,8 @@
 			- Virtual Machine Data
 			- Domain Controller
 			- Operational System
-			- Changes		
+			- Changes
+		
     """,
 
     'images': [
