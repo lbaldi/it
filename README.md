@@ -108,7 +108,8 @@ Quick data access from partners.
 
 
 # TODO LIST
-- [x] Change Readme.
+- [x] Add especification to readme and some images.
+- [x] Fix default image for servers.
 - [x] Change nat, forwards and rules model and view.
 - [ ] Add applications model (software).
 - [ ] Think about configuration page and all posibles configuration.
