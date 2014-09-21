@@ -40,7 +40,6 @@
 					<field name="description"/>
 					<field name="equipment_type"/>
 					<field name="function_ids"/>
-					<field name="is_contracted"/>
 				</tree>
 			</field>
 		</record>
@@ -191,18 +190,40 @@
 			<field name="model">it.equipment</field>
 			<field name="arch" type="xml">
 				<search string="Equipment">
+					<!--Searchs-->
 					<field name="identification" string="Identification Name"/>
 					<field name="partner_id" string="Partner"/>
 					<field name="equipment_type" string="Type"/>
 					<field name="virtual_parent_id" string="Host"/>
-					<field name="is_backup" string="Backup"/>
-					<field name="is_access" string="Access"/>
-					<field name="function_dc" string="Domain Controller"/>
-					<field name="function_fileserver" string="File Server"/>
+					<!--Filters-->
+					<filter name="is_contracted" string="Contracted" domain="[('is_contracted','=',1)]"/>
+					<filter name="is_contracted" string="Own" domain="[('is_contracted','=',0)]"/>
+					<separator/>
+					<filter name="is_dhcp" string="DHCP" domain="[('is_dhcp','=',1)]" help="Equipments with network dhcp configuration"/>
+					<filter name="is_dhcp" string="Static" domain="[('is_dhcp','=',0)]" help="Equipments with netwotk static configuration"/>
+					<separator/>
+					<filter name="is_backup" string="With Backup" domain="[('is_backup','=',1)]" help="Equipments with backup"/>
+					<filter name="is_backup" string="Without Backup" domain="[('is_backup','=',0)]" help="Equipments without backup"/>
+					<separator/>
+					<filter name="is_access" string="With Access" domain="[('is_access','=',1)]" help="Equipments with access"/>
+					<filter name="is_access" string="Without Access" domain="[('is_access','=',0)]" help="Equipments without access"/>
+					<separator string="Functions"/>
+					<filter name="is_partitioned" string="Partitioned" domain="[('is_partitioned','=',1)]" help="Equipments with partitions"/>
+					<filter name="function_dc" string="Domain Controllers" domain="[('function_dc','=',1)]"/>
+					<filter name="function_fileserver" string="Filservers" domain="[('function_fileserver','=',1)]"/>
+					<filter name="function_host" string="Hosts" domain="[('function_host','=',1)]"/>
+					<filter name="function_router" string="Routers" domain="[('function_router','=',1)]"/>
+					<filter string="Physicals" domain="[('equipment_type','=','physical')]"/>
+					<filter string="Virtuals" domain="[('equipment_type','=','virtual')]"/>
+					<separator/>
+					<filter domain="[('user_id','=',uid)]" help="Registered by my"/>
+					<!--Groups-->
 					<group expand="0" string="Group By...">
 						<filter string="Partner" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
 						<filter string="Type" icon="terp-personal" domain="[]" context="{'group_by':'equipment_type'}"/>
 						<filter string="Host" icon="terp-personal" domain="[]" context="{'group_by':'virtual_parent_id'}"/>
+						<filter string="Contractor" icon="terp-personal" domain="[]" context="{'group_by':'contract_partner_id'}"/>
+						<filter string="Registrant" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}"/>
 					</group>
 				</search>
 			</field>
