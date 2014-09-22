@@ -5,7 +5,7 @@
     <data>
 
 		<!-- Create view for changes -->
-		<record model="ir.ui.view" id="it_equipment_change_form">
+		<record model="ir.ui.view" id="it_equipment_component_form">
 			<field name="name">it.equipment.component.form</field>
 			<field name="model">it.equipment.component</field>
 			<field name="type">form</field>
@@ -22,7 +22,7 @@
 		</record>
 
 		<!-- Tree view for changes grill on equipments -->
-		<record model="ir.ui.view" id="it_equipment_change_tree">
+		<record model="ir.ui.view" id="it_equipment_component_tree">
 			<field name="name">it.equipment.component.tree</field>
 			<field name="model">it.equipment.component</field>
 			<field name="type">tree</field>
