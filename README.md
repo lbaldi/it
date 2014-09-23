@@ -146,3 +146,5 @@ Quick data access from partners.
 - [ ] Travis or runbot integration.
 - [ ] Application Bundle for quick config as a template.
 - [ ] Buttons on tree view for quick download. (same buttons calls)
+- [ ] Demo data
+- [ ] Data for licenses.
