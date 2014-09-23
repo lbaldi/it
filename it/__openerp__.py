@@ -60,6 +60,8 @@
         'views/backup_view.xml',
         'views/equipment_function_view.xml',
         'views/equipment_mapping_view.xml',
+        'views/application_view.xml',
+        'views/application_license_view.xml',
 
     ],
 

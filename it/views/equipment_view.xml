@@ -164,6 +164,11 @@
                                     <field name="os_version"/>
                                 </group>
                             </page>
+                            <page string="Applications" attrs="{'invisible':[('is_application','=', False )]}" >
+                                <group>
+                                    <field name="application_ids" nolabel="1" colspan="4"/>
+                                </group>
+                            </page>
                             <page string="Changes" >
                                 <field name="change_ids" nolabel="1" colspan="4"/>
                             </page>
@@ -186,6 +191,7 @@
                                         <field name="is_access"/>
                                         <field name="is_backup"/>
                                         <field name="is_os"/>
+                                        <field name="is_application"/>
                                         <field name="equipment_type"/>
                                     </group>
                                     <group string="Function Configuration">
@@ -224,10 +230,13 @@
                     <separator/>
                     <filter name="is_access" string="With Access" domain="[('is_access','=',1)]" help="Equipments with access"/>
                     <filter name="is_access" string="Without Access" domain="[('is_access','=',0)]" help="Equipments without access"/>
+                    <separator/>
+                    <filter name="is_application" string="With Applications" domain="[('is_application','=',1)]" help="Equipments with applications"/>
+                    <filter name="is_application" string="Without Applications" domain="[('is_application','=',0)]" help="Equipments without applications"/>
                     <separator string="Functions"/>
                     <filter name="is_partitioned" string="Partitioned" domain="[('is_partitioned','=',1)]" help="Equipments with partitions"/>
                     <filter name="function_dc" string="Domain Controllers" domain="[('function_dc','=',1)]"/>
-                    <filter name="function_fileserver" string="Filservers" domain="[('function_fileserver','=',1)]"/>
+                    <filter name="function_fileserver" string="FileServers" domain="[('function_fileserver','=',1)]"/>
                     <filter name="function_host" string="Hosts" domain="[('function_host','=',1)]"/>
                     <filter name="function_router" string="Routers" domain="[('function_router','=',1)]"/>
                     <filter string="Physicals" domain="[('equipment_type','=','physical')]"/>

@@ -1,11 +1,11 @@
 # ODOO INFRASTRUCTURE MODULE [v7]
 
-This module is used for Infrastructure management. You can registry several types of equipments, access, and backups. 
+This module is used for Infrastructure management. You can registry several types of equipments, access, backups and applications.
 
 
 ## EQUIPMENTS
 
-![Alt Text](/docs/img/server_example.jpg?raw=true "Server Example").
+![Alt Text](/docs/img/server_example.jpg?raw=true "Server Example")
 
 ### GENERAL DATA FOR EQUIPMENTS
 * Identification ( Owner - Name )
@@ -24,10 +24,11 @@ This module is used for Infrastructure management. You can registry several type
 * Company: Filtered for non multicompany users.
 * Contracted Service : Add page for contract data.
 * DHCP: For equipments without network config. Delete network configuration page.
-* Disk and Partitions: Add page disk and partition page. Where can registry disk, formats, and mounts.
-* Access: Add button "Access" on righttop corner. 
+* Disk and Partitions: Add page disk and partition page where can registry disk, formats, and mounts.
+* Access: Add button "Access" on righttop corner.
 * Backup: Add button "Backups" on righttop corner.
 * Operational System: Add operational system page where can registry name, company , and version.
+* Applications: Add page applications where you can registry all software installations (many2many).
 * Equipment type:
   * Physical: For example: servers, this type add page for physical nformation
   * Virtual: Add page for virtual machine data as host, mem, disk size, quantity of processors, number of networks
@@ -36,9 +37,11 @@ This module is used for Infrastructure management. You can registry several type
 
 ###FUNCTIONS CONFIGURATION
 
-* Host: Add button "Virtuals" on righttop corner. 
+* Host: Add button "Virtuals" on righttop corner.
 * Router:Add page for contract data.
-![Alt text](/docs/img/router_example.jpg?raw=true "Router Example").
+
+![Alt text](/docs/img/router_example.jpg?raw=true "Router Example")
+
 * Domain Controller: Add page for domain data.
 * Fileserver: Add page for fileserver where can registry mappings and permissions.
 
@@ -60,7 +63,7 @@ This module is used for Infrastructure management. You can registry several type
   * Port
   * Link
 * SSL Page ( binaries)
-  * CSR 
+  * CSR
   * CRT
   * PUBLIC KEY
   * PRIVATE KEY
@@ -71,7 +74,7 @@ This module is used for Infrastructure management. You can registry several type
 
 ## BACKUPS
 
-![Alt text](/docs/img/backup_example.jpg?raw=true "Backup Example")	
+![Alt text](/docs/img/backup_example.jpg?raw=true "Backup Example")
 
 ### GENERAL DATA FOR BACKUPS
 * Name
@@ -94,13 +97,37 @@ This module is used for Infrastructure management. You can registry several type
   * User
   * Date
 
+## APPLICATIONS
+
+![Alt text](/docs/img/application_example.jpg?raw=true "Application Example")
+
+### GENERAL DATA FOR APPLICATIONS
+* Name
+* Developer
+* Type
+  * OpenSource
+  * ClosedSource
+* License (abm involve name and a copy of license)
+* Link
+* Download Link
+* Documentation (binary)
+* Note
+* Equipments (many2many)
+* Creation Audit data
+  * User
+  * Date
+* If ClosedSource is selected:
+  * Key
+  * Keygen (binary)
+  * Crack (binary)
+
 
 ## ROLES:
 Restrictc menu, equipment, access and backups, etc.
 * User ( 1,0,0,0)
 * Moderator (1,1,1,0)
 * Manager (1,1,1,1)
-      
+
 ## PARTNERS
 Quick data access from partners.
 
@@ -111,9 +138,11 @@ Quick data access from partners.
 - [x] Add especification to readme and some images.
 - [x] Fix default image for servers.
 - [x] Change nat, forwards and rules model and view.
-- [ ] Add applications model (software).
+- [x] Add applications model (software).
 - [ ] Think about configuration page and all posibles configuration.
 - [ ] More information for printers and other devices.
-- [ ] Fix View of server changes.
+- [x] Fix View of server changes.
 - [ ] Test.
 - [ ] Travis or runbot integration.
+- [ ] Application Bundle for quick config as a template.
+- [ ] Buttons on tree view for quick download. (same buttons calls)

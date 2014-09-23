@@ -63,6 +63,9 @@ class it_equipment(osv.osv):
         'note': fields.text('Note'),
         'image': fields.binary("Photo",help="Equipment Photo, limited to 1024x1024px."),
 
+        #Applications Page
+        'application_ids': fields.many2many('it.application','equipment_application_rel','equipment_id','application_id','Applications'),
+
         # Config Page
         'equipment_type': fields.selection([('physical','PHYSICAL'),('virtual','VIRTUAL'),('other','OTHER')],'Equipment Type',required=True),
         'is_contracted': fields.boolean('Contracted Service'),
@@ -71,6 +74,7 @@ class it_equipment(osv.osv):
         'is_backup': fields.boolean('Backup'),
         'is_access': fields.boolean('Access'),
         'is_os': fields.boolean('Operating System'),
+        'is_application': fields.boolean('Applications'),
         'function_dc': fields.boolean('Domain Controller'),
         'function_fileserver': fields.boolean('File Server'),
 
@@ -144,6 +148,7 @@ class it_equipment(osv.osv):
         'is_backup': False,
         'is_access': True,
         'is_os': True,
+        'is_application': True,
         'function_dc': False,
         'function_fileserver': False,
         'image': _get_default_image(),

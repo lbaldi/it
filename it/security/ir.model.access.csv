@@ -38,3 +38,9 @@ it_rule_access_user,it_access,model_it_access,group_it_user,1,0,0,0
 it_rule_backup_manager,it_backup,model_it_backup,group_it_manager,1,1,1,1
 it_rule_backup_mod,it_backup,model_it_backup,group_it_mod,1,1,1,0
 it_rule_backup_user,it_backup,model_it_backup,group_it_user,1,0,0,0
+it_rule_application_manager,it_application,model_it_application,group_it_manager,1,1,1,1
+it_rule_application_mod,it_application,model_it_application,group_it_mod,1,1,1,0
+it_rule_application_user,it_application,model_it_application,group_it_user,1,0,0,0
+it_rule_application_license_manager,it_application_license,model_it_application_license,group_it_manager,1,1,1,1
+it_rule_application_license_mod,it_application_license,model_it_application_license,group_it_mod,1,1,1,0
+it_rule_application_license_user,it_application_license,model_it_application_license,group_it_user,1,0,0,0

@@ -1,13 +1,13 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* it
+#   * it
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20140720-231246\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-02 14:04+0000\n"
-"PO-Revision-Date: 2014-09-02 14:04+0000\n"
+"POT-Creation-Date: 2014-09-23 03:02+0000\n"
+"PO-Revision-Date: 2014-09-23 03:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,18 +21,13 @@ msgid "Destination"
 msgstr "Destino"
 
 #. module: it
-#: help:it.equipment,image_medium:0
-msgid "Medium-sized photo of the employee. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
-msgstr "Medium-sized photo of the employee. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
-
-#. module: it
 #: field:it.equipment.change,date:0
 msgid "Change date"
 msgstr "Cambiar fecha"
 
 #. module: it
-#: model:ir.actions.act_window,name:it.act_partner_2_access
 #: model:ir.actions.act_window,name:it.act_equipment_2_access
+#: model:ir.actions.act_window,name:it.act_partner_2_access
 #: model:ir.actions.act_window,name:it.it_access_action
 #: model:ir.model,name:it.model_it_access
 #: model:ir.ui.menu,name:it.it_access
@@ -45,6 +40,7 @@ msgstr "Accesos"
 
 #. module: it
 #: view:it.access:0
+#: view:it.application:0
 #: view:it.backup:0
 #: view:it.equipment:0
 msgid "Group By..."
@@ -56,19 +52,20 @@ msgid "Enter a mount entry"
 msgstr "Ingrese el Punto de montaje o Letra de unidad"
 
 #. module: it
-#: model:ir.model,name:it.model_it_equipment_mapping
-msgid "Equipment Mapping"
-msgstr "Mapeo"
-
-#. module: it
-#: help:it.equipment,image:0
-msgid "This field holds the image used as photo for the employee, limited to 1024x1024px."
-msgstr "Este campo contiene la imagen utilizada como foto para el empleado, limitado a 1024x1024px."
-
-#. module: it
 #: field:it.equipment,virtual_processor_amount:0
 msgid "Number of Processor"
 msgstr "Cantidad de procesadores"
+
+#. module: it
+#: model:ir.model,name:it.model_it_equipment_function
+msgid "Equipment Function"
+msgstr "Funciones del Equipo"
+
+#. module: it
+#: model:ir.module.category,name:it.module_category_it
+#: model:ir.ui.menu,name:it.menu_main_itm
+msgid "Infrastructure"
+msgstr "Infraestructura"
 
 #. module: it
 #: view:it.equipment:0
@@ -77,13 +74,33 @@ msgid "Operating System"
 msgstr "Sistema Operativo"
 
 #. module: it
+#: view:it.equipment:0
+msgid "Filservers"
+msgstr "Filservers"
+
+#. module: it
+#: model:ir.actions.act_window,name:it.act_partner_2_equipment
+msgid "equipment"
+msgstr "equipo"
+
+#. module: it
 #: field:it.equipment.network,dns2:0
 msgid "Secundary DNS"
 msgstr "DNS Secundario"
 
 #. module: it
+#: model:ir.model,name:it.model_it_equipment_partition
+msgid "Equipment Partition"
+msgstr "Particion"
+
+#. module: it
+#: view:it.access:0
 #: field:it.access,company_id:0
+#: view:it.application:0
+#: field:it.application,company_id:0
+#: view:it.backup:0
 #: field:it.backup,company_id:0
+#: view:it.equipment:0
 #: field:it.equipment,company_id:0
 msgid "Company"
 msgstr "Cliente"
@@ -92,6 +109,16 @@ msgstr "Cliente"
 #: view:it.equipment.partition.mount:0
 msgid "Mount entry"
 msgstr "Punto de montaje / Letra de unidad"
+
+#. module: it
+#: model:ir.actions.act_window,name:it.it_application_action
+#: model:ir.ui.menu,name:it.it_application
+#: view:it.application:0
+#: view:it.equipment:0
+#: field:it.equipment,application_ids:0
+#: field:it.equipment,is_application:0
+msgid "Applications"
+msgstr "Aplicaciones"
 
 #. module: it
 #: view:it.equipment:0
@@ -105,14 +132,12 @@ msgid "Private Key"
 msgstr "Llave Privada"
 
 #. module: it
-#: field:it.equipment,change_ids:0
-msgid "Changes on this equipment"
-msgstr "Historial de cambios del equipo"
-
-#. module: it
-#: field:it.equipment,equipment_type:0
-msgid "Equipment Type"
-msgstr "Tipo de Equipo"
+#: field:it.access,user_id:0
+#: field:it.application,user_id:0
+#: field:it.backup,user_id:0
+#: field:it.equipment,user_id:0
+msgid "Created by"
+msgstr "Creado por"
 
 #. module: it
 #: field:it.equipment.mapping,path:0
@@ -120,29 +145,41 @@ msgid "Path"
 msgstr "Ruta"
 
 #. module: it
-#: field:it.equipment.forward,source_port:0
-#: field:it.equipment.nat,source_port:0
-#: field:it.equipment.rule,source_port:0
-msgid "Source Port"
-msgstr "Puerto origen"
+#: view:it.equipment.change:0
+msgid "Change"
+msgstr "Cambios"
 
 #. module: it
+#: field:it.equipment,equipment_network_ids:0
+msgid "Network on this equipment"
+msgstr "Red en este equipo"
+
+#. module: it
+#: view:it.backup:0
 #: selection:it.backup,type:0
 msgid "FULL"
 msgstr "FULL"
 
 #. module: it
+#: view:it.equipment:0
+msgid "With Backup"
+msgstr "Con Backups"
+
+#. module: it
 #: field:it.equipment.forward,destination_port:0
-#: field:it.equipment.nat,destination_port:0
 #: field:it.equipment.rule,destination_port:0
 msgid "Destination Port"
 msgstr "Puerto destino"
 
 #. module: it
-#: model:ir.actions.act_window,name:it.it_partner_supplier_action
-#: model:ir.ui.menu,name:it.it_partner_supplier
-msgid "Suppliers"
-msgstr "Proveedores"
+#: view:it.application:0
+msgid "Closed Source"
+msgstr "Codigo Cerrado"
+
+#. module: it
+#: view:it.application:0
+msgid "ClosedSource"
+msgstr "Codigo Cerrado"
 
 #. module: it
 #: view:it.equipment:0
@@ -152,12 +189,17 @@ msgstr "Informacion de contratistas"
 #. module: it
 #: field:it.equipment,os_company:0
 msgid "OS Company"
-msgstr "Empresa OS"
+msgstr "Empresa"
 
 #. module: it
-#: field:it.equipment,contract_client_number:0
-msgid "Client Nummber"
-msgstr "Numero de cliente"
+#: view:it.equipment:0
+msgid "Equipments with access"
+msgstr "Equipos con accesos"
+
+#. module: it
+#: view:it.equipment:0
+msgid "Hosts"
+msgstr "Hosts"
 
 #. module: it
 #: model:ir.actions.act_window,name:it.it_component_action
@@ -183,15 +225,25 @@ msgid "File Server"
 msgstr "Servidor de Archivos"
 
 #. module: it
+#: model:ir.model,name:it.model_it_equipment_forward
+#: model:ir.model,name:it.model_it_equipment_nat
+#: model:ir.model,name:it.model_it_equipment_rule
+msgid "Equipment Rules"
+msgstr "Reglas del Equipo"
+
+#. module: it
 #: view:it.access:0
+#: view:it.application:0
 #: view:it.backup:0
 #: view:it.equipment:0
-msgid "Audit Data"
-msgstr "Auditoria"
+msgid "NAME"
+msgstr "NOMBRE"
 
 #. module: it
 #: view:it.access:0
 #: field:it.access,note:0
+#: view:it.application:0
+#: field:it.application,note:0
 #: view:it.backup:0
 #: field:it.backup,note:0
 #: view:it.equipment:0
@@ -204,14 +256,24 @@ msgid "Note"
 msgstr "Notas"
 
 #. module: it
+#: field:it.equipment.component,serial_number:0
+msgid "Serial Number"
+msgstr "Numero de serie"
+
+#. module: it
+#: field:it.access,password:0
+msgid "Password"
+msgstr "Contraseña"
+
+#. module: it
 #: field:it.equipment.network,dns1:0
 msgid "Primary DNS"
 msgstr "DNS Primario"
 
 #. module: it
-#: field:it.equipment,image_medium:0
-msgid "Medium-sized photo"
-msgstr "Foto mediana"
+#: field:it.backup,type:0
+msgid "Backup Type"
+msgstr "Tipo de Backup"
 
 #. module: it
 #: view:it.equipment:0
@@ -229,10 +291,9 @@ msgid "PRIMARY"
 msgstr "PRIMARIO"
 
 #. module: it
-#: view:it.access:0
-#: view:it.backup:0
-msgid "EQUIPMENT"
-msgstr "EQUIPO"
+#: view:it.equipment:0
+msgid "Without Applications"
+msgstr "Sin Aplicaciones"
 
 #. module: it
 #: view:it.access:0
@@ -247,7 +308,7 @@ msgstr "Cliente"
 #. module: it
 #: model:ir.model,name:it.model_it_backup
 msgid "Back Up"
-msgstr "Back-Up"
+msgstr "Back Up"
 
 #. module: it
 #: field:it.equipment,dc_name:0
@@ -255,19 +316,17 @@ msgid "Domain Name"
 msgstr "Nombre Dominio"
 
 #. module: it
+#: model:ir.actions.act_window,name:it.it_equipment_function_action
+#: model:ir.ui.menu,name:it.it_equipment_function
+#: view:it.equipment:0
 #: field:it.equipment,function_ids:0
 msgid "Functions"
 msgstr "Funciones"
 
 #. module: it
-#: field:it.equipment,partitions_ids:0
-msgid "Partition on this equipment"
-msgstr "Discos del equipo"
-
-#. module: it
-#: view:it.equipment.network:0
-msgid "Network"
-msgstr "Red"
+#: view:it.equipment:0
+msgid "Domain Controllers"
+msgstr "Controlador de Dominio"
 
 #. module: it
 #: field:it.backup,script:0
@@ -275,17 +334,26 @@ msgid "Script"
 msgstr "Script"
 
 #. module: it
+#: view:it.equipment:0
 #: field:it.equipment,contract_partner_id:0
 msgid "Contractor"
 msgstr "Contratista"
 
 #. module: it
+#: model:ir.model,name:it.model_it_application
 #: view:it.access:0
 #: field:it.access,application:0
+#: view:it.application:0
 msgid "Application"
 msgstr "Aplicacion"
 
 #. module: it
+#: view:it.equipment:0
+msgid "Equipments with applications"
+msgstr "Equipos con aplicaciones"
+
+#. module: it
+#: view:it.backup:0
 #: selection:it.backup,type:0
 msgid "DIFF"
 msgstr "DIFF"
@@ -298,7 +366,12 @@ msgstr "DMZ"
 #. module: it
 #: field:it.equipment,os_version:0
 msgid "OS Version"
-msgstr "Version OS"
+msgstr "Version"
+
+#. module: it
+#: model:ir.model,name:it.model_it_equipment_component
+msgid "Equipment Component"
+msgstr "Componenetes del equipo"
 
 #. module: it
 #: model:ir.actions.act_window,name:it.act_equipment_2_equipment
@@ -307,8 +380,6 @@ msgid "Virtuals"
 msgstr "Virtuales"
 
 #. module: it
-#: selection:it.equipment.forward,permission:0
-#: selection:it.equipment.nat,permission:0
 #: selection:it.equipment.rule,permission:0
 msgid "DENY"
 msgstr "DENEGAR"
@@ -324,19 +395,23 @@ msgid "SLAVE"
 msgstr "ESCLAVO"
 
 #. module: it
-#: model:ir.model,name:it.model_it_equipment_network
-msgid "Equipment Network"
-msgstr "Red"
+#: model:res.groups,name:it.group_it_mod
+msgid "Moderator"
+msgstr "Moderador"
 
 #. module: it
-#: field:it.equipment.forward,permission:0
-#: field:it.equipment.nat,permission:0
+#: view:it.application:0
+msgid "Installations"
+msgstr "Instalaciones"
+
+#. module: it
 #: field:it.equipment.rule,permission:0
 msgid "Permission"
 msgstr "Permiso"
 
 #. module: it
 #: field:it.access,creation_date:0
+#: field:it.application,creation_date:0
 #: field:it.backup,creation_date:0
 #: field:it.equipment,creation_date:0
 msgid "Creation Date"
@@ -344,8 +419,6 @@ msgstr "Fecha de creacion"
 
 #. module: it
 #: selection:it.equipment.forward,type:0
-#: selection:it.equipment.nat,type:0
-#: selection:it.equipment.rule,type:0
 msgid "TCP"
 msgstr "TCP"
 
@@ -355,19 +428,30 @@ msgid "Mount on this partition"
 msgstr "Montado en este disco"
 
 #. module: it
+#: model:ir.model,name:it.model_it_equipment_change
+msgid "Equipment Change"
+msgstr "Cambios"
+
+#. module: it
 #: view:it.equipment.partition:0
 msgid "Partition entry"
 msgstr "Disco rigido"
 
 #. module: it
-#: view:it.equipment.component:0
-msgid "Enter a component"
-msgstr "Ingresar un componente"
+#: field:it.backup,frequency:0
+msgid "Frequency"
+msgstr "Frecuencia"
 
 #. module: it
 #: field:it.access,link:0
+#: field:it.application,link_page:0
 msgid "Link"
 msgstr "Link"
+
+#. module: it
+#: field:it.application,key:0
+msgid "Key"
+msgstr "LLave"
 
 #. module: it
 #: field:it.equipment,is_contracted:0
@@ -376,10 +460,16 @@ msgstr "Servicio contratado"
 
 #. module: it
 #: view:it.access:0
+#: view:it.application:0
 #: view:it.backup:0
 #: view:it.equipment:0
 msgid "Configuration"
 msgstr "Configuracion"
+
+#. module: it
+#: field:it.equipment,equipment_type:0
+msgid "Equipment Type"
+msgstr "Tipo de Equipo"
 
 #. module: it
 #: field:it.equipment,is_partitioned:0
@@ -388,38 +478,9 @@ msgid "Partitions"
 msgstr "Discos y Particiones"
 
 #. module: it
-#: model:ir.ui.menu,name:it.it_menu_general
-msgid "General Menu"
-msgstr "Menu General"
-
-#. module: it
-#: field:it.equipment.partition.mount,partition_id:0
-msgid "Partition"
-msgstr "Partition"
-
-#. module: it
-#: selection:it.equipment,equipment_type:0
-msgid "VIRTUAL"
-msgstr "VIRTUAL"
-
-#. module: it
-#: model:ir.actions.act_window,name:it.act_partner_2_equipment
-#: view:it.access:0
-#: field:it.access,equipment_id:0
-#: view:it.backup:0
-#: field:it.backup,equipment_id:0
 #: view:it.equipment:0
-#: field:it.equipment,virtual_parent_id:0
-#: field:it.equipment.change,equipment_id:0
-#: field:it.equipment.component,equipment_id:0
-#: field:it.equipment.forward,equipment_id:0
-#: field:it.equipment.mapping,equipment_id:0
-#: field:it.equipment.nat,equipment_id:0
-#: field:it.equipment.network,equipment_id:0
-#: field:it.equipment.partition,equipment_id:0
-#: field:it.equipment.rule,equipment_id:0
-msgid "Equipment"
-msgstr "Equipo"
+msgid "Without Backup"
+msgstr "Sin Backup"
 
 #. module: it
 #: view:it.equipment:0
@@ -428,14 +489,71 @@ msgid "Network Configuration"
 msgstr "Configuracion de red"
 
 #. module: it
+#: field:it.equipment.partition.mount,partition_id:0
+msgid "Partition"
+msgstr "Particion"
+
+#. module: it
+#: view:it.equipment:0
+msgid "Partitioned"
+msgstr "Particionado"
+
+#. module: it
+#: model:ir.ui.menu,name:it.it_menu_general
+msgid "General Menu"
+msgstr "Menu General"
+
+#. module: it
+#: field:it.application,documentation:0
+msgid "Documentation"
+msgstr "Documentacion"
+
+#. module: it
+#: selection:it.equipment,equipment_type:0
+msgid "VIRTUAL"
+msgstr "VIRTUAL"
+
+#. module: it
+#: field:it.application,keygen:0
+msgid "Keygen"
+msgstr "Keygen"
+
+#. module: it
+#: view:it.equipment:0
+msgid "Equipments with backup"
+msgstr "Equipos con backup"
+
+#. module: it
+#: field:it.equipment.mapping,users:0
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: it
+#: field:it.equipment,physical_component_ids:0
+msgid "Components on this equipment"
+msgstr "Componentes del equipo"
+
+#. module: it
 #: field:it.equipment.partition,name:0
 msgid "Identificator"
 msgstr "Identificador"
 
 #. module: it
+#: view:it.application:0
 #: view:it.equipment:0
+msgid "Registrant"
+msgstr "Registrante"
+
+#. module: it
+#: view:it.equipment:0
+#: view:it.equipment.change:0
 msgid "Changes"
 msgstr "Cambios"
+
+#. module: it
+#: view:it.equipment.nat:0
+msgid "Nat Registry"
+msgstr "Registro de NAT"
 
 #. module: it
 #: field:it.access,ssl_csr:0
@@ -443,14 +561,14 @@ msgid "CSR"
 msgstr "CSR"
 
 #. module: it
+#: view:it.application:0
+msgid "OpenSource Applications"
+msgstr "Aplicaciones Codigo Abierto"
+
+#. module: it
 #: field:it.equipment.change,description:0
 msgid "Long Description"
 msgstr "Descripcion detallada"
-
-#. module: it
-#: field:it.equipment,image_small:0
-msgid "Smal-sized photo"
-msgstr "Foto"
 
 #. module: it
 #: view:it.equipment:0
@@ -463,13 +581,9 @@ msgid "Partition Information"
 msgstr "Discos y Particiones"
 
 #. module: it
-#: model:ir.actions.act_window,name:it.it_equipment_action
-#: model:ir.model,name:it.model_it_equipment
-#: model:ir.ui.menu,name:it.it_equipment
-#: view:it.equipment:0
-#: view:res.partner:0
-msgid "Equipments"
-msgstr "Equipos"
+#: view:it.application:0
+msgid "ClosedSource Applications"
+msgstr "Aplicaciones Codido Cerrado"
 
 #. module: it
 #: view:it.access:0
@@ -482,9 +596,19 @@ msgid "INCREMENTAL"
 msgstr "INCREMENTAL"
 
 #. module: it
+#: view:it.equipment:0
+msgid "Static"
+msgstr "Estatica"
+
+#. module: it
 #: view:it.equipment.network:0
 msgid "XXX.XXX.XXX.XXX"
 msgstr "XXX.XXX.XXX.XXX"
+
+#. module: it
+#: field:it.equipment,contract_direction:0
+msgid "Invoice Direction"
+msgstr "Direccion de facturacion"
 
 #. module: it
 #: view:it.equipment:0
@@ -497,6 +621,17 @@ msgstr "Configuracion de Routers y switches"
 #: view:res.partner:0
 msgid "Backups"
 msgstr "Backups"
+
+#. module: it
+#: view:it.application:0
+#: field:it.application,developer:0
+msgid "Developer"
+msgstr "Desarrollador"
+
+#. module: it
+#: field:it.equipment,partitions_ids:0
+msgid "Partition on this equipment"
+msgstr "Discos del equipo"
 
 #. module: it
 #: field:it.equipment.forward,source_address:0
@@ -525,12 +660,12 @@ msgstr "Numero de Redes"
 #. module: it
 #: field:it.equipment,os_name:0
 msgid "OS Name"
-msgstr "Nombre OS"
+msgstr "Nombre"
 
 #. module: it
-#: field:it.equipment,contract_direction:0
-msgid "Invoice Direction"
-msgstr "Direccion de facturacion"
+#: view:it.equipment:0
+msgid "Contracted"
+msgstr "Contratado"
 
 #. module: it
 #: field:it.equipment.mapping,perm_write:0
@@ -548,9 +683,20 @@ msgid "Internal"
 msgstr "Interna"
 
 #. module: it
-#: selection:it.equipment,equipment_type:0
-msgid "PHYSICAL"
-msgstr "FISICO"
+#: field:it.application,crack:0
+msgid "Crack"
+msgstr "Crack"
+
+#. module: it
+#: field:it.equipment.forward,source_port:0
+#: field:it.equipment.rule,source_port:0
+msgid "Source Port"
+msgstr "Puerto origen"
+
+#. module: it
+#: view:it.equipment.network:0
+msgid "Network"
+msgstr "Red"
 
 #. module: it
 #: field:it.equipment,router_nat_ids:0
@@ -564,6 +710,11 @@ msgid "Customers"
 msgstr "Clientes"
 
 #. module: it
+#: view:it.equipment.mapping:0
+msgid "Mapping Registry"
+msgstr "Registor de Mapeo"
+
+#. module: it
 #: field:it.equipment.mapping,perm_delete:0
 msgid "Perm Delete"
 msgstr "Perm. Borrar"
@@ -572,6 +723,11 @@ msgstr "Perm. Borrar"
 #: field:it.equipment.network,netmask:0
 msgid "Netmask"
 msgstr "Mascara de red"
+
+#. module: it
+#: view:it.equipment:0
+msgid "Equipments with netwotk static configuration"
+msgstr "Equipos con red estatica"
 
 #. module: it
 #: view:it.equipment:0
@@ -589,10 +745,39 @@ msgid "Public Key"
 msgstr "Llave Publica"
 
 #. module: it
+#: view:it.application:0
+msgid "OpenSource"
+msgstr "Codigo Abierto"
+
+#. module: it
+#: view:it.equipment:0
+msgid "Equipments without backup"
+msgstr "Equipos sin backup"
+
+#. module: it
+#: field:it.access,active:0
+#: field:it.application,active:0
+#: field:it.backup,active:0
+#: field:it.equipment,active:0
+msgid "Active"
+msgstr "Activo"
+
+#. module: it
 #: field:it.access,user:0
 #: field:it.equipment.change,user_id:0
+#: model:res.groups,name:it.group_it_user
 msgid "User"
 msgstr "Usuario"
+
+#. module: it
+#: view:it.equipment:0
+msgid "With Applications"
+msgstr "Con Aplicaciones"
+
+#. module: it
+#: view:it.equipment:0
+msgid "Equipments with partitions"
+msgstr "Equipos con particiones"
 
 #. module: it
 #: field:it.equipment.mapping,groups:0
@@ -600,23 +785,14 @@ msgid "Groups"
 msgstr "Grupos"
 
 #. module: it
-#: field:it.access,active:0
-#: field:it.backup,active:0
-#: field:it.equipment,active:0
-msgid "Active"
-msgstr "Activo"
-
-#. module: it
-#: field:it.access,user_id:0
-#: field:it.backup,user_id:0
-#: field:it.equipment,user_id:0
-msgid "Created by"
-msgstr "Creado por"
-
-#. module: it
 #: view:it.equipment:0
 msgid "Identification Name"
-msgstr "Identification Name"
+msgstr "Identificacion"
+
+#. module: it
+#: selection:it.application,type:0
+msgid "CLOSED SOURCE"
+msgstr "CODIGO CERRADO"
 
 #. module: it
 #: field:it.equipment.partition,disks:0
@@ -624,6 +800,7 @@ msgid "Disks"
 msgstr "Discos"
 
 #. module: it
+#: view:it.backup:0
 #: selection:it.backup,type:0
 #: selection:it.equipment,equipment_type:0
 msgid "OTHER"
@@ -638,6 +815,11 @@ msgstr "Perm. Lectura"
 #: field:it.access,ssl_cert:0
 msgid "Cert"
 msgstr "Certificado"
+
+#. module: it
+#: help:it.equipment,image:0
+msgid "Equipment Photo, limited to 1024x1024px."
+msgstr "Foto del Equipo, maximo 1024x1024px."
 
 #. module: it
 #: view:it.equipment:0
@@ -655,7 +837,6 @@ msgstr "Router"
 #: model:ir.actions.act_window,name:it.it_backup_action
 #: model:ir.ui.menu,name:it.it_backup
 #: view:it.backup:0
-#: view:it.equipment:0
 #: field:it.equipment,is_backup:0
 msgid "Backup"
 msgstr "Backup"
@@ -667,16 +848,32 @@ msgid "Domain Controller"
 msgstr "Controlador de Dominio"
 
 #. module: it
-#: model:ir.model,name:it.model_it_equipment_component
-msgid "Equipment Component"
-msgstr "Componenetes del equipo"
+#: model:ir.module.category,description:it.module_category_it
+msgid "Helps you manage your infrastructure equipment, access and backups."
+msgstr "Ayuda a administrar tus equipos de infraestructura, accesos y backups."
+
+#. module: it
+#: view:it.application:0
+#: field:it.application,type:0
+#: view:it.backup:0
+#: view:it.equipment:0
+#: field:it.equipment.forward,type:0
+#: field:it.equipment.partition,type:0
+msgid "Type"
+msgstr "Tipo"
+
+#. module: it
+#: model:ir.model,name:it.model_it_equipment_mapping
+msgid "Equipment Mapping"
+msgstr "Mapeo"
 
 #. module: it
 #: view:it.access:0
+#: view:it.application:0
 #: view:it.backup:0
 #: view:it.equipment:0
-msgid "NAME"
-msgstr "NOMBRE"
+msgid "Audit Data"
+msgstr "Auditoria"
 
 #. module: it
 #: view:it.equipment.component:0
@@ -684,9 +881,22 @@ msgid "Component entry"
 msgstr "Agregar un componente"
 
 #. module: it
-#: field:it.backup,source:0
-msgid "Source"
-msgstr "Origen"
+#: view:it.access:0
+#: field:it.access,equipment_id:0
+#: view:it.backup:0
+#: field:it.backup,equipment_id:0
+#: view:it.equipment:0
+#: field:it.equipment,virtual_parent_id:0
+#: field:it.equipment.change,equipment_id:0
+#: field:it.equipment.component,equipment_id:0
+#: field:it.equipment.forward,equipment_id:0
+#: field:it.equipment.mapping,equipment_id:0
+#: field:it.equipment.nat,equipment_id:0
+#: field:it.equipment.network,equipment_id:0
+#: field:it.equipment.partition,equipment_id:0
+#: field:it.equipment.rule,equipment_id:0
+msgid "Equipment"
+msgstr "Equipo"
 
 #. module: it
 #: field:it.backup,time_schedule:0
@@ -694,24 +904,22 @@ msgid "Time Schedule"
 msgstr "Horario"
 
 #. module: it
-#: model:ir.model,name:it.model_it_equipment_partition
-msgid "Equipment Partition"
-msgstr "Particion"
+#: field:it.backup,source:0
+msgid "Source"
+msgstr "Origen"
 
 #. module: it
-#: help:it.equipment,image_small:0
-msgid "Small-sized photo of the employee. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
-msgstr "Foto  del empleado. Se cambia automaticamente como imagen de 64x64px con relacion de aspecto conservado. Utilice este campo donde se requiera una imagen."
+#: view:it.application:0
+msgid "General Information"
+msgstr "Informacion General"
 
 #. module: it
-#: field:it.backup,frequency:0
-msgid "Frequency"
-msgstr "Frecuencia"
+#: view:it.equipment.component:0
+msgid "Enter a component"
+msgstr "Ingresar un componente"
 
 #. module: it
 #: field:it.equipment,router_rules_ids:0
-#: view:it.equipment.forward:0
-#: view:it.equipment.nat:0
 #: view:it.equipment.rule:0
 msgid "Rules Registry"
 msgstr "Registro de reglas"
@@ -727,6 +935,7 @@ msgid "OWNER"
 msgstr "PROPIETARIO"
 
 #. module: it
+#: view:it.equipment:0
 #: field:it.equipment,is_dhcp:0
 msgid "DHCP"
 msgstr "DHCP"
@@ -737,15 +946,15 @@ msgid "Size"
 msgstr "Espacio"
 
 #. module: it
+#: selection:it.equipment,equipment_type:0
+msgid "PHYSICAL"
+msgstr "FISICO"
+
+#. module: it
 #: view:it.access:0
 #: view:it.backup:0
 msgid "Information"
 msgstr "Informacion"
-
-#. module: it
-#: view:it.access:0
-msgid "Acess"
-msgstr "Acceso"
 
 #. module: it
 #: field:it.equipment,contract_owner:0
@@ -753,9 +962,20 @@ msgid "Titular"
 msgstr "Titular"
 
 #. module: it
+#: field:it.equipment,virtual_memory_amount:0
+msgid "Memory"
+msgstr "Memoria"
+
+#. module: it
 #: field:it.equipment,router_dhcp:0
 msgid "DHCP Range"
 msgstr "Rango DHCP"
+
+#. module: it
+#: view:it.access:0
+#: view:it.backup:0
+msgid "EQUIPMENT"
+msgstr "EQUIPO"
 
 #. module: it
 #: field:it.equipment,dc_type:0
@@ -773,16 +993,19 @@ msgid "Virtual Network"
 msgstr "Red Virtual"
 
 #. module: it
-#: field:it.equipment,virtual_memory_amount:0
-msgid "Memory"
-msgstr "Memoria"
+#: view:it.application:0
+msgid "Links and Docs"
+msgstr "Links y Docs"
 
 #. module: it
-#: model:ir.model,name:it.model_it_equipment_forward
-#: model:ir.model,name:it.model_it_equipment_nat
-#: model:ir.model,name:it.model_it_equipment_rule
-msgid "Equipment Rules"
-msgstr "Reglas del Equipo"
+#: view:it.equipment.change:0
+msgid "Change entry"
+msgstr "Registro de cambio"
+
+#. module: it
+#: model:ir.model,name:it.model_it_equipment_network
+msgid "Equipment Network"
+msgstr "Red"
 
 #. module: it
 #: view:it.access:0
@@ -790,22 +1013,24 @@ msgid "Access Name"
 msgstr "Nombre del acceso"
 
 #. module: it
-#: model:ir.actions.act_window,name:it.it_equipment_function_action
-#: model:ir.ui.menu,name:it.it_equipment_function
 #: view:it.equipment.function:0
 msgid "Function"
 msgstr "Funcion"
 
 #. module: it
 #: selection:it.equipment.forward,type:0
-#: selection:it.equipment.nat,type:0
-#: selection:it.equipment.rule,type:0
 msgid "BOTH"
 msgstr "AMBOS"
 
 #. module: it
+#: view:it.equipment:0
+msgid "Without Access"
+msgstr "Sin Acceso"
+
+#. module: it
 #: field:it.access,description:0
 #: field:it.equipment,description:0
+#: view:it.equipment.change:0
 msgid "Description"
 msgstr "Descripcion"
 
@@ -815,14 +1040,9 @@ msgid "Format"
 msgstr "Formato"
 
 #. module: it
-#: view:it.backup:0
 #: view:it.equipment:0
-#: field:it.equipment.forward,type:0
-#: field:it.equipment.nat,type:0
-#: field:it.equipment.partition,type:0
-#: field:it.equipment.rule,type:0
-msgid "Type"
-msgstr "Tipo"
+msgid "Routers"
+msgstr "Routers"
 
 #. module: it
 #: field:it.equipment.component,product_id:0
@@ -840,17 +1060,50 @@ msgid "Enter a partition entry"
 msgstr "Ingresa un registro de particion"
 
 #. module: it
+#: model:ir.actions.act_window,name:it.it_equipment_action
+#: model:ir.model,name:it.model_it_equipment
+#: model:ir.ui.menu,name:it.it_equipment
+#: field:it.application,equipment_ids:0
+#: view:it.equipment:0
+#: view:res.partner:0
+msgid "Equipments"
+msgstr "Equipos"
+
+#. module: it
+#: view:it.equipment:0
+msgid "Equipments without applications"
+msgstr "Equipos sin aplicaciones"
+
+#. module: it
 #: field:it.equipment.network,address:0
 msgid "Address"
 msgstr "IP"
 
 #. module: it
-#: field:it.access,password:0
-msgid "Password"
-msgstr "Contraseña"
+#: field:it.application.license,copy:0
+msgid "Copy"
+msgstr "Copia"
+
+#. module: it
+#: model:ir.actions.act_window,name:it.it_partner_supplier_action
+#: model:ir.ui.menu,name:it.it_partner_supplier
+msgid "Suppliers"
+msgstr "Proveedores"
+
+#. module: it
+#: view:it.equipment:0
+msgid "Equipments without access"
+msgstr "Equipos sin accesos"
+
+#. module: it
+#: view:it.equipment:0
+msgid "With Access"
+msgstr "Con Acceso"
 
 #. module: it
 #: field:it.access,name:0
+#: field:it.application,name:0
+#: field:it.application.license,name:0
 #: field:it.backup,name:0
 #: field:it.equipment,identification:0
 #: field:it.equipment,name:0
@@ -865,19 +1118,24 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: it
+#: model:ir.actions.act_window,name:it.it_application_license_action
+#: model:ir.model,name:it.model_it_application_license
+#: model:ir.ui.menu,name:it.it_application_license
+#: view:it.application:0
+#: field:it.application,license_id:0
+#: view:it.application.license:0
+msgid "License"
+msgstr "Licencia"
+
+#. module: it
 #: field:it.equipment.change,name:0
 msgid "Short Description"
 msgstr "Descripcion corta"
 
 #. module: it
-#: field:it.equipment,equipment_network_ids:0
-msgid "Network on this equipment"
-msgstr "Red en este equipo"
-
-#. module: it
-#: model:ir.ui.menu,name:it.menu_main_itm
-msgid "Infrastructure"
-msgstr "Infraestructura"
+#: view:it.application:0
+msgid "Application Name"
+msgstr "Nombre Aplicacion"
 
 #. module: it
 #: field:it.equipment,virtual_disk_amount:0
@@ -885,15 +1143,6 @@ msgid "Disk Size"
 msgstr "Espacio del Disco"
 
 #. module: it
-#: view:it.equipment.forward:0
-#: view:it.equipment.nat:0
-#: view:it.equipment.rule:0
-msgid "Rule"
-msgstr "Regla"
-
-#. module: it
-#: selection:it.equipment.forward,permission:0
-#: selection:it.equipment.nat,permission:0
 #: selection:it.equipment.rule,permission:0
 msgid "ALLOW"
 msgstr "PERMITIR"
@@ -909,9 +1158,9 @@ msgid "Script Location"
 msgstr "Ubicacion del Script"
 
 #. module: it
-#: view:it.equipment.mapping:0
-msgid "Mapping Registry"
-msgstr "Registor de Mapeo"
+#: field:it.equipment,change_ids:0
+msgid "Changes on this equipment"
+msgstr "Historial de cambios del equipo"
 
 #. module: it
 #: view:it.equipment:0
@@ -919,9 +1168,9 @@ msgid "Virtual Machine Data"
 msgstr "Datos Maquina Virtual"
 
 #. module: it
-#: field:it.equipment.mapping,users:0
-msgid "Users"
-msgstr "Usuarios"
+#: view:it.equipment:0
+msgid "Physicals"
+msgstr "Fisicos"
 
 #. module: it
 #: model:ir.model,name:it.model_it_equipment_partition_mount
@@ -930,10 +1179,18 @@ msgstr "Montaje Particion"
 
 #. module: it
 #: selection:it.equipment.forward,type:0
-#: selection:it.equipment.nat,type:0
-#: selection:it.equipment.rule,type:0
 msgid "UDP"
 msgstr "UDP"
+
+#. module: it
+#: view:it.equipment:0
+msgid "Own"
+msgstr "Propio"
+
+#. module: it
+#: selection:it.application,type:0
+msgid "OPEN SOURCE"
+msgstr "CODIGO ABIERTO"
 
 #. module: it
 #: view:it.equipment:0
@@ -941,24 +1198,42 @@ msgid "DESCRIPTION"
 msgstr "DESCRIPCION"
 
 #. module: it
-#: model:ir.model,name:it.model_it_equipment_change
-msgid "Equipment Change"
-msgstr "Cambios"
+#: view:it.equipment:0
+msgid "Equipments with network dhcp configuration"
+msgstr "Equipos con red dhcp"
 
 #. module: it
-#: field:it.equipment,physical_component_ids:0
-msgid "Components on this equipment"
-msgstr "Componentes del equipo"
+#: view:it.access:0
+#: view:it.application:0
+#: view:it.backup:0
+#: view:it.equipment:0
+msgid "Registered by my"
+msgstr "Registrados por mi"
 
 #. module: it
-#: field:it.equipment.component,serial_number:0
-msgid "Serial Number"
-msgstr "Numero de serie"
+#: field:it.application,link_download:0
+msgid "Download Link"
+msgstr "Link de Descarga"
 
 #. module: it
 #: field:it.access,port:0
 msgid "Port"
 msgstr "Puerto"
+
+#. module: it
+#: view:it.equipment.forward:0
+msgid "Forward Registry"
+msgstr "Registro de Forward"
+
+#. module: it
+#: model:res.groups,name:it.group_it_manager
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: it
+#: field:it.equipment,contract_client_number:0
+msgid "Client Nummber"
+msgstr "Numero de cliente"
 
 #. module: it
 #: help:it.equipment.partition,disks:0
@@ -971,17 +1246,12 @@ msgid "Forward Rules"
 msgstr "Reglas de Forwardeo"
 
 #. module: it
-#: model:ir.model,name:it.model_it_equipment_function
-msgid "Equipment Function"
-msgstr "Funciones del Equipo"
+#: view:it.backup:0
+msgid "INC"
+msgstr "INC"
 
 #. module: it
 #: field:it.equipment.network,gateway:0
 msgid "Gateway"
-msgstr "Gateway"
-
-#. module: it
-#: field:it.backup,type:0
-msgid "Backup Type"
-msgstr "Tipo de Backup"
+msgstr "Puerta de Enlace"
 
