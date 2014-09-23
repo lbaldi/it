@@ -22,6 +22,8 @@
 from openerp import addons
 import logging
 import time
+import random
+from random import choice
 from openerp.osv import fields, osv
 from openerp import tools
 _logger = logging.getLogger(__name__)
@@ -33,6 +35,13 @@ class it_equipment(osv.osv):
     _description = "Equipments"
 
     _rec_name = 'identification'
+
+    def _get_pin(self, cr, uid, context=None):
+        longitud = 12
+        valores = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<=>@#%&+"
+        p = ""
+        p = p.join([choice(valores) for i in range(longitud)])
+        return p
 
     def _get_identification(self, cr, uid, ids, name, args, context=None):
         result = dict.fromkeys(ids, False)
@@ -63,6 +72,9 @@ class it_equipment(osv.osv):
         'note': fields.text('Note'),
         'image': fields.binary("Photo",help="Equipment Photo, limited to 1024x1024px."),
 
+        #Applications Page
+        'application_ids': fields.many2many('it.application','equipment_application_rel','equipment_id','application_id','Applications'),
+
         # Config Page
         'equipment_type': fields.selection([('physical','PHYSICAL'),('virtual','VIRTUAL'),('other','OTHER')],'Equipment Type',required=True),
         'is_contracted': fields.boolean('Contracted Service'),
@@ -71,6 +83,7 @@ class it_equipment(osv.osv):
         'is_backup': fields.boolean('Backup'),
         'is_access': fields.boolean('Access'),
         'is_os': fields.boolean('Operating System'),
+        'is_application': fields.boolean('Applications'),
         'function_dc': fields.boolean('Domain Controller'),
         'function_fileserver': fields.boolean('File Server'),
 
@@ -80,6 +93,7 @@ class it_equipment(osv.osv):
         # Audit Page
         'creation_date': fields.date('Creation Date',readonly=True),
         'user_id': fields.many2one('res.users', 'Created by',readonly=True),
+        'pin': fields.char('PIN', readonly=True, required=True),
 
         # Changes Page
         'change_ids': fields.one2many('it.equipment.change','equipment_id','Changes on this equipment'),
@@ -135,6 +149,7 @@ class it_equipment(osv.osv):
 
     _defaults = {
 
+        'pin': _get_pin,
         'function_router': False,
         'function_host': False,
         'equipment_type': 'physical',
@@ -144,6 +159,7 @@ class it_equipment(osv.osv):
         'is_backup': False,
         'is_access': True,
         'is_os': True,
+        'is_application': True,
         'function_dc': False,
         'function_fileserver': False,
         'image': _get_default_image(),
@@ -152,6 +168,8 @@ class it_equipment(osv.osv):
         'company_id': lambda self,cr,uid,ctx: self.pool['res.company']._company_default_get(cr,uid,object='it.equipment',context=ctx),
 
     }
+
+    _sql_constraints = [('name_uniq','unique(pin)', 'PIN must be unique!')]
 
 it_equipment()
 

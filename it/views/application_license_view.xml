@@ -21,38 +21,40 @@
 
     <data>
 
-        <!-- Create view for rules -->
-        <record model="ir.ui.view" id="it_equipment_function_form">
-            <field name="name">it.equipment.function.form</field>
-            <field name="model">it.equipment.function</field>
+        <!-- Form view -->
+        <record model="ir.ui.view" id="it_application_license_form">
+            <field name="name">it.application.license.form</field>
+            <field name="model">it.application.license</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Function">
+                <form string="License">
                     <field name="name" colspan="4"/>
+                    <newline/>
+                    <field name="copy"/>
                 </form>
             </field>
         </record>
 
-        <!-- Tree view for rules grill on equipments -->
-        <record model="ir.ui.view" id="it_equipment_function_tree">
-            <field name="name">it.equipment.function.tree</field>
-            <field name="model">it.equipment.function</field>
+        <!-- Tree view-->
+        <record model="ir.ui.view" id="it_application_license_tree">
+            <field name="name">it.application.license.tree</field>
+            <field name="model">it.application.license</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Function">
+                <tree string="License">
                     <field name="name" colspan="4"/>
                 </tree>
             </field>
         </record>
 
-        <record id="it_equipment_function_action" model="ir.actions.act_window">
-            <field name="name">Functions</field>
-            <field name="res_model">it.equipment.function</field>
+        <record id="it_application_license_action" model="ir.actions.act_window">
+            <field name="name">License</field>
+            <field name="res_model">it.application.license</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem action="it_equipment_function_action" id="it_equipment_function" sequence="30" parent="it_menu_others"/>
+        <menuitem action="it_application_license_action" id="it_application_license" sequence="40" parent="it_menu_others"/>
 
     </data>
 

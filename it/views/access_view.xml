@@ -104,14 +104,18 @@
             <field name="model">it.access</field>
             <field name="arch" type="xml">
                 <search string="Access">
+                    <!--Searchs-->
                     <field name="equipment_id" string="Equipment"/>
                     <field name="name" string="Access Name"/>
                     <field name="partner_id" string="Partner"/>
                     <field name="application" string="Application"/>
+                    <!--Filters-->
+                    <filter domain="[('user_id','=',uid)]" help="Registered by my"/>
                     <group expand="0" string="Group By...">
                         <filter string="Partner" icon="terp-personal+" domain="[]" context="{'group_by':'partner_id'}"/>
                         <filter string="Equipment" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'equipment_id'}"/>
                         <filter string="Application" icon="terp-go-home" domain="[]" context="{'group_by':'application'}" />
+                        <filter string="Registrant" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}"/>
                     </group>
                 </search>
             </field>

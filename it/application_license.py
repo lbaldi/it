@@ -19,19 +19,26 @@
 #
 ##############################################################################
 
-import equipment
-import access
-import equipment_change
-import equipment_component
-import equipment_network
-import equipment_rule
-import equipment_nat
-import equipment_forward
-import equipment_partition
-import backup
-import equipment_function
-import equipment_mapping
-import application
-import application_license
+from openerp import addons
+import logging
+import time
+from openerp.osv import fields, osv
+from openerp import tools
+_logger = logging.getLogger(__name__)
+
+class it_application_license(osv.osv):
+
+    _name = 'it.application.license'
+
+    _description = 'License'
+
+    _columns = {
+
+        'name': fields.char('Name', required=True),
+        'copy': fields.text('Copy'),
+
+    }
+
+it_application_license()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
