@@ -1,243 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2014 Leandro Ezequiel Baldi
+    <baldileandro@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
 
 <openerp>
-    
+
     <data>
 
-		<!-- Action for Buttons -->
-		<record id="act_equipment_2_access" model="ir.actions.act_window">
-			<field name="res_model">it.access</field>
-			<field name="view_type">form</field>
-			<field name="name">Access</field>
-			<field name="view_mode">tree,form</field>
-			<field name="context">{'search_default_equipment_id': active_id }</field>
-		</record>
+        <!-- Action for Buttons -->
+        <record id="act_equipment_2_access" model="ir.actions.act_window">
+            <field name="res_model">it.access</field>
+            <field name="view_type">form</field>
+            <field name="name">Access</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_equipment_id': active_id }</field>
+        </record>
 
-		<record id="act_equipment_2_equipment" model="ir.actions.act_window">
-			<field name="res_model">it.equipment</field>
-			<field name="view_type">form</field>
-			<field name="name">Virtuals</field>
-			<field name="view_mode">tree,form</field>
-			<field name="context">{'search_default_virtual_parent_id': active_id }</field>
-		</record>
+        <record id="act_equipment_2_equipment" model="ir.actions.act_window">
+            <field name="res_model">it.equipment</field>
+            <field name="view_type">form</field>
+            <field name="name">Virtuals</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_virtual_parent_id': active_id }</field>
+        </record>
 
-		<record id="act_equipment_2_backup" model="ir.actions.act_window">
-			<field name="res_model">it.backup</field>
-			<field name="view_type">form</field>
-			<field name="name">Backups</field>
-			<field name="view_mode">tree,form</field>
-			<field name="context">{'search_default_equipment_id': active_id }</field>
-		</record>
+        <record id="act_equipment_2_backup" model="ir.actions.act_window">
+            <field name="res_model">it.backup</field>
+            <field name="view_type">form</field>
+            <field name="name">Backups</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_equipment_id': active_id }</field>
+        </record>
 
-		<!-- Equipments -->
-		<record model="ir.ui.view" id="it_equipment_tree">
-			<field name="name">it.equipment.tree</field>
-			<field name="model">it.equipment</field>
-			<field name="type">tree</field>
-			<field name="arch" type="xml">
-				<tree string="Equipments">
-					<field name="identification"/>
-					<field name="description"/>
-					<field name="equipment_type"/>
-					<field name="function_ids"/>
-				</tree>
-			</field>
-		</record>
+        <!-- Equipments -->
+        <record model="ir.ui.view" id="it_equipment_tree">
+            <field name="name">it.equipment.tree</field>
+            <field name="model">it.equipment</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Equipments">
+                    <field name="identification"/>
+                    <field name="description"/>
+                    <field name="equipment_type"/>
+                    <field name="function_ids"/>
+                </tree>
+            </field>
+        </record>
 
-		<record model="ir.ui.view" id="it_equipment_form">
-			<field name="name">it.equipment.form</field>
-			<field name="model">it.equipment</field>
-			<field name="type">form</field>
-			<field name="arch" type="xml">
-				<form string="Equipments" version="7.0">
-					<sheet>
-						<div class="oe_left oe_avatar">
-							<field name="image" class="oe_left oe_avatar" widget='image'/>
-						</div>
-						<div class="oe_title">
-							<h1>
-							<field name="name" placeholder="NAME"/>
-							<field name="description" placeholder="DESCRIPTION"/>
-							<field name="partner_id" placeholder="OWNER" />
-							<field name="function_ids" widget="many2many_tags" placeholder="Functions..." />
-							</h1>
-						</div>
-						<div class="oe_right oe_button_box" name="button_box">
-							<button name="%(act_equipment_2_access)d" string="Access" type="action" attrs="{'invisible':[('is_access','=', False )]}" />
-							<button name="%(act_equipment_2_equipment)d" string="Virtuals" type="action" attrs="{'invisible': [('function_host','=', False )]}"/>
-							<button name="%(act_equipment_2_backup)d" string="Backups" type="action" attrs="{'invisible':[('is_backup','=', False )]}"/>
-						</div>
-						<separator/>
-						<group>
-							<!-- groups and fielda 
-							<group string="Type">
-							
-							</group>
-							-->
-						</group>
-						<separator string="Note"/>
-						<field colspan="4" name="note" nolabel="1"/>
-						<notebook>
-							<page string="Physical Information" attrs="{'invisible':[('equipment_type','!=', 'physical' )]}" >
-								<group>
-									<field name="physical_component_ids" nolabel="1" colspan="4"/>
-								</group>
-							</page>
-							<page string="Virtual Machine Data" attrs="{'invisible':[('equipment_type','!=', 'virtual' )]}" >
-								<group>
-									<group string="Host">
-										<field name='virtual_parent_id'/>
-									</group>
-									<group string="Configuration">
-										<field name='virtual_memory_amount'/>
-										<field name='virtual_disk_amount'/>
-										<field name='virtual_processor_amount'/>
-										<field name='virtual_network_amount'/>
-									</group>
-								</group>
-							</page>
-							<page string="Partition Information" attrs="{'invisible':[('is_partitioned','=', False )]}" >
-								<group>
-									<field name="partitions_ids" nolabel="1" colspan="4"/>
-								</group>
-							</page>
-							<page string="Service Information" attrs="{'invisible':[('is_contracted','=', False )]}" >
-								<group>
-									<group string="Contract Information">
-										<field name='contract_partner_id'/>
-										<field name='contract_client_number'/>
-										<field name='contract_owner'/>
-										<field name='contract_nif'/>
-										<field name='contract_direction'/>
-									</group>
-								</group>
-							</page>
-							<page string="Router Configuration" attrs="{'invisible':[('function_router','=', False )]}" >
-								<group>
-									<field name="router_product"/>
-									<field name="router_dhcp"/>
-									<field name="router_dmz"/>
-									<field name="router_forward_ids"/>
-									<field name="router_nat_ids"/>
-									<field name="router_rules_ids"/>
-								</group>
-							</page>
-							<page string="Network Configuration" attrs="{'invisible':[('is_dhcp','=', True )]}" >
-								<group>
-									<group string="Network Configuration">
-										<field name="equipment_network_ids" nolabel="1" colspan="4"/>
-									</group>
-								</group>
-							</page>
-							<page string="File Server" attrs="{'invisible':[('function_fileserver','=', False )]}" >
-								<group>
-									<field name="equipment_mapping_ids" nolabel="1" colspan="4"/>
-								</group>
-							</page>
-							<page string="Domain Controller" attrs="{'invisible':[('function_dc','=', False )]}" >
-								<group>
-									<field name="dc_name"/>
-									<field name="dc_type"/>
-								</group>
-							</page>
-							<page string="Operating System" attrs="{'invisible':[('is_os','=', False )]}" >
-								<group>
-									<field name="os_name"/>
-									<field name="os_company"/>
-									<field name="os_version"/>
-								</group>
-							</page>
-							<page string="Changes" >
-								<field name="change_ids" nolabel="1" colspan="4"/>
-							</page>
-							<page string="Audit Data">
-								<group>
-									<group>
-										<field name="user_id"/>
-										<field name="creation_date" />
-									</group>
-								</group>
-							</page>
-							<page string="Configuration" groups="it.group_it_mod">
-								<group>
-									<group string="Basic Configuration">
-										<field name="active" />
-										<field name="company_id" string="Company" groups="base.group_multi_company"/>
-										<field name="is_contracted"/>
-										<field name="is_dhcp"/>
-										<field name="is_partitioned"/>
-										<field name="is_access"/>
-										<field name="is_backup"/>
-										<field name="is_os"/>
-										<field name="equipment_type"/>
-									</group>
-									<group string="Function Configuration">
-										<field name="function_host" />
-										<field name="function_router"/>
-										<field name="function_dc"/>
-										<field name="function_fileserver"/>
-									</group>
-								</group>
-							</page>
-						</notebook>
-					</sheet>
-				</form>
-			</field>
-		</record>
+        <record model="ir.ui.view" id="it_equipment_form">
+            <field name="name">it.equipment.form</field>
+            <field name="model">it.equipment</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Equipments" version="7.0">
+                    <sheet>
+                        <div class="oe_left oe_avatar">
+                            <field name="image" class="oe_left oe_avatar" widget="image"/>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                            <field name="name" placeholder="NAME"/>
+                            <field name="description" placeholder="DESCRIPTION"/>
+                            <field name="partner_id" placeholder="OWNER" />
+                            <field name="function_ids" widget="many2many_tags" placeholder="Functions..." />
+                            </h1>
+                        </div>
+                        <div class="oe_right oe_button_box" name="button_box">
+                            <button name="%(act_equipment_2_access)d" string="Access" type="action" attrs="{'invisible':[('is_access','=', False )]}" />
+                            <button name="%(act_equipment_2_equipment)d" string="Virtuals" type="action" attrs="{'invisible': [('function_host','=', False )]}"/>
+                            <button name="%(act_equipment_2_backup)d" string="Backups" type="action" attrs="{'invisible':[('is_backup','=', False )]}"/>
+                        </div>
+                        <separator/>
+                        <group>
+                            <!-- groups and fielda
+                            <group string="Type">
 
-		<record model="ir.ui.view" id="it_equipment_search" >
-			<field name="name">it.equipment.search</field>
-			<field name="model">it.equipment</field>
-			<field name="arch" type="xml">
-				<search string="Equipment">
-					<!--Searchs-->
-					<field name="identification" string="Identification Name"/>
-					<field name="partner_id" string="Partner"/>
-					<field name="equipment_type" string="Type"/>
-					<field name="virtual_parent_id" string="Host"/>
-					<!--Filters-->
-					<filter name="is_contracted" string="Contracted" domain="[('is_contracted','=',1)]"/>
-					<filter name="is_contracted" string="Own" domain="[('is_contracted','=',0)]"/>
-					<separator/>
-					<filter name="is_dhcp" string="DHCP" domain="[('is_dhcp','=',1)]" help="Equipments with network dhcp configuration"/>
-					<filter name="is_dhcp" string="Static" domain="[('is_dhcp','=',0)]" help="Equipments with netwotk static configuration"/>
-					<separator/>
-					<filter name="is_backup" string="With Backup" domain="[('is_backup','=',1)]" help="Equipments with backup"/>
-					<filter name="is_backup" string="Without Backup" domain="[('is_backup','=',0)]" help="Equipments without backup"/>
-					<separator/>
-					<filter name="is_access" string="With Access" domain="[('is_access','=',1)]" help="Equipments with access"/>
-					<filter name="is_access" string="Without Access" domain="[('is_access','=',0)]" help="Equipments without access"/>
-					<separator string="Functions"/>
-					<filter name="is_partitioned" string="Partitioned" domain="[('is_partitioned','=',1)]" help="Equipments with partitions"/>
-					<filter name="function_dc" string="Domain Controllers" domain="[('function_dc','=',1)]"/>
-					<filter name="function_fileserver" string="Filservers" domain="[('function_fileserver','=',1)]"/>
-					<filter name="function_host" string="Hosts" domain="[('function_host','=',1)]"/>
-					<filter name="function_router" string="Routers" domain="[('function_router','=',1)]"/>
-					<filter string="Physicals" domain="[('equipment_type','=','physical')]"/>
-					<filter string="Virtuals" domain="[('equipment_type','=','virtual')]"/>
-					<separator/>
-					<filter domain="[('user_id','=',uid)]" help="Registered by my"/>
-					<!--Groups-->
-					<group expand="0" string="Group By...">
-						<filter string="Partner" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
-						<filter string="Type" icon="terp-personal" domain="[]" context="{'group_by':'equipment_type'}"/>
-						<filter string="Host" icon="terp-personal" domain="[]" context="{'group_by':'virtual_parent_id'}"/>
-						<filter string="Contractor" icon="terp-personal" domain="[]" context="{'group_by':'contract_partner_id'}"/>
-						<filter string="Registrant" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}"/>
-					</group>
-				</search>
-			</field>
-		</record>
+                            </group>
+                            -->
+                        </group>
+                        <separator string="Note"/>
+                        <field colspan="4" name="note" nolabel="1"/>
+                        <notebook>
+                            <page string="Physical Information" attrs="{'invisible':[('equipment_type','!=', 'physical' )]}" >
+                                <group>
+                                    <field name="physical_component_ids" nolabel="1" colspan="4"/>
+                                </group>
+                            </page>
+                            <page string="Virtual Machine Data" attrs="{'invisible':[('equipment_type','!=', 'virtual' )]}" >
+                                <group>
+                                    <group string="Host">
+                                        <field name="virtual_parent_id"/>
+                                    </group>
+                                    <group string="Configuration">
+                                        <field name="virtual_memory_amount"/>
+                                        <field name="virtual_disk_amount"/>
+                                        <field name="virtual_processor_amount"/>
+                                        <field name="virtual_network_amount"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Partition Information" attrs="{'invisible':[('is_partitioned','=', False )]}" >
+                                <group>
+                                    <field name="partitions_ids" nolabel="1" colspan="4"/>
+                                </group>
+                            </page>
+                            <page string="Service Information" attrs="{'invisible':[('is_contracted','=', False )]}" >
+                                <group>
+                                    <group string="Contract Information">
+                                        <field name="contract_partner_id"/>
+                                        <field name="contract_client_number"/>
+                                        <field name="contract_owner"/>
+                                        <field name="contract_nif"/>
+                                        <field name="contract_direction"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Router Configuration" attrs="{'invisible':[('function_router','=', False )]}" >
+                                <group>
+                                    <field name="router_product"/>
+                                    <field name="router_dhcp"/>
+                                    <field name="router_dmz"/>
+                                    <field name="router_forward_ids"/>
+                                    <field name="router_nat_ids"/>
+                                    <field name="router_rules_ids"/>
+                                </group>
+                            </page>
+                            <page string="Network Configuration" attrs="{'invisible':[('is_dhcp','=', True )]}" >
+                                <group>
+                                    <group string="Network Configuration">
+                                        <field name="equipment_network_ids" nolabel="1" colspan="4"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="File Server" attrs="{'invisible':[('function_fileserver','=', False )]}" >
+                                <group>
+                                    <field name="equipment_mapping_ids" nolabel="1" colspan="4"/>
+                                </group>
+                            </page>
+                            <page string="Domain Controller" attrs="{'invisible':[('function_dc','=', False )]}" >
+                                <group>
+                                    <field name="dc_name"/>
+                                    <field name="dc_type"/>
+                                </group>
+                            </page>
+                            <page string="Operating System" attrs="{'invisible':[('is_os','=', False )]}" >
+                                <group>
+                                    <field name="os_name"/>
+                                    <field name="os_company"/>
+                                    <field name="os_version"/>
+                                </group>
+                            </page>
+                            <page string="Changes" >
+                                <field name="change_ids" nolabel="1" colspan="4"/>
+                            </page>
+                            <page string="Audit Data">
+                                <group>
+                                    <group>
+                                        <field name="user_id"/>
+                                        <field name="creation_date" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Configuration" groups="it.group_it_mod">
+                                <group>
+                                    <group string="Basic Configuration">
+                                        <field name="active" />
+                                        <field name="company_id" string="Company" groups="base.group_multi_company"/>
+                                        <field name="is_contracted"/>
+                                        <field name="is_dhcp"/>
+                                        <field name="is_partitioned"/>
+                                        <field name="is_access"/>
+                                        <field name="is_backup"/>
+                                        <field name="is_os"/>
+                                        <field name="equipment_type"/>
+                                    </group>
+                                    <group string="Function Configuration">
+                                        <field name="function_host" />
+                                        <field name="function_router"/>
+                                        <field name="function_dc"/>
+                                        <field name="function_fileserver"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-		<record id="it_equipment_action" model="ir.actions.act_window">
-			<field name="name">Equipments</field>
-			<field name="res_model">it.equipment</field>
-			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
-		</record>
+        <record model="ir.ui.view" id="it_equipment_search" >
+            <field name="name">it.equipment.search</field>
+            <field name="model">it.equipment</field>
+            <field name="arch" type="xml">
+                <search string="Equipment">
+                    <!--Searchs-->
+                    <field name="identification" string="Identification Name"/>
+                    <field name="partner_id" string="Partner"/>
+                    <field name="equipment_type" string="Type"/>
+                    <field name="virtual_parent_id" string="Host"/>
+                    <!--Filters-->
+                    <filter name="is_contracted" string="Contracted" domain="[('is_contracted','=',1)]"/>
+                    <filter name="is_contracted" string="Own" domain="[('is_contracted','=',0)]"/>
+                    <separator/>
+                    <filter name="is_dhcp" string="DHCP" domain="[('is_dhcp','=',1)]" help="Equipments with network dhcp configuration"/>
+                    <filter name="is_dhcp" string="Static" domain="[('is_dhcp','=',0)]" help="Equipments with netwotk static configuration"/>
+                    <separator/>
+                    <filter name="is_backup" string="With Backup" domain="[('is_backup','=',1)]" help="Equipments with backup"/>
+                    <filter name="is_backup" string="Without Backup" domain="[('is_backup','=',0)]" help="Equipments without backup"/>
+                    <separator/>
+                    <filter name="is_access" string="With Access" domain="[('is_access','=',1)]" help="Equipments with access"/>
+                    <filter name="is_access" string="Without Access" domain="[('is_access','=',0)]" help="Equipments without access"/>
+                    <separator string="Functions"/>
+                    <filter name="is_partitioned" string="Partitioned" domain="[('is_partitioned','=',1)]" help="Equipments with partitions"/>
+                    <filter name="function_dc" string="Domain Controllers" domain="[('function_dc','=',1)]"/>
+                    <filter name="function_fileserver" string="Filservers" domain="[('function_fileserver','=',1)]"/>
+                    <filter name="function_host" string="Hosts" domain="[('function_host','=',1)]"/>
+                    <filter name="function_router" string="Routers" domain="[('function_router','=',1)]"/>
+                    <filter string="Physicals" domain="[('equipment_type','=','physical')]"/>
+                    <filter string="Virtuals" domain="[('equipment_type','=','virtual')]"/>
+                    <separator/>
+                    <filter domain="[('user_id','=',uid)]" help="Registered by my"/>
+                    <!--Groups-->
+                    <group expand="0" string="Group By...">
+                        <filter string="Partner" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Type" icon="terp-personal" domain="[]" context="{'group_by':'equipment_type'}"/>
+                        <filter string="Host" icon="terp-personal" domain="[]" context="{'group_by':'virtual_parent_id'}"/>
+                        <filter string="Contractor" icon="terp-personal" domain="[]" context="{'group_by':'contract_partner_id'}"/>
+                        <filter string="Registrant" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
 
-		<menuitem action="it_equipment_action" id="it_equipment" sequence="20" parent="it_menu_general"/>
+        <record id="it_equipment_action" model="ir.actions.act_window">
+            <field name="name">Equipments</field>
+            <field name="res_model">it.equipment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="it_equipment_action" id="it_equipment" sequence="20" parent="it_menu_general"/>
 
     </data>
-    
+
 </openerp>
+
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4-->

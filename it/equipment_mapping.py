@@ -1,7 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Leandro Ezequiel Baldi 
+#    Copyright (C) 2014 Leandro Ezequiel Baldi
 #    <baldileandro@gmail.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ class it_equipment_mapping(osv.osv):
     _description = 'Equipment Mapping'
 
     _columns = {
-    
+
         'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
         'name': fields.char('Name', required=True),
         'path': fields.char('Path', required=True),
@@ -42,7 +42,9 @@ class it_equipment_mapping(osv.osv):
         'perm_read' : fields.boolean('Perm Read'),
         'perm_write' : fields.boolean('Perm Write'),
         'perm_delete' : fields.boolean('Perm Delete'),
-        
+
     }
 
 it_equipment_mapping()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

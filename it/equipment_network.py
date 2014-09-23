@@ -1,7 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Leandro Ezequiel Baldi 
+#    Copyright (C) 2014 Leandro Ezequiel Baldi
 #    <baldileandro@gmail.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -33,18 +33,20 @@ class it_equipment_network(osv.osv):
     _description = 'Equipment Network'
 
     _columns = {
-    
-    	'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
-		'name': fields.char('Name', required=True),
-		'virtual': fields.boolean('Virtual Network'),
-		'internal': fields.boolean('Internal'),
-		'address': fields.char('Address'),
-		'netmask': fields.char('Netmask'),
-		'gateway': fields.char('Gateway'),
-		'dns1': fields.char('Primary DNS'),
-		'dns2': fields.char('Secundary DNS'),
-		'note': fields.text('Note'),
-		
+
+        'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
+        'name': fields.char('Name', required=True),
+        'virtual': fields.boolean('Virtual Network'),
+        'internal': fields.boolean('Internal'),
+        'address': fields.char('Address'),
+        'netmask': fields.char('Netmask'),
+        'gateway': fields.char('Gateway'),
+        'dns1': fields.char('Primary DNS'),
+        'dns2': fields.char('Secundary DNS'),
+        'note': fields.text('Note'),
+
     }
-	
+
 it_equipment_network()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

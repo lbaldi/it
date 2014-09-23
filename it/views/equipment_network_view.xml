@@ -1,49 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2014 Leandro Ezequiel Baldi
+    <baldileandro@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
 
 <openerp>
-	
+
     <data>
 
-		<!-- Create view for network -->
-		<record model="ir.ui.view" id="it_equipment_network_form">
-			<field name="name">it.equipment.network.form</field>
-			<field name="model">it.equipment.network</field>
-			<field name="type">form</field>
-			<field name="arch" type="xml">
-				<form string="Network">
-					<separator string="Network Configuration" colspan="4" />
-					<field name="name" colspan="4" placeholder="eth0"/>
-					<field name="virtual"/>
-					<field name="internal"/>
-					<field name="address" placeholder="XXX.XXX.XXX.XXX"/>
-					<field name="netmask" placeholder="XXX.XXX.XXX.XXX"/>
-					<field name="gateway" placeholder="XXX.XXX.XXX.XXX"/>
-					<field name="dns1" placeholder="XXX.XXX.XXX.XXX"/>
-					<field name="dns2" placeholder="XXX.XXX.XXX.XXX"/>
-					<separator string="Note" colspan="4"/>
-					<field name="note" colspan="4" nolabel="1" />
-				</form>
-			</field>
-		</record>
+        <!-- Create view for network -->
+        <record model="ir.ui.view" id="it_equipment_network_form">
+            <field name="name">it.equipment.network.form</field>
+            <field name="model">it.equipment.network</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Network">
+                    <separator string="Network Configuration" colspan="4" />
+                    <field name="name" colspan="4" placeholder="eth0"/>
+                    <field name="virtual"/>
+                    <field name="internal"/>
+                    <field name="address" placeholder="XXX.XXX.XXX.XXX"/>
+                    <field name="netmask" placeholder="XXX.XXX.XXX.XXX"/>
+                    <field name="gateway" placeholder="XXX.XXX.XXX.XXX"/>
+                    <field name="dns1" placeholder="XXX.XXX.XXX.XXX"/>
+                    <field name="dns2" placeholder="XXX.XXX.XXX.XXX"/>
+                    <separator string="Note" colspan="4"/>
+                    <field name="note" colspan="4" nolabel="1" />
+                </form>
+            </field>
+        </record>
 
-		<!-- Tree view for network grill on equipments -->
-		<record model="ir.ui.view" id="it_equipment_network_tree">
-			<field name="name">it.equipment.network.tree</field>
-			<field name="model">it.equipment.network</field>
-			<field name="type">tree</field>
-			<field name="arch" type="xml">
-				<tree string="Network">
-					<field name="name"/>
-					<field name="address"/>
-					<field name="netmask"/>
-					<field name="gateway"/>
-					<field name="dns1"/>
-					<field name="dns2"/>
-					<field name="virtual"/>
-					<field name="internal"/>
-				</tree>
-			</field>
-		</record>
+        <!-- Tree view for network grill on equipments -->
+        <record model="ir.ui.view" id="it_equipment_network_tree">
+            <field name="name">it.equipment.network.tree</field>
+            <field name="model">it.equipment.network</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Network">
+                    <field name="name"/>
+                    <field name="address"/>
+                    <field name="netmask"/>
+                    <field name="gateway"/>
+                    <field name="dns1"/>
+                    <field name="dns2"/>
+                    <field name="virtual"/>
+                    <field name="internal"/>
+                </tree>
+            </field>
+        </record>
 
     </data>
 </openerp>
+
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4-->
