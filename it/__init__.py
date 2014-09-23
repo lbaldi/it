@@ -1,7 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Leandro Ezequiel Baldi 
+#    Copyright (C) 2014 Leandro Ezequiel Baldi
 #    <baldileandro@gmail.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -31,3 +31,5 @@ import equipment_partition
 import backup
 import equipment_function
 import equipment_mapping
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

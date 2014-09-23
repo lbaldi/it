@@ -1,7 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Leandro Ezequiel Baldi 
+#    Copyright (C) 2014 Leandro Ezequiel Baldi
 #    <baldileandro@gmail.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -33,12 +33,14 @@ class it_equipment_nat(osv.osv):
     _description = 'Equipment Rules'
 
     _columns = {
-    
-    	'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
-		'name': fields.char('Name', required=True),
-		'source_address': fields.char('Source Address'),
-		'destination_address': fields.char('Destination Address'),
-    
+
+        'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
+        'name': fields.char('Name', required=True),
+        'source_address': fields.char('Source Address'),
+        'destination_address': fields.char('Destination Address'),
+
     }
-	
+
 it_equipment_nat()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

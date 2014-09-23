@@ -1,7 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Leandro Ezequiel Baldi 
+#    Copyright (C) 2014 Leandro Ezequiel Baldi
 #    <baldileandro@gmail.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -33,35 +33,37 @@ class it_access(osv.osv):
     _description = "Access"
 
     _columns = {
-    
-		'name': fields.char('Name', size=64, required=True),
-		'company_id': fields.many2one('res.company', 'Company', required=True),
-		'equipment_id': fields.many2one('it.equipment', 'Equipment', ondelete='cascade',required=True),
-		'user_id': fields.many2one('res.users', 'Created by', readonly=True),
-		'application': fields.char('Application', size=64),
-		'user': fields.char('User', size=64),
-		'password': fields.char('Password', size=64),
-		'port': fields.char('Port'),
-		'partner_id': fields.related('equipment_id','partner_id',readonly=True, type='many2one',relation='res.partner', string='Partner',store=True),
-		'description': fields.char('Description', size=120),
-		'link': fields.char('Link', size=120),
-		'creation_date': fields.date('Creation Date',readonly=True),
-		'active': fields.boolean('Active'),
-		'ssl_csr': fields.binary('CSR',filters='*.csr'),
-		'ssl_cert': fields.binary('Cert',filters='*'),
-		'ssl_publickey': fields.binary('Public Key',filters='*'),
-		'ssl_privatekey': fields.binary('Private Key',filters='*'),
-		'note': fields.text('Note'),
-		
+
+        'name': fields.char('Name', size=64, required=True),
+        'company_id': fields.many2one('res.company', 'Company', required=True),
+        'equipment_id': fields.many2one('it.equipment', 'Equipment', ondelete='cascade',required=True),
+        'user_id': fields.many2one('res.users', 'Created by', readonly=True),
+        'application': fields.char('Application', size=64),
+        'user': fields.char('User', size=64),
+        'password': fields.char('Password', size=64),
+        'port': fields.char('Port'),
+        'partner_id': fields.related('equipment_id','partner_id',readonly=True, type='many2one',relation='res.partner', string='Partner',store=True),
+        'description': fields.char('Description', size=120),
+        'link': fields.char('Link', size=120),
+        'creation_date': fields.date('Creation Date',readonly=True),
+        'active': fields.boolean('Active'),
+        'ssl_csr': fields.binary('CSR',filters='*.csr'),
+        'ssl_cert': fields.binary('Cert',filters='*'),
+        'ssl_publickey': fields.binary('Public Key',filters='*'),
+        'ssl_privatekey': fields.binary('Private Key',filters='*'),
+        'note': fields.text('Note'),
+
     }
 
     _defaults = {
-    
-		'creation_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
-		'active': True,
-		'company_id': lambda self,cr,uid,ctx: self.pool['res.company']._company_default_get(cr,uid,object='it.equipment',context=ctx),
-		'user_id': lambda self, cr, uid, ctx: uid,
-    
+
+        'creation_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
+        'active': True,
+        'company_id': lambda self,cr,uid,ctx: self.pool['res.company']._company_default_get(cr,uid,object='it.equipment',context=ctx),
+        'user_id': lambda self, cr, uid, ctx: uid,
+
     }
 
 it_access()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

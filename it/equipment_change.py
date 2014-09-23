@@ -1,7 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Leandro Ezequiel Baldi 
+#    Copyright (C) 2014 Leandro Ezequiel Baldi
 #    <baldileandro@gmail.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -35,20 +35,22 @@ class it_equipment_change(osv.osv):
     _order = 'date desc'
 
     _columns = {
-    
-		'name': fields.char('Short Description', size=64, required=True),
-		'description': fields.text('Long Description'),
-		'date': fields.datetime('Change date'),
-		'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
-		'user_id': fields.many2one('res.users', 'User', required=True),
-    
+
+        'name': fields.char('Short Description', size=64, required=True),
+        'description': fields.text('Long Description'),
+        'date': fields.datetime('Change date'),
+        'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
+        'user_id': fields.many2one('res.users', 'User', required=True),
+
     }
 
     _defaults = {
-    
-		'date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
-		'user_id': lambda self, cr, uid, ctx: uid,
-		
+
+        'date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
+        'user_id': lambda self, cr, uid, ctx: uid,
+
     }
-	
+
 it_equipment_change()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

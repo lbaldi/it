@@ -1,7 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Leandro Ezequiel Baldi 
+#    Copyright (C) 2014 Leandro Ezequiel Baldi
 #    <baldileandro@gmail.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ class it_backup(osv.osv):
     _description = "Back Up"
 
     _columns = {
-    
+
         'equipment_id': fields.many2one('it.equipment', 'Equipment', ondelete='cascade',required=True),
         'partner_id': fields.related('equipment_id','partner_id',readonly=True, type='many2one',relation='res.partner', string='Partner',store=True),
         'name': fields.char('Name',required=True),
@@ -45,12 +45,11 @@ class it_backup(osv.osv):
         'frequency': fields.char('Frequency'),
         'time_schedule': fields.float('Time Schedule'),
         'note': fields.text('Note'),
-        
         'company_id': fields.many2one('res.company', 'Company', required=True),
         'user_id': fields.many2one('res.users', 'Created by', readonly=True),
         'creation_date': fields.date('Creation Date',readonly=True),
         'active': fields.boolean('Active'),
-        
+
     }
 
     _defaults = {
@@ -60,7 +59,9 @@ class it_backup(osv.osv):
         'active': True,
         'company_id': lambda self,cr,uid,ctx: self.pool['res.company']._company_default_get(cr,uid,object='it.equipment',context=ctx),
         'user_id': lambda self, cr, uid, ctx: uid,
-        
+
     }
 
 it_backup()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

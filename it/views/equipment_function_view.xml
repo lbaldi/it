@@ -1,42 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2014 Leandro Ezequiel Baldi
+    <baldileandro@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
 
 <openerp>
-    
+
     <data>
 
-		<!-- Create view for rules -->
-		<record model="ir.ui.view" id="it_equipment_function_form">
-			<field name="name">it.equipment.function.form</field>
-			<field name="model">it.equipment.function</field>
-			<field name="type">form</field>
-			<field name="arch" type="xml">
-				<form string="Function">
-					<field name="name" colspan="4"/>
-				</form>
-			</field>
-		</record>
+        <!-- Create view for rules -->
+        <record model="ir.ui.view" id="it_equipment_function_form">
+            <field name="name">it.equipment.function.form</field>
+            <field name="model">it.equipment.function</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Function">
+                    <field name="name" colspan="4"/>
+                </form>
+            </field>
+        </record>
 
-		<!-- Tree view for rules grill on equipments -->
-		<record model="ir.ui.view" id="it_equipment_function_tree">
-			<field name="name">it.equipment.function.tree</field>
-			<field name="model">it.equipment.function</field>
-			<field name="type">tree</field>
-			<field name="arch" type="xml">
-				<tree string="Function">
-					<field name="name" colspan="4"/>
-				</tree>
-			</field>
-		</record>
+        <!-- Tree view for rules grill on equipments -->
+        <record model="ir.ui.view" id="it_equipment_function_tree">
+            <field name="name">it.equipment.function.tree</field>
+            <field name="model">it.equipment.function</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Function">
+                    <field name="name" colspan="4"/>
+                </tree>
+            </field>
+        </record>
 
-		<record id="it_equipment_function_action" model="ir.actions.act_window">
-			<field name="name">Function</field>
-			<field name="res_model">it.equipment.function</field>
-			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
-		</record>
+        <record id="it_equipment_function_action" model="ir.actions.act_window">
+            <field name="name">Function</field>
+            <field name="res_model">it.equipment.function</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
-		<menuitem action="it_equipment_function_action" id="it_equipment_function" sequence="30" parent="it_menu_others"/>
+        <menuitem action="it_equipment_function_action" id="it_equipment_function" sequence="30" parent="it_menu_others"/>
 
     </data>
-    
+
 </openerp>
+
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4-->

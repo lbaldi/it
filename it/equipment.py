@@ -1,7 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Leandro Ezequiel Baldi 
+#    Copyright (C) 2014 Leandro Ezequiel Baldi
 #    <baldileandro@gmail.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -62,7 +62,7 @@ class it_equipment(osv.osv):
         'description': fields.char('Description', size=200, required=False),
         'note': fields.text('Note'),
         'image': fields.binary("Photo",help="Equipment Photo, limited to 1024x1024px."),
-                        
+
         # Config Page
         'equipment_type': fields.selection([('physical','PHYSICAL'),('virtual','VIRTUAL'),('other','OTHER')],'Equipment Type',required=True),
         'is_contracted': fields.boolean('Contracted Service'),
@@ -134,7 +134,7 @@ class it_equipment(osv.osv):
         return tools.image_resize_image_big(open(image_path, 'rb').read().encode('base64'))
 
     _defaults = {
-    
+
         'function_router': False,
         'function_host': False,
         'equipment_type': 'physical',
@@ -150,7 +150,9 @@ class it_equipment(osv.osv):
         'creation_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
         'user_id': lambda self, cr, uid, ctx: uid,
         'company_id': lambda self,cr,uid,ctx: self.pool['res.company']._company_default_get(cr,uid,object='it.equipment',context=ctx),
-    
+
     }
 
 it_equipment()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

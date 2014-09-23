@@ -1,40 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2014 Leandro Ezequiel Baldi
+    <baldileandro@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
 
 <openerp>
-	
+
     <data>
 
-		<!-- Create view for changes -->
-		<record model="ir.ui.view" id="it_equipment_change_form">
-			<field name="name">it.equipment.change.form</field>
-			<field name="model">it.equipment.change</field>
-			<field name="type">form</field>
-			<field name="arch" type="xml">
-				<form string="Change">
-					<separator string="Change entry" colspan="4" />
-					<field name="name" colspan="4" select="1" />
-					<field name="date" select="1"/>
-					<field name="user_id" select="1"/>
-					<separator string="Description" colspan="4"/>
-					<field name="description" colspan="4" nolabel="1" />
-				</form>
-			</field>
-		</record>
+        <!-- Create view for changes -->
+        <record model="ir.ui.view" id="it_equipment_change_form">
+            <field name="name">it.equipment.change.form</field>
+            <field name="model">it.equipment.change</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Change">
+                    <separator string="Change entry" colspan="4" />
+                    <field name="name" colspan="4" select="1" />
+                    <field name="date" select="1"/>
+                    <field name="user_id" select="1"/>
+                    <separator string="Description" colspan="4"/>
+                    <field name="description" colspan="4" nolabel="1" />
+                </form>
+            </field>
+        </record>
 
-		<!-- Tree view for changes grill on equipments -->
-		<record model="ir.ui.view" id="it_equipment_change_tree">
-			<field name="name">it.equipment.change.tree</field>
-			<field name="model">it.equipment.change</field>
-			<field name="type">tree</field>
-			<field name="arch" type="xml">
-				<tree string="Changes">
-					<field name="name"/>
-					<field name="date"/>
-					<field name="user_id"/>
-				</tree>
-			</field>
-		</record>
+        <!-- Tree view for changes grill on equipments -->
+        <record model="ir.ui.view" id="it_equipment_change_tree">
+            <field name="name">it.equipment.change.tree</field>
+            <field name="model">it.equipment.change</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Changes">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="user_id"/>
+                </tree>
+            </field>
+        </record>
 
     </data>
-    
+
 </openerp>
+
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4-->
