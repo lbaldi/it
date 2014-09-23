@@ -177,6 +177,7 @@
                                     <group>
                                         <field name="user_id"/>
                                         <field name="creation_date" />
+                                        <field name="pin"/>
                                     </group>
                                 </group>
                             </page>
@@ -215,6 +216,7 @@
                 <search string="Equipment">
                     <!--Searchs-->
                     <field name="identification" string="Identification Name"/>
+                    <field name="pin" string="PIN"/>
                     <field name="partner_id" string="Partner"/>
                     <field name="equipment_type" string="Type"/>
                     <field name="virtual_parent_id" string="Host"/>

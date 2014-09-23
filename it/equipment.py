@@ -22,6 +22,8 @@
 from openerp import addons
 import logging
 import time
+import random
+from random import choice
 from openerp.osv import fields, osv
 from openerp import tools
 _logger = logging.getLogger(__name__)
@@ -33,6 +35,13 @@ class it_equipment(osv.osv):
     _description = "Equipments"
 
     _rec_name = 'identification'
+
+    def _get_pin(self, cr, uid, context=None):
+        longitud = 12
+        valores = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<=>@#%&+"
+        p = ""
+        p = p.join([choice(valores) for i in range(longitud)])
+        return p
 
     def _get_identification(self, cr, uid, ids, name, args, context=None):
         result = dict.fromkeys(ids, False)
@@ -84,6 +93,7 @@ class it_equipment(osv.osv):
         # Audit Page
         'creation_date': fields.date('Creation Date',readonly=True),
         'user_id': fields.many2one('res.users', 'Created by',readonly=True),
+        'pin': fields.char('PIN', readonly=True, required=True),
 
         # Changes Page
         'change_ids': fields.one2many('it.equipment.change','equipment_id','Changes on this equipment'),
@@ -139,6 +149,7 @@ class it_equipment(osv.osv):
 
     _defaults = {
 
+        'pin': _get_pin,
         'function_router': False,
         'function_host': False,
         'equipment_type': 'physical',
@@ -157,6 +168,8 @@ class it_equipment(osv.osv):
         'company_id': lambda self,cr,uid,ctx: self.pool['res.company']._company_default_get(cr,uid,object='it.equipment',context=ctx),
 
     }
+
+    _sql_constraints = [('name_uniq','unique(pin)', 'PIN must be unique!')]
 
 it_equipment()
 

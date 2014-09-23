@@ -148,3 +148,7 @@ Quick data access from partners.
 - [ ] Buttons on tree view for quick download. (same buttons calls)
 - [ ] Demo data
 - [ ] Data for licenses.
+- [ ] Generate Random Passwords
+- [x] PIN unique for equipment
+- [ ] QR image
+
