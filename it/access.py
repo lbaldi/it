@@ -22,6 +22,8 @@
 from openerp import addons
 import logging
 import time
+import random
+from random import choice
 from openerp.osv import fields, osv
 from openerp import tools
 _logger = logging.getLogger(__name__)
@@ -38,6 +40,16 @@ class it_access(osv.osv):
             equipment_inst = equipment_obj.browse(cr, uid, equipment_id, context=context)
             return {'value':{'partner_id': equipment_inst.partner_id.id }}
         return False
+
+    #Public method
+    def get_random_password(self, cr, uid, ids, context=None):
+        for access in self.browse(cr, uid, ids, context=context):
+            longitud = 16
+            valores = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<=>@#%&+"
+            p = ""
+            p = p.join([choice(valores) for i in range(longitud)])
+        self.write(cr, uid, ids, {'password': p})
+        return True
 
     _columns = {
 

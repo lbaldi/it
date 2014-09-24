@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2014 Leandro Ezequiel Baldi
+    <baldileandro@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<openerp>
+
+    <!--HACE QUE ACTUALICE O NO LOS REGISTROS, PERO SI NO EXISTE LO CREA-->
+    <data noupdate="1">
+
+        <record id="license_1" model="it.application.license">
+            <field name="name">Artistic License 2.0</field>
+        </record>
+
+        <record id="license_2" model="it.application.license">
+            <field name="name">Berkeley Database License</field>
+        </record>
+
+        <record id="license_3" model="it.application.license">
+            <field name="name">Boost Software License</field>
+        </record>
+
+        <record id="license_4" model="it.application.license">
+            <field name="name">BSD license</field>
+        </record>
+
+        <record id="license_5" model="it.application.license">
+            <field name="name">BDL / BSD Documentation License</field>
+        </record>
+
+        <record id="license_6" model="it.application.license">
+            <field name="name">CeCILL</field>
+        </record>
+
+        <record id="license_7" model="it.application.license">
+            <field name="name">Cryptix General License</field>
+        </record>
+
+        <record id="license_8" model="it.application.license">
+            <field name="name">Eclipse Distribution License</field>
+        </record>
+
+        <record id="license_9" model="it.application.license">
+            <field name="name">EUPL - European Union Public License</field>
+        </record>
+
+        <record id="license_10" model="it.application.license">
+            <field name="name">GPL / GNU General Public License</field>
+        </record>
+
+        <record id="license_11" model="it.application.license">
+            <field name="name">Intel Open Source License</field>
+        </record>
+
+        <record id="license_12" model="it.application.license">
+            <field name="name">ISC license</field>
+        </record>
+
+        <record id="license_13" model="it.application.license">
+            <field name="name">LGPL / GNU Lesser General Public License</field>
+        </record>
+
+        <record id="license_14" model="it.application.license">
+            <field name="name">License of Python</field>
+        </record>
+
+        <record id="license_15" model="it.application.license">
+            <field name="name">MIT license</field>
+        </record>
+
+        <record id="license_16" model="it.application.license">
+            <field name="name">Mozilla Public License (MPL) version 2.0</field>
+        </record>
+
+        <record id="license_17" model="it.application.license">
+            <field name="name">Public Domain</field>
+        </record>
+
+        <record id="license_18" model="it.application.license">
+            <field name="name">W3C Software Notice and License</field>
+        </record>
+
+        <record id="license_19" model="it.application.license">
+            <field name="name">WTFPL</field>
+        </record>
+
+        <record id="license_20" model="it.application.license">
+            <field name="name">X11 license</field>
+        </record>
+
+        <record id="license_21" model="it.application.license">
+            <field name="name">zlib/libpng license</field>
+        </record>
+
+        <record id="license_22" model="it.application.license">
+            <field name="name">Zope Public License</field>
+        </record>
+
+        <record id="license_23" model="it.application.license">
+            <field name="name">Academic Free License (AFL)</field>
+        </record>
+
+        <record id="license_24" model="it.application.license">
+            <field name="name">Affero General Public License (version 1)</field>
+        </record>
+
+        <record id="license_25" model="it.application.license">
+            <field name="name">Apache License</field>
+        </record>
+
+        <record id="license_26" model="it.application.license">
+            <field name="name">Apple Public Source License (APSL)</field>
+        </record>
+
+        <record id="license_27" model="it.application.license">
+            <field name="name">BSD license (original version)</field>
+        </record>
+
+        <record id="license_2" model="it.application.license">
+            <field name="name">Common Public License</field>
+        </record>
+
+        <record id="license_28" model="it.application.license">
+            <field name="name">Common Development and Distribution License (CDDL)</field>
+        </record>
+
+        <record id="license_29" model="it.application.license">
+            <field name="name">Eclipse Public License (EPL)</field>
+        </record>
+
+        <record id="license_30" model="it.application.license">
+            <field name="name">GPLv3 / GNU General Public License v3</field>
+        </record>
+
+        <record id="license_31" model="it.application.license">
+            <field name="name">IBM Public License</field>
+        </record>
+
+        <record id="license_32" model="it.application.license">
+            <field name="name">LaTeX Project Public License (LPPL)</field>
+        </record>
+
+        <record id="license_33" model="it.application.license">
+            <field name="name">Microsoft Public License</field>
+        </record>
+
+        <record id="license_34" model="it.application.license">
+            <field name="name">Microsoft Reciprocal License</field>
+        </record>
+
+        <record id="license_35" model="it.application.license">
+            <field name="name">Mozilla Public License (MPL) Version 1.1</field>
+        </record>
+
+        <record id="license_36" model="it.application.license">
+            <field name="name">Netscape Public License (NPL)</field>
+        </record>
+
+        <record id="license_37" model="it.application.license">
+            <field name="name">Open Software License</field>
+        </record>
+
+        <record id="license_38" model="it.application.license">
+            <field name="name">OpenSSL license</field>
+        </record>
+
+        <record id="license_39" model="it.application.license">
+            <field name="name">PHP License</field>
+        </record>
+
+        <record id="license_40" model="it.application.license">
+            <field name="name">Q Public License (QPL)</field>
+        </record>
+
+        <record id="license_41" model="it.application.license">
+            <field name="name">Sun Industry Standards Source License (SISSL)</field>
+        </record>
+
+        <record id="license_42" model="it.application.license">
+            <field name="name">Sun Public License</field>
+        </record>
+
+        <record id="license_43" model="it.application.license">
+            <field name="name">XFree86 1.1 License</field>
+        </record>
+
+        <record id="license_44" model="it.application.license">
+            <field name="name">Microsoft Reference License</field>
+        </record>
+
+        <record id="license_45" model="it.application.license">
+            <field name="name">Free Solaris Binary License</field>
+        </record>
+
+        <record id="license_46" model="it.application.license">
+            <field name="name">Free For non commercial Use</field>
+        </record>
+
+        <record id="license_47" model="it.application.license">
+            <field name="name">Microsoft's Shared Source</field>
+        </record>
+
+        <record id="license_48" model="it.application.license">
+            <field name="name">Microsoft Windows' EULA</field>
+        </record>
+
+    </data>
+
+</openerp>
+
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4-->

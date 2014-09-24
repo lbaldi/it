@@ -60,7 +60,7 @@ This module is used for Infrastructure management. You can registry several type
   * User
   * App
   * Desc
-  * Password
+  * Password **GENERATE SECURE PASSWORD BUTTON**
   * Port
   * Link
 * SSL Page ( binaries)
@@ -150,8 +150,8 @@ Quick data access from partners.
 - [ ] Application Bundle for quick config as a template.
 - [ ] Buttons on tree view for quick download. (same buttons calls)
 - [ ] Demo data
-- [ ] Data for licenses.
-- [ ] Generate Random Passwords
+- [x] Data for licenses. (no copys)
+- [x] Generate Random Passwords
 - [ ] QR image
 - [ ] Translation Review
 - [ ] IT Client Portal Role
@@ -165,3 +165,5 @@ Quick data access from partners.
 - [ ] Template equipment
 - [ ] Partner and equipment buttons counter
 - [ ] QR image
+- [ ] Test widget password
+- [ ] Access password history

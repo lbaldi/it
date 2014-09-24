@@ -64,7 +64,10 @@
                             <page string="Information">
                                 <group col="4">
                                     <field name="user"/>
+                                    <newline/>
                                     <field name="password"/>
+                                    <button name="get_random_password" string="Generate" type="object"/>
+                                    <newline/>
                                     <field name="application"/>
                                     <field name="port"/>
                                     <field name="description"/>
