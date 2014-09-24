@@ -66,7 +66,7 @@ class it_equipment(osv.osv):
         #General Info
         'identification': fields.function(_get_identification, type='char', string="Name", store=True),
         'name': fields.char('Name', size=64, required=True),
-        'partner_id': fields.many2one('res.partner', 'Partner',required=True, domain="[('customer','=',1)]"),
+        'partner_id': fields.many2one('res.partner', 'Partner',required=True, domain="[('manage_it','=',1)]"),
         'function_ids': fields.many2many('it.equipment.function','equipment_function_rel','equipment_id','function_id','Functions'),
         'description': fields.char('Description', size=200, required=False),
         'note': fields.text('Note'),
@@ -76,9 +76,9 @@ class it_equipment(osv.osv):
         'application_ids': fields.many2many('it.application','equipment_application_rel','equipment_id','application_id','Applications'),
 
         # Config Page
-        'equipment_type': fields.selection([('physical','PHYSICAL'),('virtual','VIRTUAL'),('other','OTHER')],'Equipment Type',required=True),
+        'equipment_type': fields.selection([('bundle','BUNDLE'),('virtual','VIRTUAL'),('product','PRODUCT'),('other','OTHER')],'Equipment Type',required=True),
         'is_contracted': fields.boolean('Contracted Service'),
-        'is_dhcp': fields.boolean('DHCP'),
+        'is_static_ip': fields.boolean('Static IP'),
         'is_partitioned': fields.boolean('Partitions'),
         'is_backup': fields.boolean('Backup'),
         'is_access': fields.boolean('Access'),
@@ -106,7 +106,7 @@ class it_equipment(osv.osv):
         'contract_direction': fields.char('Invoice Direction'),
 
         # Virtual Machine Page
-        'virtual_parent_id': fields.many2one('it.equipment', 'Equipment'),
+        'virtual_parent_id': fields.many2one('it.equipment', 'Equipment', domain="[('function_host','=',1)]"),
         'virtual_memory_amount': fields.char('Memory'),
         'virtual_disk_amount': fields.char('Disk Size'),
         'virtual_processor_amount': fields.char('Number of Processor'),
@@ -116,7 +116,6 @@ class it_equipment(osv.osv):
         'partitions_ids': fields.one2many('it.equipment.partition','equipment_id','Partition on this equipment'),
 
         # Router Page
-        'router_product': fields.many2one('product.product', 'Router'),
         'router_dhcp': fields.char('DHCP Range'),
         'router_dmz': fields.char('DMZ'),
         'router_forward_ids': fields.one2many('it.equipment.forward','equipment_id','Forward Rules'),
@@ -128,6 +127,14 @@ class it_equipment(osv.osv):
 
         # Physical Page
         'physical_component_ids': fields.one2many('it.equipment.component','equipment_id','Components on this equipment'),
+
+        # Product Page
+        'product_id': fields.many2one('product.product', 'Product'),
+        'product_serial_number': fields.char('Serial Number'),
+        'product_warranty': fields.char('Warranty'),
+        'product_buydate': fields.date('Buy Date'),
+        'product_note': fields.text('Note'),
+
 
         # DC Page
         'dc_name': fields.char('Domain Name'),
@@ -152,17 +159,17 @@ class it_equipment(osv.osv):
         'pin': _get_pin,
         'function_router': False,
         'function_host': False,
-        'equipment_type': 'physical',
-        'active': True,
-        'is_dhcp': True,
+        'equipment_type': 'bundle',
+        'is_static_ip': False,
         'is_partitioned': False,
         'is_backup': False,
-        'is_access': True,
-        'is_os': True,
-        'is_application': True,
+        'is_access': False,
+        'is_os': False,
+        'is_application': False,
         'function_dc': False,
         'function_fileserver': False,
         'image': _get_default_image(),
+        'active': True,
         'creation_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
         'user_id': lambda self, cr, uid, ctx: uid,
         'company_id': lambda self,cr,uid,ctx: self.pool['res.company']._company_default_get(cr,uid,object='it.equipment',context=ctx),

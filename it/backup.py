@@ -34,7 +34,7 @@ class it_backup(osv.osv):
 
     _columns = {
 
-        'equipment_id': fields.many2one('it.equipment', 'Equipment', ondelete='cascade',required=True),
+        'equipment_id': fields.many2one('it.equipment', 'Equipment', domain="[('is_backup','=',1)]", ondelete='cascade',required=True),
         'partner_id': fields.related('equipment_id','partner_id',readonly=True, type='many2one',relation='res.partner', string='Partner',store=True),
         'name': fields.char('Name',required=True),
         'type': fields.selection([('diff','DIFF'),('full','FULL'),('inc','INCREMENTAL'),('other','OTHER')],'Backup Type',required=True),

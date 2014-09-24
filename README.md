@@ -11,7 +11,7 @@ This module is used for Infrastructure management. You can registry several type
 * Identification ( Owner - Name )
 * Name
 * Description
-* Owner
+* Owner (required)
 * Functions ( tags )
 * Changes.
 * Creation Audit data.
@@ -23,22 +23,23 @@ This module is used for Infrastructure management. You can registry several type
 * Active: For openerp struct data.
 * Company: Filtered for non multicompany users.
 * Contracted Service : Add page for contract data.
-* DHCP: For equipments without network config. Delete network configuration page.
+* Static IP: For equipments without network config. Delete network configuration page.
 * Disk and Partitions: Add page disk and partition page where can registry disk, formats, and mounts.
 * Access: Add button "Access" on righttop corner.
 * Backup: Add button "Backups" on righttop corner.
 * Operational System: Add operational system page where can registry name, company , and version.
 * Applications: Add page applications where you can registry all software installations (many2many).
 * Equipment type:
-  * Physical: For example: servers, this type add page for physical nformation
+  * Bundle: For example: servers, this type add page for physical nformation
   * Virtual: Add page for virtual machine data as host, mem, disk size, quantity of processors, number of networks
-  * Other: Example for printers, switch, router , etc
+  * Product: Example for printers, switch, router , etc. Add page to register related product.
+  * Other: ...
 
 
 ###FUNCTIONS CONFIGURATION
 
 * Host: Add button "Virtuals" on righttop corner.
-* Router:Add page for contract data.
+* Router: Add page for router configuration.
 
 ![Alt text](/docs/img/router_example.jpg?raw=true "Router Example")
 
@@ -53,13 +54,13 @@ This module is used for Infrastructure management. You can registry several type
 ### GENERAL DATA FOR ACCESS
 * Name
 * Equipment
-* Owner ( Related to equipment)
+* Owner (required)
 * Note
 * Information Page
   * User
   * App
   * Desc
-  * Password
+  * Password **GENERATE SECURE PASSWORD BUTTON**
   * Port
   * Link
 * SSL Page ( binaries)
@@ -78,7 +79,7 @@ This module is used for Infrastructure management. You can registry several type
 
 ### GENERAL DATA FOR BACKUPS
 * Name
-* Equipment
+* Equipment (required)
 * Owner ( Related to equipment)
 * Type
   * FULL
@@ -139,16 +140,30 @@ Quick data access from partners.
 - [x] Fix default image for servers.
 - [x] Change nat, forwards and rules model and view.
 - [x] Add applications model (software).
-- [ ] Think about configuration page and all posibles configuration.
-- [ ] More information for printers and other devices.
+- [x] Domain ons one2many for model
+- [x] More information for printers and other devices.
 - [x] Fix View of server changes.
+- [x] PIN unique for equipment
+- [ ] Think about configuration page and all posibles configuration.
 - [ ] Test.
 - [ ] Travis or runbot integration.
 - [ ] Application Bundle for quick config as a template.
 - [ ] Buttons on tree view for quick download. (same buttons calls)
 - [ ] Demo data
-- [ ] Data for licenses.
-- [ ] Generate Random Passwords
-- [x] PIN unique for equipment
+- [x] Data for licenses. (no copys)
+- [x] Generate Random Passwords
 - [ ] QR image
-
+- [ ] Translation Review
+- [ ] IT Client Portal Role
+- [ ] Equipment function : Database Server
+- [ ] Equipment function : VPN Server
+- [ ] Equipment function : Domain Controller - Users table
+- [ ] Equipment function : Firewall & Proxy
+- [ ] Equipment function : DHCP Server - Scope - Reservation.
+- [ ] Equipment function : Router - merge data to DHCP Server
+- [ ] Equipment function : Router - SSID WIFI Config for AP
+- [ ] Template equipment
+- [ ] Partner and equipment buttons counter
+- [ ] QR image
+- [ ] Test widget password
+- [ ] Access password history
