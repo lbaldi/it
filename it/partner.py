@@ -19,20 +19,20 @@
 #
 ##############################################################################
 
-import equipment
-import access
-import equipment_change
-import equipment_component
-import equipment_network
-import equipment_rule
-import equipment_nat
-import equipment_forward
-import equipment_partition
-import backup
-import equipment_function
-import equipment_mapping
-import application
-import application_license
-import partner
+from osv import fields, osv
+
+class res_partner(osv.osv):
+
+    _name = "res.partner"
+
+    _inherit= "res.partner"
+
+    _columns = {
+
+        'manage_it': fields.boolean('Manage IT'),
+
+   }
+
+res_partner()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -32,17 +32,24 @@ class it_access(osv.osv):
 
     _description = "Access"
 
+    def onchange_equipment(self, cr, uid, ids, equipment_id, context=None):
+        if equipment_id:
+            equipment_obj = self.pool.get('it.equipment')
+            equipment_inst = equipment_obj.browse(cr, uid, equipment_id, context=context)
+            return {'value':{'partner_id': equipment_inst.partner_id.id }}
+        return False
+
     _columns = {
 
         'name': fields.char('Name', size=64, required=True),
         'company_id': fields.many2one('res.company', 'Company', required=True),
-        'equipment_id': fields.many2one('it.equipment', 'Equipment', ondelete='cascade',required=True),
+        'equipment_id': fields.many2one('it.equipment', 'Equipment', domain="[('is_access','=',1)]", ondelete='cascade'),
         'user_id': fields.many2one('res.users', 'Created by', readonly=True),
         'application': fields.char('Application', size=64),
         'user': fields.char('User', size=64),
         'password': fields.char('Password', size=64),
         'port': fields.char('Port'),
-        'partner_id': fields.related('equipment_id','partner_id',readonly=True, type='many2one',relation='res.partner', string='Partner',store=True),
+        'partner_id': fields.many2one('res.partner', 'Partner', required=True, domain="[('manage_it','=',1)]"),
         'description': fields.char('Description', size=120),
         'link': fields.char('Link', size=120),
         'creation_date': fields.date('Creation Date',readonly=True),

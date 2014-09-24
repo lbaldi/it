@@ -28,6 +28,7 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Access">
+                    <field name="partner_id"/>
                     <field name="equipment_id"/>
                     <field name="name"/>
                     <field name="application"/>
@@ -50,7 +51,8 @@
                         <div class="oe_title">
                             <h1>
                                 <field name="name" placeholder="NAME"/>
-                                <field name="equipment_id" placeholder="EQUIPMENT"/>
+                                <field name="equipment_id" placeholder="EQUIPMENT" on_change="onchange_equipment(equipment_id)"/>
+                                <field name="partner_id" placeholder="OWNER"/>
                             </h1>
                         </div>
                         <group>
@@ -105,8 +107,8 @@
             <field name="arch" type="xml">
                 <search string="Access">
                     <!--Searchs-->
-                    <field name="equipment_id" string="Equipment"/>
                     <field name="name" string="Access Name"/>
+                    <field name="equipment_id" string="Equipment"/>
                     <field name="partner_id" string="Partner"/>
                     <field name="application" string="Application"/>
                     <!--Filters-->

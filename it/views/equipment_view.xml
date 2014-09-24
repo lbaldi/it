@@ -95,7 +95,7 @@
                         <separator string="Note"/>
                         <field colspan="4" name="note" nolabel="1"/>
                         <notebook>
-                            <page string="Physical Information" attrs="{'invisible':[('equipment_type','!=', 'physical' )]}" >
+                            <page string="Physical Information" attrs="{'invisible':[('equipment_type','!=', 'bundle' )]}" >
                                 <group>
                                     <field name="physical_component_ids" nolabel="1" colspan="4"/>
                                 </group>
@@ -110,6 +110,19 @@
                                         <field name="virtual_disk_amount"/>
                                         <field name="virtual_processor_amount"/>
                                         <field name="virtual_network_amount"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Product Data" attrs="{'invisible':[('equipment_type','!=', 'product' )]}" >
+                                <group>
+                                    <group>
+                                        <field name="product_id"/>
+                                        <field name="product_serial_number"/>
+                                        <field name="product_warranty"/>
+                                        <field name="product_buydate"/>
+                                    </group>
+                                    <group>
+                                        <field name="product_note"/>
                                     </group>
                                 </group>
                             </page>
@@ -131,7 +144,6 @@
                             </page>
                             <page string="Router Configuration" attrs="{'invisible':[('function_router','=', False )]}" >
                                 <group>
-                                    <field name="router_product"/>
                                     <field name="router_dhcp"/>
                                     <field name="router_dmz"/>
                                     <field name="router_forward_ids"/>
@@ -139,7 +151,7 @@
                                     <field name="router_rules_ids"/>
                                 </group>
                             </page>
-                            <page string="Network Configuration" attrs="{'invisible':[('is_dhcp','=', True )]}" >
+                            <page string="Network Configuration" attrs="{'invisible':[('is_static_ip','=', False )]}" >
                                 <group>
                                     <group string="Network Configuration">
                                         <field name="equipment_network_ids" nolabel="1" colspan="4"/>
@@ -182,18 +194,21 @@
                                 </group>
                             </page>
                             <page string="Configuration" groups="it.group_it_mod">
+                                <group string="Equipment Type">
+                                    <field name="equipment_type"/>
+                                </group>
+                                <newline/>
                                 <group>
                                     <group string="Basic Configuration">
                                         <field name="active" />
                                         <field name="company_id" string="Company" groups="base.group_multi_company"/>
-                                        <field name="is_contracted"/>
-                                        <field name="is_dhcp"/>
-                                        <field name="is_partitioned"/>
                                         <field name="is_access"/>
                                         <field name="is_backup"/>
-                                        <field name="is_os"/>
                                         <field name="is_application"/>
-                                        <field name="equipment_type"/>
+                                        <field name="is_contracted"/>
+                                        <field name="is_static_ip"/>
+                                        <field name="is_partitioned"/>
+                                        <field name="is_os"/>
                                     </group>
                                     <group string="Function Configuration">
                                         <field name="function_host" />
@@ -224,8 +239,8 @@
                     <filter name="is_contracted" string="Contracted" domain="[('is_contracted','=',1)]"/>
                     <filter name="is_contracted" string="Own" domain="[('is_contracted','=',0)]"/>
                     <separator/>
-                    <filter name="is_dhcp" string="DHCP" domain="[('is_dhcp','=',1)]" help="Equipments with network dhcp configuration"/>
-                    <filter name="is_dhcp" string="Static" domain="[('is_dhcp','=',0)]" help="Equipments with netwotk static configuration"/>
+                    <filter name="is_static_ip" string="Static IP" domain="[('is_static_ip','=',1)]"/>
+                    <filter name="is_static_ip" string="DHCP" domain="[('is_static_ip','=',0)]"/>
                     <separator/>
                     <filter name="is_backup" string="With Backup" domain="[('is_backup','=',1)]" help="Equipments with backup"/>
                     <filter name="is_backup" string="Without Backup" domain="[('is_backup','=',0)]" help="Equipments without backup"/>
@@ -235,14 +250,16 @@
                     <separator/>
                     <filter name="is_application" string="With Applications" domain="[('is_application','=',1)]" help="Equipments with applications"/>
                     <filter name="is_application" string="Without Applications" domain="[('is_application','=',0)]" help="Equipments without applications"/>
+                    <separator/>
+                    <filter string="Bundle Type" domain="[('equipment_type','=','bundle')]"/>
+                    <filter string="Virtual Type" domain="[('equipment_type','=','virtual')]"/>
+                    <filter string="Product Type" domain="[('equipment_type','=','product')]"/>
                     <separator string="Functions"/>
                     <filter name="is_partitioned" string="Partitioned" domain="[('is_partitioned','=',1)]" help="Equipments with partitions"/>
                     <filter name="function_dc" string="Domain Controllers" domain="[('function_dc','=',1)]"/>
                     <filter name="function_fileserver" string="FileServers" domain="[('function_fileserver','=',1)]"/>
                     <filter name="function_host" string="Hosts" domain="[('function_host','=',1)]"/>
                     <filter name="function_router" string="Routers" domain="[('function_router','=',1)]"/>
-                    <filter string="Physicals" domain="[('equipment_type','=','physical')]"/>
-                    <filter string="Virtuals" domain="[('equipment_type','=','virtual')]"/>
                     <separator/>
                     <filter domain="[('user_id','=',uid)]" help="Registered by my"/>
                     <!--Groups-->

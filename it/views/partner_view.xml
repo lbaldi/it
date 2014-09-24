@@ -27,7 +27,7 @@
             <field name="res_model">res.partner</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="context">{"search_default_customer":1}</field>
+            <field name="context">{"search_default_manage_it":1, "default_manage_it":1}</field>
         </record>
 
         <!-- Supplier -->
@@ -67,18 +67,40 @@
             <field name="context">{'search_default_partner_id': active_id }</field>
         </record>
 
-        <record id="it_partner_view" model="ir.ui.view">
+        <record id="it_partner_view_1" model="ir.ui.view">
+            <field name="name">it.partner.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="active" position="after">
+                    <field name="manage_it" groups="it.group_it_mod"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="it_partner_view2" model="ir.ui.view">
             <field name="name">it.partner.view</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <data>
                     <xpath expr="//div[@name='buttons']" position="inside">
-                        <button name="%(act_partner_2_equipment)d" string="Equipments" type="action" groups="it.group_it_user" />
-                        <button name="%(act_partner_2_access)d" string="Access" type="action" groups="it.group_it_user" />
-                        <button name="%(act_partner_2_backup)d" string="Backups" type="action" groups="it.group_it_user" />
+                        <button name="%(act_partner_2_equipment)d" string="Equipments" type="action" groups="it.group_it_user" attrs="{'invisible':[('manage_it','=', False )]}"/>
+                        <button name="%(act_partner_2_access)d" string="Access" type="action" groups="it.group_it_user" attrs="{'invisible':[('manage_it','=', False )]}"/>
+                        <button name="%(act_partner_2_backup)d" string="Backups" type="action" groups="it.group_it_user" attrs="{'invisible':[('manage_it','=', False )]}"/>
                     </xpath>
                 </data>
+            </field>
+        </record>
+
+        <record id="it_partner_filter" model="ir.ui.view">
+            <field name="name">it.partner.filter</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <filter name="customer" position="before">
+                    <filter string="Manage IT" name="manage_it" domain="[('manage_it','=',1)]"/>
+                </filter>
             </field>
         </record>
 
