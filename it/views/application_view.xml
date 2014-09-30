@@ -77,7 +77,7 @@
                                     <field name="equipment_ids" nolabel="1" colspan="4" domain="[('is_application', '=', 1)]"/>
                                 </group>
                             </page>
-                            <page string="Audit Data">
+                            <page string="Audit Data" groups="it.group_it_mod">
                                 <group>
                                     <group>
                                         <field name="user_id"/>

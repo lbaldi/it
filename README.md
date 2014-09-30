@@ -144,14 +144,16 @@ Quick data access from partners.
 - [x] More information for printers and other devices.
 - [x] Fix View of server changes.
 - [x] PIN unique for equipment
-- [ ] Think about configuration page and all posibles configuration.
+- [x] Think about configuration page and all posibles configuration.
+- [x] Test widget password ( result not usefull )
+- [x] Access password history
+- [x] Data for licenses. (no copys)
+- [x] Generate Random Passwords
 - [ ] Test.
 - [ ] Travis or runbot integration.
 - [ ] Application Bundle for quick config as a template.
 - [ ] Buttons on tree view for quick download. (same buttons calls)
 - [ ] Demo data
-- [x] Data for licenses. (no copys)
-- [x] Generate Random Passwords
 - [ ] QR image
 - [ ] Translation Review
 - [ ] IT Client Portal Role
@@ -165,5 +167,4 @@ Quick data access from partners.
 - [ ] Template equipment
 - [ ] Partner and equipment buttons counter
 - [ ] QR image
-- [ ] Test widget password
-- [ ] Access password history
+

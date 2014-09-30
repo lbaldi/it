@@ -35,6 +35,9 @@ it_rule_equipment_mapping_user,it_equipment_mapping,model_it_equipment_mapping,g
 it_rule_access_manager,it_access,model_it_access,group_it_manager,1,1,1,1
 it_rule_access_mod,it_access,model_it_access,group_it_mod,1,1,1,0
 it_rule_access_user,it_access,model_it_access,group_it_user,1,0,0,0
+it_rule_access_change_manager,it_access_change,model_it_access_change,group_it_manager,1,1,1,1
+it_rule_access_change_mod,it_access_change,model_it_access_change,group_it_mod,1,0,1,0
+it_rule_access_change_user,it_access_change,model_it_access_change,group_it_user,1,0,0,0
 it_rule_backup_manager,it_backup,model_it_backup,group_it_manager,1,1,1,1
 it_rule_backup_mod,it_backup,model_it_backup,group_it_mod,1,1,1,0
 it_rule_backup_user,it_backup,model_it_backup,group_it_user,1,0,0,0

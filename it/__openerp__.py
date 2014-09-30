@@ -62,7 +62,8 @@
         'views/equipment_mapping_view.xml',
         'views/application_view.xml',
         'views/application_license_view.xml',
-        'application_license_data.xml',
+        'data/application_license_data.xml',
+        'views/access_change_view.xml',
 
     ],
 

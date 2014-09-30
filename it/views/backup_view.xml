@@ -70,7 +70,7 @@
                                     <field name="script_location" widget="url"/>
                                 </group>
                             </page>
-                            <page string="Audit Data">
+                            <page string="Audit Data" groups="it.group_it_mod">
                                 <group>
                                     <group>
                                         <field name="user_id"/>

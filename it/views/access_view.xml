@@ -65,8 +65,9 @@
                                 <group col="4">
                                     <field name="user"/>
                                     <newline/>
-                                    <field name="password"/>
-                                    <button name="get_random_password" string="Generate" type="object"/>
+                                    <field name="password" on_change="onchange_password(password)"/>
+                                    <button name="get_random_password" string="Generate" type="object" groups="it.group_it_mod"
+                                            confirm="Are you sure?"/>
                                     <newline/>
                                     <field name="application"/>
                                     <field name="port"/>
@@ -82,11 +83,15 @@
                                     <field name="ssl_privatekey"/>
                                 </group>
                             </page>
-                            <page string="Audit Data">
+                            <page string="Audit Data" groups="it.group_it_mod">
                                 <group>
                                     <group>
                                         <field name="user_id"/>
                                         <field name="creation_date" />
+                                    </group>
+                                    <newline/>
+                                    <group>
+                                        <field name="change_ids"/>
                                     </group>
                                 </group>
                             </page>

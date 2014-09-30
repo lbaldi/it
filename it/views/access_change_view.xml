@@ -21,34 +21,36 @@
 
     <data>
 
-        <!-- Create view for changes -->
-        <record model="ir.ui.view" id="it_equipment_change_form">
-            <field name="name">it.equipment.change.form</field>
-            <field name="model">it.equipment.change</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form string="Change">
-                    <separator string="Change entry" colspan="4"/>
-                    <field name="name" colspan="4"/>
-                    <field name="date"/>
-                    <field name="user_id"/>
-                    <separator string="Description" colspan="4"/>
-                    <field name="description" colspan="4" nolabel="1"/>
-                </form>
-            </field>
-        </record>
-
-        <!-- Tree view for changes grill on equipments -->
-        <record model="ir.ui.view" id="it_equipment_change_tree">
-            <field name="name">it.equipment.change.tree</field>
-            <field name="model">it.equipment.change</field>
+        <!-- Access Change -->
+        <record model="ir.ui.view" id="it_access_change_tree">
+            <field name="name">it.access.change.tree</field>
+            <field name="model">it.access.change</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Changes">
                     <field name="name"/>
-                    <field name="date"/>
                     <field name="user_id"/>
+                    <field name="creation_date"/>
+                    <field name="note"/>
                 </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="it_access_change_form">
+            <field name="name">it.access.change.form</field>
+            <field name="model">it.access.change</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Access Change" version="7.0">
+                    <sheet>
+                        <separator string="Change entry" colspan="4"/>
+                        <field name="name" colspan="4"/>
+                        <field name="user_id"/>
+                        <field name="creation_date"/>
+                        <separator string="Note" colspan="4"/>
+                        <field name="note"/>
+                    </sheet>
+                </form>
             </field>
         </record>
 

@@ -19,21 +19,38 @@
 #
 ##############################################################################
 
-import equipment
-import access
-import equipment_change
-import equipment_component
-import equipment_network
-import equipment_rule
-import equipment_nat
-import equipment_forward
-import equipment_partition
-import backup
-import equipment_function
-import equipment_mapping
-import application
-import application_license
-import partner
-import access_change
+from openerp import addons
+import logging
+import time
+from openerp.osv import fields, osv
+from openerp import tools
+_logger = logging.getLogger(__name__)
+
+class it_access_change(osv.osv):
+
+    _name = "it.access.change"
+
+    _description = "Access Change"
+
+    _order = "creation_date desc"
+
+    _columns = {
+
+        'name': fields.char('Password', required=True),
+        'access_id': fields.many2one('it.access', 'Access', required=True, ondelete='cascade'),
+        'user_id': fields.many2one('res.users', 'Created by', readonly=True),
+        'creation_date': fields.datetime('Creation Date',readonly=True),
+        'note': fields.text('Note'),
+
+    }
+
+    _defaults = {
+
+        'creation_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
+        'user_id': lambda self, cr, uid, ctx: uid,
+
+    }
+
+it_access_change()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
