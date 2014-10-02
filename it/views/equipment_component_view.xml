@@ -48,7 +48,6 @@
                     <field name="product_id"/>
                     <field name="serial_number"/>
                     <field name="partner_id"/>
-                    <field name="note"/>
                 </tree>
             </field>
         </record>

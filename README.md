@@ -149,22 +149,17 @@ Quick data access from partners.
 - [x] Access password history
 - [x] Data for licenses. (no copys)
 - [x] Generate Random Passwords
-- [ ] Test.
-- [ ] Travis or runbot integration.
-- [ ] Application Bundle for quick config as a template.
-- [ ] Buttons on tree view for quick download. (same buttons calls)
+- [x] IT Client Portal Role
+- [x] Equipment function : Database Server
+- [x] Equipment function : DHCP Server - Scope - Reservation.
+- [x] Equipment function : Router - merge data to DHCP Server
+- [x] Equipment function : Router - SSID WIFI Config for AP
+- [x] Equipment function : Domain Controller - Users table
+- [ ] Testing
+- [ ] Application Bundle Template
 - [ ] Demo data
-- [ ] QR image
-- [ ] Translation Review
-- [ ] IT Client Portal Role
-- [ ] Equipment function : Database Server
+- [ ] QR image for equipments
+- [ ] Translation
 - [ ] Equipment function : VPN Server
-- [ ] Equipment function : Domain Controller - Users table
 - [ ] Equipment function : Firewall & Proxy
-- [ ] Equipment function : DHCP Server - Scope - Reservation.
-- [ ] Equipment function : Router - merge data to DHCP Server
-- [ ] Equipment function : Router - SSID WIFI Config for AP
-- [ ] Template equipment
-- [ ] Partner and equipment buttons counter
-- [ ] QR image
 

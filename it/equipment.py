@@ -37,6 +37,7 @@ class it_equipment(osv.osv):
     _rec_name = 'identification'
 
     def _get_pin(self, cr, uid, context=None):
+        context = context or {}
         longitud = 12
         valores = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<=>@#%&+"
         p = ""
@@ -44,12 +45,14 @@ class it_equipment(osv.osv):
         return p
 
     def _get_identification(self, cr, uid, ids, name, args, context=None):
+        context = context or {}
         result = dict.fromkeys(ids, False)
         for obj in self.browse(cr, uid, ids, context=context):
             result[obj.id] = obj.name + " - " + obj.partner_id.name
         return result
 
-    def name_search(self,cr,uid, name, args,context=None, limit=80, operator='ilike'):
+    def name_search(self, cr, uid, name, args, context=None, limit=80, operator='ilike'):
+        context = context or {}
         ids = []
         if name:
             ids = self.search(cr, uid,[('identification', operator, name)] + args,limit=limit, context=context)
@@ -65,10 +68,10 @@ class it_equipment(osv.osv):
 
         #General Info
         'identification': fields.function(_get_identification, type='char', string="Name", store=True),
-        'name': fields.char('Name', size=64, required=True),
+        'name': fields.char('Name', required=True),
         'partner_id': fields.many2one('res.partner', 'Partner',required=True, domain="[('manage_it','=',1)]"),
         'function_ids': fields.many2many('it.equipment.function','equipment_function_rel','equipment_id','function_id','Functions'),
-        'description': fields.char('Description', size=200, required=False),
+        'description': fields.char('Description', required=False),
         'note': fields.text('Note'),
         'image': fields.binary("Photo",help="Equipment Photo, limited to 1024x1024px."),
 
@@ -84,11 +87,17 @@ class it_equipment(osv.osv):
         'is_access': fields.boolean('Access'),
         'is_os': fields.boolean('Operating System'),
         'is_application': fields.boolean('Applications'),
+
+        # Config Page - Functions
         'function_dc': fields.boolean('Domain Controller'),
         'function_fileserver': fields.boolean('File Server'),
-
         'function_host': fields.boolean('Host'),
         'function_router': fields.boolean('Router'),
+        'function_database': fields.boolean('Database Server'),
+        'function_vpn': fields.boolean('VPN Server'),
+        'function_firewall': fields.boolean('Firewall & Proxy Server'),
+        'function_dhcp': fields.boolean('DHCP Server'),
+        'function_ap': fields.boolean('Access Point'),
 
         # Audit Page
         'creation_date': fields.date('Creation Date',readonly=True),
@@ -116,7 +125,6 @@ class it_equipment(osv.osv):
         'partitions_ids': fields.one2many('it.equipment.partition','equipment_id','Partition on this equipment'),
 
         # Router Page
-        'router_dhcp': fields.char('DHCP Range'),
         'router_dmz': fields.char('DMZ'),
         'router_forward_ids': fields.one2many('it.equipment.forward','equipment_id','Forward Rules'),
         'router_nat_ids': fields.one2many('it.equipment.nat','equipment_id','NAT Rules'),
@@ -135,18 +143,39 @@ class it_equipment(osv.osv):
         'product_buydate': fields.date('Buy Date'),
         'product_note': fields.text('Note'),
 
-
         # DC Page
         'dc_name': fields.char('Domain Name'),
         'dc_type': fields.selection([('primary','PRIMARY'),('secundary','SECUNDARY'),('slave','SLAVE')],'DC Type'),
+        'dc_user_ids': fields.one2many('it.equipment.dcuser','equipment_id','Users'),
+        'dc_group_ids': fields.one2many('it.equipment.dcgroup','equipment_id','Groups'),
 
         # Fileserver Page
         'equipment_mapping_ids': fields.one2many('it.equipment.mapping','equipment_id','Mappings'),
 
-        # Fileserver Page
-        'os_name': fields.char('OS Name'),
-        'os_company': fields.char('OS Company'),
-        'os_version': fields.char('OS Version'),
+        # OS Page
+        'os_name': fields.char('Name'),
+        'os_company': fields.char('Company'),
+        'os_version': fields.char('Version'),
+
+        #DHCP Server Page
+        'dhcp_scope': fields.char('Scope'),
+        'dhcp_relay': fields.char('DHCP Relay'),
+        'dhcp_reservation_ids': fields.one2many('it.equipment.ipreservation','equipment_id','Reservations'),
+
+        #Access Point Page
+        'ap_ssid': fields.char('SSID'),
+        'ap_auth_type': fields.selection([('none','NONE'),('wep64','WEP-64bits'),('wep128','WEP-128bits'),
+                                        ('wpa_tkip','WPA-TKIP'),('wpa_aes','WPA-AES'),('wpa2_aes','WPA-AES')
+                                        ,('other','OTHER')],'Authentication Type'),
+        'ap_password': fields.char('Password'),
+        'ap_guest': fields.boolean('Enable Guest Access'),
+        'ap_guest_ssid': fields.char('Guest SSID'),
+        'ap_guest_password': fields.char('Guest Password'),
+
+        #Database Page
+        'db_engine': fields.char('Database Engine'),
+        'db_setting_ids': fields.one2many('it.equipment.dbsetting','equipment_id','DB Settings'),
+        'db_ids': fields.one2many('it.equipment.db','equipment_id','Databases'),
 
     }
 
@@ -168,6 +197,12 @@ class it_equipment(osv.osv):
         'is_application': False,
         'function_dc': False,
         'function_fileserver': False,
+        'function_database': False,
+        'function_vpn': False,
+        'function_firewall': False,
+        'function_dhcp': False,
+        'function_ap': False,
+        'ap_guest':  False,
         'image': _get_default_image(),
         'active': True,
         'creation_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
@@ -176,7 +211,11 @@ class it_equipment(osv.osv):
 
     }
 
-    _sql_constraints = [('name_uniq','unique(pin)', 'PIN must be unique!')]
+    _sql_constraints = [
+
+        ('name_uniq','unique(pin)', 'PIN must be unique!')
+
+    ]
 
 it_equipment()
 

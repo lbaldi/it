@@ -129,7 +129,7 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem action="it_application_action" id="it_application" sequence="40" parent="it_menu_general"/>
+        <menuitem action="it_application_action" id="it_application" sequence="40" parent="it_menu_others"/>
 
     </data>
 

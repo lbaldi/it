@@ -91,7 +91,14 @@
                                     </group>
                                     <newline/>
                                     <group>
-                                        <field name="change_ids"/>
+                                        <field name="change_ids">
+                                            <tree string="Changes" editable="bottom">
+                                                <field name="name"/>
+                                                <field name="user_id"/>
+                                                <field name="creation_date"/>
+                                                <field name="note"/>
+                                            </tree>
+                                        </field>
                                     </group>
                                 </group>
                             </page>

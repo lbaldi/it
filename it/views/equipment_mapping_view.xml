@@ -38,6 +38,7 @@
                     <group>
                         <field name="perm_read"/>
                         <field name="perm_write"/>
+                        <field name="perm_create"/>
                         <field name="perm_delete"/>
                     </group>
 
@@ -58,6 +59,7 @@
                     <field name="users"/>
                     <field name="perm_read"/>
                     <field name="perm_write"/>
+                    <field name="perm_create"/>
                     <field name="perm_delete"/>
                 </tree>
             </field>

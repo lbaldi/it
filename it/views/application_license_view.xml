@@ -54,7 +54,7 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem action="it_application_license_action" id="it_application_license" sequence="40" parent="it_menu_others"/>
+        <menuitem action="it_application_license_action" id="it_application_license" sequence="41" parent="it_menu_others"/>
 
     </data>
 

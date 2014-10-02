@@ -35,7 +35,12 @@
                     <field name="disks"/>
                     <field name="type"/>
                     <field name="format"/>
-                    <field name="mount_ids"/>
+                    <field name="mount_ids">
+                        <tree string="Mounts" editable="bottom">
+                            <field name="name"/>
+                            <field name="size"/>
+                        </tree>
+                    </field>
                 </form>
             </field>
         </record>
@@ -52,35 +57,6 @@
                     <field name="type"/>
                     <field name="format"/>
                     <field name="mount_ids"/>
-                </tree>
-            </field>
-        </record>
-
-        <!-- Mounts -->
-
-        <!-- Create view for partition -->
-        <record model="ir.ui.view" id="it_equipment_partition_mount_form">
-            <field name="name">it.equipment.partition.mount.form</field>
-            <field name="model">it.equipment.partition.mount</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form string="Enter a mount entry">
-                    <separator string="Mount entry" colspan="4" />
-                    <field name="name" colspan="4" select="1" />
-                    <field name="size"/>
-                </form>
-            </field>
-        </record>
-
-        <!-- Tree view for partition grill on equipments -->
-        <record model="ir.ui.view" id="it_equipment_partition_mount_tree">
-            <field name="name">it.equipment.partition.mount.tree</field>
-            <field name="model">it.equipment.partition.mount</field>
-            <field name="type">tree</field>
-            <field name="arch" type="xml">
-                <tree string="Mounts">
-                    <field name="name"/>
-                    <field name="size"/>
                 </tree>
             </field>
         </record>

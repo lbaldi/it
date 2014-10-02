@@ -41,6 +41,7 @@ class it_equipment_mapping(osv.osv):
         'users': fields.char('Users'),
         'perm_read' : fields.boolean('Perm Read'),
         'perm_write' : fields.boolean('Perm Write'),
+        'perm_create' : fields.boolean('Perm Create'),
         'perm_delete' : fields.boolean('Perm Delete'),
 
     }

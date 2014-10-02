@@ -50,9 +50,6 @@
         'views/equipment_change_view.xml',
         'views/equipment_component_view.xml',
         'views/equipment_network_view.xml',
-        'views/equipment_rule_view.xml',
-        'views/equipment_nat_view.xml',
-        'views/equipment_forward_view.xml',
         'views/equipment_partition_view.xml',
         'views/component_view.xml',
         'views/access_view.xml',
@@ -63,7 +60,6 @@
         'views/application_view.xml',
         'views/application_license_view.xml',
         'data/application_license_data.xml',
-        'views/access_change_view.xml',
 
     ],
 

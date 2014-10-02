@@ -20,37 +20,26 @@
 ##############################################################################
 
 from openerp import addons
-import logging
-import time
 from openerp.osv import fields, osv
 from openerp import tools
-_logger = logging.getLogger(__name__)
 
-class it_access_change(osv.osv):
 
-    _name = "it.access.change"
+class it_equipment_dcuser(osv.osv):
 
-    _description = "Access Change"
+    _name = 'it.equipment.dcuser'
 
-    _order = "creation_date desc"
+    _description = 'Users'
 
     _columns = {
 
-        'name': fields.char('Password', required=True, readonly=True),
-        'access_id': fields.many2one('it.access', 'Access', required=True, ondelete='cascade'),
-        'user_id': fields.many2one('res.users', 'Created by', readonly=True),
-        'creation_date': fields.datetime('Creation Date',readonly=True),
-        'note': fields.text('Note'),
+        'name': fields.char('Name', required=True),
+        'user': fields.char('User', required=True),
+        'mail': fields.char('Mail'),
+        'actived': fields.boolean('Active'),
+        'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
 
     }
 
-    _defaults = {
-
-        'creation_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
-        'user_id': lambda self, cr, uid, ctx: uid,
-
-    }
-
-it_access_change()
+it_equipment_dcuser()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
