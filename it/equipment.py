@@ -177,6 +177,27 @@ class it_equipment(osv.osv):
         'db_setting_ids': fields.one2many('it.equipment.dbsetting','equipment_id','DB Settings'),
         'db_ids': fields.one2many('it.equipment.db','equipment_id','Databases'),
 
+        #Firewall & Proxy Page
+        'firewall_filter_ids': fields.one2many('it.equipment.firewallfilter','equipment_id','Firewall Filters'),
+        'proxy_transparent': fields.boolean('Transparent Proxy'),
+        'proxy_enable_ssk': fields.boolean('Proxy Enable Single Sign-On (Kerberos)'),
+        'proxy_adblocking': fields.boolean('Proxy Ad Blocking'),
+        'proxy_port': fields.char('Proxy Port'),
+        'proxy_cache_size': fields.char('Proxy Cache File Size'),
+
+        #VPN Page
+        'vpn_protocol': fields.selection([('tcp','TCP'),('udp','UDP')],'VPN Protocol'),
+        'vpn_address': fields.char('VPN Address'),
+        'vpn_server_cert': fields.binary('VPN Server Certificate'),
+        'vpn_cacn': fields.boolean('Client Authorization by common name'),
+        'vpn_tun': fields.boolean('VPN Tun Interface'),
+        'vpn_nat': fields.boolean('VPN Network Address Traslation'),
+        'vpn_c2c': fields.boolean('VPN Allow Client to Client connections'),
+        'vpn_gateway': fields.boolean('Redirect Gateway'),
+        'vpn_search_domain': fields.char('VPN Search Domain'),
+        'vpn_wins_server': fields.char('VPN WINS Server'),
+
+
     }
 
     def _get_default_image(context=None):
@@ -202,7 +223,15 @@ class it_equipment(osv.osv):
         'function_firewall': False,
         'function_dhcp': False,
         'function_ap': False,
-        'ap_guest':  False,
+        'ap_guest': False,
+        'proxy_transparent': False,
+        'proxy_enable_ssk': False,
+        'proxy_adblocking': False,
+        'vpn_cacn': False,
+        'vpn_tun': False,
+        'vpn_nat': False,
+        'vpn_c2c': False,
+        'vpn_gateway': False,
         'image': _get_default_image(),
         'active': True,
         'creation_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),

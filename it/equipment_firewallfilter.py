@@ -19,27 +19,36 @@
 #
 ##############################################################################
 
-import equipment
-import access
-import equipment_change
-import equipment_component
-import equipment_network
-import equipment_rule
-import equipment_nat
-import equipment_forward
-import equipment_partition
-import backup
-import equipment_function
-import equipment_mapping
-import application
-import application_license
-import partner
-import access_change
-import equipment_db
-import equipment_ipreservation
-import equipment_dbsetting
-import equipment_dcuser
-import equipment_dcgroup
-import equipment_firewallfilter
+from openerp import addons
+import logging
+import time
+from openerp.osv import fields, osv
+from openerp import tools
+_logger = logging.getLogger(__name__)
+
+class it_equipment_firewallfilter(osv.osv):
+
+    _name = 'it.equipment.firewallfilter'
+
+    _description = 'Firewall Filter'
+
+    _columns = {
+
+        'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
+        'name': fields.char('Name', required=True),
+        'source_address': fields.char('Source Address'),
+        'destination_address': fields.char('Destination Address'),
+        'service_port': fields.char('Service Port'),
+        'permission': fields.selection([('allow','ALLOW'),('deny','DENY')],'Permission'),
+
+    }
+
+    _defaults = {
+
+        'permission': 'allow',
+
+    }
+
+it_equipment_firewallfilter()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

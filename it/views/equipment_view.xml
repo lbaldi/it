@@ -98,7 +98,7 @@
                         </div>
                         <separator/>
                         <group>
-                            <!-- groups and fielda
+                            <!-- groups and fields
                             <group string="Type">
 
                             </group>
@@ -231,12 +231,6 @@
                                     <field name="ap_guest_password" attrs="{'invisible':[('ap_guest','=', False )]}"/>
                                 </group>
                             </page>
-                            <!--
-                            <page string="Firewall & Proxy Config" attrs="{'invisible':[('function_firewall','=', False )]}">
-                            </page>
-                            <page string="VPN Config" attrs="{'invisible':[('function_vpn','=', False )]}">
-                            </page>
-                            -->
                             <page string="DHCP Config" attrs="{'invisible':[('function_dhcp','=', False )]}">
                                 <group>
                                     <field name="dhcp_scope"/>
@@ -267,6 +261,40 @@
                                             <field name="description"/>
                                         </tree>
                                     </field>
+                                </group>
+                            </page>
+                            <page string="Firewall and Proxy" attrs="{'invisible':[('function_firewall', '=', False)]}">
+                                <group string="Firewall Filter">
+                                    <field name="firewall_filter_ids" nolabel="1" colspan="4">
+                                        <tree string="Firewall Filters" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="source_address"/>
+                                            <field name="destination_address"/>
+                                            <field name="service_port"/>
+                                            <field name="permission"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                                <group string="Proxy">
+                                    <field name="proxy_transparent"/>
+                                    <field name="proxy_enable_ssk"/>
+                                    <field name="proxy_adblocking"/>
+                                    <field name="proxy_port"/>
+                                    <field name="proxy_cache_size"/>
+                                </group>
+                            </page>
+                            <page string="VPN" attrs="{'invisible':[('function_vpn', '=', False)]}">
+                                <group string="VPN Server Config">
+                                    <field name="vpn_protocol"/>
+                                    <field name="vpn_address"/>
+                                    <field name="vpn_server_cert"/>
+                                    <field name="vpn_cacn"/>
+                                    <field name="vpn_tun"/>
+                                    <field name="vpn_nat"/>
+                                    <field name="vpn_c2c"/>
+                                    <field name="vpn_gateway"/>
+                                    <field name="vpn_search_domain"/>
+                                    <field name="vpn_wins_server"/>
                                 </group>
                             </page>
                             <page string="Operating System" attrs="{'invisible':[('is_os','=', False )]}">
