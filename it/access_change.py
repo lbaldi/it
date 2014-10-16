@@ -26,26 +26,31 @@ from openerp.osv import fields, osv
 from openerp import tools
 _logger = logging.getLogger(__name__)
 
-class it_equipment_mapping(osv.osv):
+class it_access_change(osv.osv):
 
-    _name = 'it.equipment.mapping'
+    _name = "it.access.change"
 
-    _description = 'Equipment Mapping'
+    _description = "Access Change"
+
+    _order = "creation_date desc"
 
     _columns = {
 
-        'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
-        'name': fields.char('Name', required=True),
-        'path': fields.char('Path', required=True),
-        'groups': fields.char('Groups'),
-        'users': fields.char('Users'),
-        'perm_read' : fields.boolean('Perm Read'),
-        'perm_write' : fields.boolean('Perm Write'),
-        'perm_create' : fields.boolean('Perm Create'),
-        'perm_delete' : fields.boolean('Perm Delete'),
+        'name': fields.char('Password', required=True, readonly=True),
+        'access_id': fields.many2one('it.access', 'Access', required=True, ondelete='cascade'),
+        'user_id': fields.many2one('res.users', 'Created by', readonly=True),
+        'creation_date': fields.datetime('Creation Date',readonly=True),
+        'note': fields.text('Note'),
 
     }
 
-it_equipment_mapping()
+    _defaults = {
+
+        'creation_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
+        'user_id': lambda self, cr, uid, ctx: uid,
+
+    }
+
+it_access_change()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

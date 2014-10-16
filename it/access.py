@@ -34,6 +34,16 @@ class it_access(osv.osv):
 
     _description = "Access"
 
+    def onchange_password(self, cr, uid, ids, password, context=None):
+        for access in self.browse(cr, uid, ids, context=context):
+            if password:
+                change_obj = self.pool.get('it.access.change')
+                vals = {}
+                vals['name'] = password
+                vals['access_id'] = access.id
+                change_obj.create(cr, uid, vals, context=context)
+        return True
+
     def onchange_equipment(self, cr, uid, ids, equipment_id, context=None):
         if equipment_id:
             equipment_obj = self.pool.get('it.equipment')
@@ -48,7 +58,15 @@ class it_access(osv.osv):
             valores = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<=>@#%&+"
             p = ""
             p = p.join([choice(valores) for i in range(longitud)])
-        self.write(cr, uid, ids, {'password': p})
+            self.write(cr, uid, ids, {'password': p})
+
+            # Save password on password change history
+            change_obj = self.pool.get('it.access.change')
+            vals = {}
+            vals['name'] = p
+            vals['access_id'] = access.id
+            vals['note'] = 'AUTO GENERATED'
+            change_obj.create(cr, uid, vals, context=context)
         return True
 
     _columns = {
@@ -70,6 +88,7 @@ class it_access(osv.osv):
         'ssl_cert': fields.binary('Cert',filters='*'),
         'ssl_publickey': fields.binary('Public Key',filters='*'),
         'ssl_privatekey': fields.binary('Private Key',filters='*'),
+        'change_ids': fields.one2many('it.access.change','access_id','Access Changes'),
         'note': fields.text('Note'),
 
     }

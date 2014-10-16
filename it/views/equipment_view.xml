@@ -75,14 +75,26 @@
                             <h1>
                             <field name="name" placeholder="NAME"/>
                             <field name="description" placeholder="DESCRIPTION"/>
-                            <field name="partner_id" placeholder="OWNER" />
-                            <field name="function_ids" widget="many2many_tags" placeholder="Functions..." />
+                            <field name="partner_id" placeholder="OWNER"/>
+                            <field name="function_ids" widget="many2many_tags" placeholder="Functions..."/>
                             </h1>
                         </div>
                         <div class="oe_right oe_button_box" name="button_box">
-                            <button name="%(act_equipment_2_access)d" string="Access" type="action" attrs="{'invisible':[('is_access','=', False )]}" />
-                            <button name="%(act_equipment_2_equipment)d" string="Virtuals" type="action" attrs="{'invisible': [('function_host','=', False )]}"/>
-                            <button name="%(act_equipment_2_backup)d" string="Backups" type="action" attrs="{'invisible':[('is_backup','=', False )]}"/>
+                            <button name="%(act_equipment_2_access)d"
+                                    string="Access"
+                                    type="action"
+                                    attrs="{'invisible':[('is_access','=', False )]}"
+                            />
+                            <button name="%(act_equipment_2_equipment)d"
+                                    string="Virtuals"
+                                    type="action"
+                                    attrs="{'invisible': [('function_host','=', False )]}"
+                            />
+                            <button name="%(act_equipment_2_backup)d"
+                                    string="Backups"
+                                    type="action"
+                                    attrs="{'invisible':[('is_backup','=', False )]}"
+                            />
                         </div>
                         <separator/>
                         <group>
@@ -95,12 +107,12 @@
                         <separator string="Note"/>
                         <field colspan="4" name="note" nolabel="1"/>
                         <notebook>
-                            <page string="Physical Information" attrs="{'invisible':[('equipment_type','!=', 'bundle' )]}" >
+                            <page string="Physical Information" attrs="{'invisible':[('equipment_type','!=', 'bundle' )]}">
                                 <group>
                                     <field name="physical_component_ids" nolabel="1" colspan="4"/>
                                 </group>
                             </page>
-                            <page string="Virtual Machine Data" attrs="{'invisible':[('equipment_type','!=', 'virtual' )]}" >
+                            <page string="Virtual Machine Data" attrs="{'invisible':[('equipment_type','!=', 'virtual' )]}">
                                 <group>
                                     <group string="Host">
                                         <field name="virtual_parent_id"/>
@@ -113,7 +125,7 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Product Data" attrs="{'invisible':[('equipment_type','!=', 'product' )]}" >
+                            <page string="Product Data" attrs="{'invisible':[('equipment_type','!=', 'product' )]}">
                                 <group>
                                     <group>
                                         <field name="product_id"/>
@@ -126,12 +138,12 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Partition Information" attrs="{'invisible':[('is_partitioned','=', False )]}" >
+                            <page string="Partition Information" attrs="{'invisible':[('is_partitioned','=', False )]}">
                                 <group>
                                     <field name="partitions_ids" nolabel="1" colspan="4"/>
                                 </group>
                             </page>
-                            <page string="Service Information" attrs="{'invisible':[('is_contracted','=', False )]}" >
+                            <page string="Service Information" attrs="{'invisible':[('is_contracted','=', False )]}">
                                 <group>
                                     <group string="Contract Information">
                                         <field name="contract_partner_id"/>
@@ -142,41 +154,129 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Router Configuration" attrs="{'invisible':[('function_router','=', False )]}" >
+                            <page string="Router Configuration" attrs="{'invisible':[('function_router','=', False )]}">
                                 <group>
-                                    <field name="router_dhcp"/>
                                     <field name="router_dmz"/>
-                                    <field name="router_forward_ids"/>
-                                    <field name="router_nat_ids"/>
-                                    <field name="router_rules_ids"/>
+                                    <field name="router_forward_ids">
+                                        <tree string="Forward Registry" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="source_port"/>
+                                            <field name="destination_port"/>
+                                            <field name="source_address"/>
+                                            <field name="destination_address"/>
+                                            <field name="type"/>
+                                        </tree>
+                                    </field>
+                                    <field name="router_nat_ids">
+                                        <tree string="Nat Registry" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="source_address"/>
+                                            <field name="destination_address"/>
+                                        </tree>
+                                    </field>
+                                    <field name="router_rules_ids">
+                                        <tree string="Rules Registry" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="source_port"/>
+                                            <field name="destination_port"/>
+                                            <field name="source_address"/>
+                                            <field name="destination_address"/>
+                                            <field name="permission"/>
+                                        </tree>
+                                    </field>
                                 </group>
                             </page>
-                            <page string="Network Configuration" attrs="{'invisible':[('is_static_ip','=', False )]}" >
+                            <page string="Network Configuration" attrs="{'invisible':[('is_static_ip','=', False )]}">
                                 <group>
                                     <group string="Network Configuration">
                                         <field name="equipment_network_ids" nolabel="1" colspan="4"/>
                                     </group>
                                 </group>
                             </page>
-                            <page string="File Server" attrs="{'invisible':[('function_fileserver','=', False )]}" >
+                            <page string="File Server" attrs="{'invisible':[('function_fileserver','=', False )]}">
                                 <group>
                                     <field name="equipment_mapping_ids" nolabel="1" colspan="4"/>
                                 </group>
                             </page>
-                            <page string="Domain Controller" attrs="{'invisible':[('function_dc','=', False )]}" >
+                            <page string="Domain Controller" attrs="{'invisible':[('function_dc','=', False )]}">
                                 <group>
                                     <field name="dc_name"/>
                                     <field name="dc_type"/>
+                                    <field name="dc_user_ids">
+                                        <tree string="Users" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="user"/>
+                                            <field name="mail"/>
+                                            <field name="actived"/>
+                                        </tree>
+                                    </field>
+                                    <field name="dc_group_ids">
+                                        <tree string="Groups" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="description"/>
+                                            <field name="actived"/>
+                                        </tree>
+                                    </field>
                                 </group>
                             </page>
-                            <page string="Operating System" attrs="{'invisible':[('is_os','=', False )]}" >
+                            <page string="Wireless Config" attrs="{'invisible':[('function_ap','=', False )]}">
+                                <group string="Wifi">
+                                    <field name="ap_ssid"/>
+                                    <field name="ap_auth_type"/>
+                                    <field name="ap_password"/>
+                                </group>
+                                <group string="Guest Access">
+                                    <field name="ap_guest"/>
+                                    <field name="ap_guest_ssid" attrs="{'invisible':[('ap_guest','=', False )]}"/>
+                                    <field name="ap_guest_password" attrs="{'invisible':[('ap_guest','=', False )]}"/>
+                                </group>
+                            </page>
+                            <!--
+                            <page string="Firewall & Proxy Config" attrs="{'invisible':[('function_firewall','=', False )]}">
+                            </page>
+                            <page string="VPN Config" attrs="{'invisible':[('function_vpn','=', False )]}">
+                            </page>
+                            -->
+                            <page string="DHCP Config" attrs="{'invisible':[('function_dhcp','=', False )]}">
+                                <group>
+                                    <field name="dhcp_scope"/>
+                                    <field name="dhcp_relay"/>
+                                    <field name="dhcp_reservation_ids">
+                                        <tree string="Reservations" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="mac_address"/>
+                                            <field name="ip_address"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Databases" attrs="{'invisible':[('function_database','=', False )]}">
+                                <group>
+                                    <field name="db_engine"/>
+                                    <field name="db_setting_ids">
+                                        <tree string="Engine Settings" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="value"/>
+                                            <field name="description"/>
+                                        </tree>
+                                    </field>
+                                    <field name="db_ids">
+                                        <tree string="Databases" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="codification"/>
+                                            <field name="description"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Operating System" attrs="{'invisible':[('is_os','=', False )]}">
                                 <group>
                                     <field name="os_name"/>
                                     <field name="os_company"/>
                                     <field name="os_version"/>
                                 </group>
                             </page>
-                            <page string="Applications" attrs="{'invisible':[('is_application','=', False )]}" >
+                            <page string="Applications" attrs="{'invisible':[('is_application','=', False )]}">
                                 <group>
                                     <field name="application_ids" nolabel="1" colspan="4"/>
                                 </group>
@@ -184,11 +284,11 @@
                             <page string="Changes" >
                                 <field name="change_ids" nolabel="1" colspan="4"/>
                             </page>
-                            <page string="Audit Data">
+                            <page string="Audit Data" groups="it.group_it_mod">
                                 <group>
                                     <group>
                                         <field name="user_id"/>
-                                        <field name="creation_date" />
+                                        <field name="creation_date"/>
                                         <field name="pin"/>
                                     </group>
                                 </group>
@@ -200,7 +300,7 @@
                                 <newline/>
                                 <group>
                                     <group string="Basic Configuration">
-                                        <field name="active" />
+                                        <field name="active"/>
                                         <field name="company_id" string="Company" groups="base.group_multi_company"/>
                                         <field name="is_access"/>
                                         <field name="is_backup"/>
@@ -211,10 +311,15 @@
                                         <field name="is_os"/>
                                     </group>
                                     <group string="Function Configuration">
-                                        <field name="function_host" />
+                                        <field name="function_host"/>
                                         <field name="function_router"/>
                                         <field name="function_dc"/>
                                         <field name="function_fileserver"/>
+                                        <field name="function_database"/>
+                                        <field name="function_vpn"/>
+                                        <field name="function_firewall"/>
+                                        <field name="function_dhcp"/>
+                                        <field name="function_ap"/>
                                     </group>
                                 </group>
                             </page>
@@ -242,24 +347,36 @@
                     <filter name="is_static_ip" string="Static IP" domain="[('is_static_ip','=',1)]"/>
                     <filter name="is_static_ip" string="DHCP" domain="[('is_static_ip','=',0)]"/>
                     <separator/>
-                    <filter name="is_backup" string="With Backup" domain="[('is_backup','=',1)]" help="Equipments with backup"/>
-                    <filter name="is_backup" string="Without Backup" domain="[('is_backup','=',0)]" help="Equipments without backup"/>
+                    <filter name="is_backup" string="With Backup" domain="[('is_backup','=',1)]"
+                            help="Equipments with backup"/>
+                    <filter name="is_backup" string="Without Backup" domain="[('is_backup','=',0)]"
+                            help="Equipments without backup"/>
                     <separator/>
-                    <filter name="is_access" string="With Access" domain="[('is_access','=',1)]" help="Equipments with access"/>
-                    <filter name="is_access" string="Without Access" domain="[('is_access','=',0)]" help="Equipments without access"/>
+                    <filter name="is_access" string="With Access" domain="[('is_access','=',1)]"
+                            help="Equipments with access"/>
+                    <filter name="is_access" string="Without Access" domain="[('is_access','=',0)]"
+                            help="Equipments without access"/>
                     <separator/>
-                    <filter name="is_application" string="With Applications" domain="[('is_application','=',1)]" help="Equipments with applications"/>
-                    <filter name="is_application" string="Without Applications" domain="[('is_application','=',0)]" help="Equipments without applications"/>
+                    <filter name="is_application" string="With Applications" domain="[('is_application','=',1)]"
+                            help="Equipments with applications"/>
+                    <filter name="is_application" string="Without Applications" domain="[('is_application','=',0)]"
+                            help="Equipments without applications"/>
                     <separator/>
                     <filter string="Bundle Type" domain="[('equipment_type','=','bundle')]"/>
                     <filter string="Virtual Type" domain="[('equipment_type','=','virtual')]"/>
                     <filter string="Product Type" domain="[('equipment_type','=','product')]"/>
                     <separator string="Functions"/>
-                    <filter name="is_partitioned" string="Partitioned" domain="[('is_partitioned','=',1)]" help="Equipments with partitions"/>
+                    <filter name="is_partitioned" string="Partitioned" domain="[('is_partitioned','=',1)]"
+                            help="Equipments with partitions"/>
                     <filter name="function_dc" string="Domain Controllers" domain="[('function_dc','=',1)]"/>
                     <filter name="function_fileserver" string="FileServers" domain="[('function_fileserver','=',1)]"/>
                     <filter name="function_host" string="Hosts" domain="[('function_host','=',1)]"/>
                     <filter name="function_router" string="Routers" domain="[('function_router','=',1)]"/>
+                    <filter name="function_database" string="Database Servers" domain="[('function_database','=',1)]"/>
+                    <filter name="function_vpn" string="VPN Servers" domain="[('function_vpn','=',1)]"/>
+                    <filter name="function_firewall" string="Database Servers" domain="[('function_firewall','=',1)]"/>
+                    <filter name="function_dhcp" string="DHCP Servers" domain="[('function_dhcp','=',1)]"/>
+                    <filter name="function_ap" string="Access Point" domain="[('function_ap','=',1)]"/>
                     <separator/>
                     <filter domain="[('user_id','=',uid)]" help="Registered by my"/>
                     <!--Groups-->

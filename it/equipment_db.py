@@ -20,32 +20,25 @@
 ##############################################################################
 
 from openerp import addons
-import logging
-import time
 from openerp.osv import fields, osv
 from openerp import tools
-_logger = logging.getLogger(__name__)
 
-class it_equipment_mapping(osv.osv):
 
-    _name = 'it.equipment.mapping'
+class it_equipment_db(osv.osv):
 
-    _description = 'Equipment Mapping'
+    _name = 'it.equipment.db'
+
+    _description = 'Database'
 
     _columns = {
 
-        'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
         'name': fields.char('Name', required=True),
-        'path': fields.char('Path', required=True),
-        'groups': fields.char('Groups'),
-        'users': fields.char('Users'),
-        'perm_read' : fields.boolean('Perm Read'),
-        'perm_write' : fields.boolean('Perm Write'),
-        'perm_create' : fields.boolean('Perm Create'),
-        'perm_delete' : fields.boolean('Perm Delete'),
+        'codification': fields.char('Codification'),
+        'description': fields.text('Description'),
+        'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
 
     }
 
-it_equipment_mapping()
+it_equipment_db()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

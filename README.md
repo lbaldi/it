@@ -144,26 +144,22 @@ Quick data access from partners.
 - [x] More information for printers and other devices.
 - [x] Fix View of server changes.
 - [x] PIN unique for equipment
-- [ ] Think about configuration page and all posibles configuration.
-- [ ] Test.
-- [ ] Travis or runbot integration.
-- [ ] Application Bundle for quick config as a template.
-- [ ] Buttons on tree view for quick download. (same buttons calls)
-- [ ] Demo data
+- [x] Think about configuration page and all posibles configuration.
+- [x] Test widget password ( result not usefull )
+- [x] Access password history
 - [x] Data for licenses. (no copys)
 - [x] Generate Random Passwords
-- [ ] QR image
-- [ ] Translation Review
-- [ ] IT Client Portal Role
-- [ ] Equipment function : Database Server
+- [x] IT Client Portal Role
+- [x] Equipment function : Database Server
+- [x] Equipment function : DHCP Server - Scope - Reservation.
+- [x] Equipment function : Router - merge data to DHCP Server
+- [x] Equipment function : Router - SSID WIFI Config for AP
+- [x] Equipment function : Domain Controller - Users table
+- [ ] Testing
+- [ ] Application Bundle Template
+- [ ] Demo data
+- [ ] QR image for equipments
+- [ ] Translation
 - [ ] Equipment function : VPN Server
-- [ ] Equipment function : Domain Controller - Users table
 - [ ] Equipment function : Firewall & Proxy
-- [ ] Equipment function : DHCP Server - Scope - Reservation.
-- [ ] Equipment function : Router - merge data to DHCP Server
-- [ ] Equipment function : Router - SSID WIFI Config for AP
-- [ ] Template equipment
-- [ ] Partner and equipment buttons counter
-- [ ] QR image
-- [ ] Test widget password
-- [ ] Access password history
+

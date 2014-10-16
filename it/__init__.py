@@ -34,5 +34,11 @@ import equipment_mapping
 import application
 import application_license
 import partner
+import access_change
+import equipment_db
+import equipment_ipreservation
+import equipment_dbsetting
+import equipment_dcuser
+import equipment_dcgroup
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
