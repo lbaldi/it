@@ -402,7 +402,7 @@
                     <filter name="function_router" string="Routers" domain="[('function_router','=',1)]"/>
                     <filter name="function_database" string="Database Servers" domain="[('function_database','=',1)]"/>
                     <filter name="function_vpn" string="VPN Servers" domain="[('function_vpn','=',1)]"/>
-                    <filter name="function_firewall" string="Database Servers" domain="[('function_firewall','=',1)]"/>
+                    <filter name="function_firewall" string="Firewall and Proxy" domain="[('function_firewall','=',1)]"/>
                     <filter name="function_dhcp" string="DHCP Servers" domain="[('function_dhcp','=',1)]"/>
                     <filter name="function_ap" string="Access Point" domain="[('function_ap','=',1)]"/>
                     <separator/>
