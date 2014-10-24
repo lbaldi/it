@@ -23,7 +23,7 @@ msgstr "Destino"
 #. module: it
 #: field:it.equipment.change,date:0
 msgid "Change date"
-msgstr "Cambiar fecha"
+msgstr "Fecha Cambio"
 
 #. module: it
 #: model:ir.actions.act_window,name:it.act_equipment_2_access
