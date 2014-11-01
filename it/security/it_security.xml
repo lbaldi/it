@@ -50,10 +50,6 @@
             <field name="users" eval="[(4, ref('base.user_root'))]"/>
         </record>
 
-        <record model="ir.ui.menu" id="base.menu_definitions">
-            <field name="groups_id" eval="[(6,0,[ref('group_it_manager')])]"/>
-        </record>
-
     </data>
 
     <!-- RULES REISTRY -->
