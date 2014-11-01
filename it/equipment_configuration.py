@@ -19,38 +19,37 @@
 #
 ##############################################################################
 
-from openerp import addons
 import logging
 import time
+from openerp import tools, addons
 from openerp.osv import fields, osv
-from openerp import tools
+
 _logger = logging.getLogger(__name__)
 
-class it_access_change(osv.osv):
+class it_equipment_configuration(osv.osv):
 
-    _name = "it.access.change"
+    _name = 'it.equipment.configuration'
 
-    _description = "Access Change"
+    _description = 'Equipment Configuration'
 
-    _order = "creation_date desc"
+    _order = 'date desc'
 
     _columns = {
 
-        'name': fields.char('Password', required=True, readonly=True),
-        'access_id': fields.many2one('it.access', 'Access', required=True, ondelete='cascade'),
-        'user_id': fields.many2one('res.users', 'Created by', readonly=True),
-        'creation_date': fields.datetime('Creation Date',readonly=True),
-        'note': fields.text('Note'),
+        'name': fields.char('Description', size=64, required=True),
+        'date': fields.datetime('Date'),
+        'config_file': fields.binary('Configuration File', filename="config_file_filename"),
+        'config_file_filename': fields.char('Configuration File Filename'),
+        'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
 
     }
 
     _defaults = {
 
-        'creation_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
-        'user_id': lambda self, cr, uid, ctx: uid,
+        'date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
 
     }
 
-it_access_change()
+it_equipment_configuration()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -20,26 +20,27 @@
 ##############################################################################
 
 import equipment
-import access
-import equipment_change
+import equipment_worklog
 import equipment_component
 import equipment_network
 import equipment_rule
 import equipment_nat
 import equipment_forward
 import equipment_partition
-import backup
-import equipment_function
-import equipment_mapping
-import application
-import application_license
-import partner
-import access_change
 import equipment_db
 import equipment_ipreservation
 import equipment_dbsetting
 import equipment_dcuser
 import equipment_dcgroup
 import equipment_firewallfilter
+import equipment_configuration
+import equipment_function
+import equipment_mapping
+import backup
+import access
+import application
+import application_license
+import partner
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

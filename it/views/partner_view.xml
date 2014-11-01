@@ -85,9 +85,30 @@
             <field name="arch" type="xml">
                 <data>
                     <xpath expr="//div[@name='buttons']" position="inside">
-                        <button name="%(act_partner_2_equipment)d" string="Equipments" type="action" groups="it.group_it_user" attrs="{'invisible':[('manage_it','=', False )]}"/>
-                        <button name="%(act_partner_2_access)d" string="Access" type="action" groups="it.group_it_user" attrs="{'invisible':[('manage_it','=', False )]}"/>
-                        <button name="%(act_partner_2_backup)d" string="Backups" type="action" groups="it.group_it_user" attrs="{'invisible':[('manage_it','=', False )]}"/>
+                        <button name="%(act_partner_2_equipment)d"
+                                class="oe_inline oe_stat_button"
+                                icon="fa-th-large"
+                                type="action"
+                                groups="it.group_it_user"
+                                attrs="{'invisible':[('manage_it','=', False )]}">
+                                    <field name="equipment_count" widget="statinfo"/>
+                        </button>
+                        <button name="%(act_partner_2_access)d"
+                                class="oe_inline oe_stat_button"
+                                icon="fa-key"
+                                type="action"
+                                groups="it.group_it_user"
+                                attrs="{'invisible':[('manage_it','=', False )]}">
+                                    <field name="access_count" widget="statinfo"/>
+                        </button>
+                        <button name="%(act_partner_2_backup)d"
+                                class="oe_inline oe_stat_button"
+                                icon="fa-floppy-o"
+                                type="action"
+                                groups="it.group_it_user"
+                                attrs="{'invisible':[('manage_it','=', False )]}">
+                                    <field name="backup_count" widget="statinfo"/>
+                        </button>
                     </xpath>
                 </data>
             </field>

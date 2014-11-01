@@ -25,7 +25,6 @@
         <record model="ir.ui.view" id="it_equipment_mapping_form">
             <field name="name">it.equipment.mapping.form</field>
             <field name="model">it.equipment.mapping</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Mapping">
                     <separator string="Mapping Registry" colspan="4" />
@@ -41,7 +40,6 @@
                         <field name="perm_create"/>
                         <field name="perm_delete"/>
                     </group>
-
                 </form>
             </field>
         </record>
@@ -50,7 +48,6 @@
         <record model="ir.ui.view" id="it_equipment_mapping_tree">
             <field name="name">it.equipment.mapping.tree</field>
             <field name="model">it.equipment.mapping</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Mapping Registry">
                     <field name="name" colspan="4"/>

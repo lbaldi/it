@@ -62,54 +62,11 @@ class it_equipment(osv.osv):
             ids = self.search(cr, uid,[('name', operator, name)] + args,limit=limit, context=context)
         return self.name_get(cr,uid,ids)
 
-    def _virtual_count(self, cr, uid, ids, field_name, arg, context=None):
-        res = dict(map(lambda x: (x,0), ids))
-        # The current user may not have access rights
-        try:
-            for equipment in self.browse(cr, uid, ids, context):
-                res[equipment.id] = len(equipment.virtual_ids)
-        except:
-            pass
-        return res
-        
-    def _access_count(self, cr, uid, ids, field_name, arg, context=None):
-        res = dict(map(lambda x: (x,0), ids))
-        # The current user may not have access rights
-        try:
-            for equipment in self.browse(cr, uid, ids, context):
-                res[equipment.id] = len(equipment.access_ids)
-        except:
-            pass
-        return res
-        
-    def _backup_count(self, cr, uid, ids, field_name, arg, context=None):
-        res = dict(map(lambda x: (x,0), ids))
-        # The current user may not have access rights
-        try:
-            for equipment in self.browse(cr, uid, ids, context):
-                res[equipment.id] = len(equipment.backup_ids)
-        except:
-            pass
-        return res
-
-    def _get_default_image(self, cr, uid, context=None):
-        image_path = get_module_resource('it', 'static/description/', 'default_image_equipment.png')
-        return tools.image_resize_image_big(open(image_path, 'rb').read().encode('base64'))
-
-
     _columns = {
 
         # For openerp structure
         'company_id': fields.many2one('res.company', 'Company', required=True),
         'active': fields.boolean('Active'),
-
-        #Counts
-        'access_count': fields.function(_access_count, string="Access", type="integer"),
-        'access_ids': fields.one2many('it.access', 'equipment_id','Access'),
-        'backup_count': fields.function(_backup_count, string="Backups", type="integer"),
-        'backup_ids': fields.one2many('it.backup', 'equipment_id','Backups'),
-        'virtual_count': fields.function(_virtual_count, string="Virtuals", type="integer"),
-        'virtual_ids': fields.one2many('it.equipment', 'virtual_parent_id','Virtuals'),
 
         #General Info
         'identification': fields.function(_get_identification, type='char', string="Name", store=True),
@@ -132,7 +89,6 @@ class it_equipment(osv.osv):
         'is_access': fields.boolean('Access'),
         'is_os': fields.boolean('Operating System'),
         'is_application': fields.boolean('Applications'),
-        'is_config_file': fields.boolean('Store Config Files'),
 
         # Config Page - Functions
         'function_dc': fields.boolean('Domain Controller'),
@@ -150,8 +106,8 @@ class it_equipment(osv.osv):
         'user_id': fields.many2one('res.users', 'Created by',readonly=True),
         'pin': fields.char('PIN', readonly=True, required=True),
 
-        # Worklogs Page
-        'worklog_ids': fields.one2many('it.equipment.worklog','equipment_id','Worklogs on this equipment'),
+        # Changes Page
+        'change_ids': fields.one2many('it.equipment.change','equipment_id','Changes on this equipment'),
 
         # Contract Page
         'contract_partner_id': fields.many2one('res.partner', 'Contractor', domain="[('supplier','=',1)]"),
@@ -243,15 +199,16 @@ class it_equipment(osv.osv):
         'vpn_search_domain': fields.char('VPN Search Domain'),
         'vpn_wins_server': fields.char('VPN WINS Server'),
 
-        #Store Config File Page
-        'configuration_file_ids': fields.one2many('it.equipment.configuration','equipment_id','Configuration Files'),
 
     }
+
+    def _get_default_image(context=None):
+        image_path = get_module_resource('it', 'static/src/img/', 'default_image_equipment.png')
+        return tools.image_resize_image_big(open(image_path, 'rb').read().encode('base64'))
 
     _defaults = {
 
         'pin': _get_pin,
-        'image': _get_default_image,
         'function_router': False,
         'function_host': False,
         'equipment_type': 'bundle',
@@ -261,7 +218,6 @@ class it_equipment(osv.osv):
         'is_access': False,
         'is_os': False,
         'is_application': False,
-        'is_config_file': False,
         'function_dc': False,
         'function_fileserver': False,
         'function_database': False,
@@ -278,6 +234,7 @@ class it_equipment(osv.osv):
         'vpn_nat': False,
         'vpn_c2c': False,
         'vpn_gateway': False,
+        'image': _get_default_image(),
         'active': True,
         'creation_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
         'user_id': lambda self, cr, uid, ctx: uid,

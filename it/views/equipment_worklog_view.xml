@@ -21,32 +21,33 @@
 
     <data>
 
-        <!-- Create view for changes -->
-        <record model="ir.ui.view" id="it_equipment_change_form">
-            <field name="name">it.equipment.change.form</field>
-            <field name="model">it.equipment.change</field>
-            <field name="type">form</field>
+        <!-- Create view for worklogs -->
+        <record model="ir.ui.view" id="it_equipment_worklog_form">
+            <field name="name">it.equipment.worklog.form</field>
+            <field name="model">it.equipment.worklog</field>
             <field name="arch" type="xml">
-                <form string="Change">
-                    <separator string="Change entry" colspan="4"/>
-                    <field name="name" colspan="4"/>
-                    <field name="date"/>
-                    <field name="user_id"/>
+                <form string="Worklog">
+                    <group>
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="spent_time" widget="float_time"/>
+                        <field name="user_id"/>
+                    </group>
                     <separator string="Description" colspan="4"/>
                     <field name="description" colspan="4" nolabel="1"/>
                 </form>
             </field>
         </record>
 
-        <!-- Tree view for changes grill on equipments -->
-        <record model="ir.ui.view" id="it_equipment_change_tree">
-            <field name="name">it.equipment.change.tree</field>
-            <field name="model">it.equipment.change</field>
-            <field name="type">tree</field>
+        <!-- Tree view for worklogs grill on equipments -->
+        <record model="ir.ui.view" id="it_equipment_worklog_tree">
+            <field name="name">it.equipment.worklog.tree</field>
+            <field name="model">it.equipment.worklog</field>
             <field name="arch" type="xml">
-                <tree string="Changes">
+                <tree string="Worklogs">
                     <field name="name"/>
                     <field name="date"/>
+                    <field name="spent_time" widget="float_time"/>
                     <field name="user_id"/>
                 </tree>
             </field>

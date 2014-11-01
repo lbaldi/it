@@ -25,15 +25,15 @@
         <record model="ir.ui.view" id="it_equipment_component_form">
             <field name="name">it.equipment.component.form</field>
             <field name="model">it.equipment.component</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Enter a component">
                     <separator string="Component entry" colspan="4" />
-                    <field name="product_id" colspan="4"/>
-                    <field name="serial_number"/>
-                    <field name="partner_id"/>
-                    <separator string="Note" colspan="4"/>
-                    <field name="note" colspan="4" nolabel="1" />
+                    <group>
+                        <field name="product_id"/>
+                        <field name="serial_number"/>
+                        <field name="partner_id"/>
+                    </group>
+                    <field name="note" colspan="4" nolabel="1" placeholder="Write a note ..."/>
                 </form>
             </field>
         </record>
@@ -42,7 +42,6 @@
         <record model="ir.ui.view" id="it_equipment_component_tree">
             <field name="name">it.equipment.component.tree</field>
             <field name="model">it.equipment.component</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Components">
                     <field name="product_id"/>

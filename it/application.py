@@ -46,7 +46,8 @@ class it_application(osv.osv):
         'link_page': fields.char('Link', size=120),
         'license_id': fields.many2one('it.application.license', 'License'),
         'type': fields.selection([('opensource','OPEN SOURCE'),('closedsource','CLOSED SOURCE')],'Type', required=True),
-        'documentation': fields.binary('Documentation',filters='*'),
+        'documentation': fields.binary('Documentation',filters='*', filename="documentation_filename"),
+        'documentation_filename': fields.char('Documentation Filename'),
         'note': fields.text('Note'),
 
         'equipment_ids': fields.many2many('it.equipment','equipment_application_rel','application_id','equipment_id','Equipments'),

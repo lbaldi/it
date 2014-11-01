@@ -19,7 +19,8 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+import openerp
+from openerp.osv import fields, osv
 
 class res_partner(osv.osv):
 
@@ -27,11 +28,47 @@ class res_partner(osv.osv):
 
     _inherit= "res.partner"
 
+    def _equipment_count(self, cr, uid, ids, field_name, arg, context=None):
+        res = dict(map(lambda x: (x,0), ids))
+        # The current user may not have access rights
+        try:
+            for partner in self.browse(cr, uid, ids, context):
+                res[partner.id] = len(partner.equipment_ids)
+        except:
+            pass
+        return res
+        
+    def _access_count(self, cr, uid, ids, field_name, arg, context=None):
+        res = dict(map(lambda x: (x,0), ids))
+        # The current user may not have access rights
+        try:
+            for partner in self.browse(cr, uid, ids, context):
+                res[partner.id] = len(partner.access_ids)
+        except:
+            pass
+        return res
+        
+    def _backup_count(self, cr, uid, ids, field_name, arg, context=None):
+        res = dict(map(lambda x: (x,0), ids))
+        # The current user may not have access rights
+        try:
+            for partner in self.browse(cr, uid, ids, context):
+                res[partner.id] = len(partner.backup_ids)
+        except:
+            pass
+        return res
+
     _columns = {
 
         'manage_it': fields.boolean('Manage IT'),
+        'equipment_ids': fields.one2many('it.equipment', 'partner_id','Equipments'),
+        'equipment_count': fields.function(_equipment_count, string="Equipments", type="integer"),
+        'access_ids': fields.one2many('it.access', 'partner_id','Access'),
+        'access_count': fields.function(_access_count, string="Access", type="integer"),
+        'backup_ids': fields.one2many('it.backup', 'partner_id','Backups'),
+        'backup_count': fields.function(_backup_count, string="Backups", type="integer"),
 
-   }
+    }
 
 res_partner()
 

@@ -23,23 +23,21 @@
 
     'name': 'Infrastructure',
 
-    'version': '2.0',
-
-    'depends': ['base','product'],
-
-    'author': 'Leandro Ezequiel Baldi <baldileandro@gmail.com>',
-
-    'license': 'AGPL-3',
+    'version': '1.0',
 
     'category': 'Infrastructure',
 
+    'summary': 'Equipments, Access, Backups, Applications',
+
     'description': """This module is used for Infrastructure management.""",
+    
+    'author': 'Leandro Ezequiel Baldi <baldileandro@gmail.com>',
+    
+    'website': 'https://github.com/lbaldi',
+    
+    'images': ['static/src/img/default_image_equipment.png'],
 
-    'images': [
-
-        'static/src/img/default_image_equipment.png',
-
-    ],
+    'depends': ['base','product'],
 
     'data': [
 
@@ -47,7 +45,7 @@
         'security/ir.model.access.csv',
         'views/it_menu_view.xml',
         'views/equipment_view.xml',
-        'views/equipment_change_view.xml',
+        'views/equipment_worklog_view.xml',
         'views/equipment_component_view.xml',
         'views/equipment_network_view.xml',
         'views/equipment_partition_view.xml',
@@ -62,22 +60,24 @@
         'data/application_license_data.xml',
 
     ],
-
+    
     'demo': [
 
         #files containg demo data
-
+    
     ],
-
+    
     'test': [
 
         #files containg tests
 
     ],
 
-    'auto_install': False,
-
     'installable': True,
+    
+    'auto_install': False,
+    
+    'application': True,
 
 }
 

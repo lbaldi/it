@@ -19,30 +19,23 @@
 #
 ##############################################################################
 
-from openerp import addons
 import logging
 import time
 import random
+import base64
 from random import choice
+from openerp import addons, tools
 from openerp.osv import fields, osv
-from openerp import tools
+from openerp.tools.translate import _
+
 _logger = logging.getLogger(__name__)
+
 
 class it_access(osv.osv):
 
     _name = "it.access"
 
     _description = "Access"
-
-    def onchange_password(self, cr, uid, ids, password, context=None):
-        for access in self.browse(cr, uid, ids, context=context):
-            if password:
-                change_obj = self.pool.get('it.access.change')
-                vals = {}
-                vals['name'] = password
-                vals['access_id'] = access.id
-                change_obj.create(cr, uid, vals, context=context)
-        return True
 
     def onchange_equipment(self, cr, uid, ids, equipment_id, context=None):
         if equipment_id:
@@ -51,22 +44,63 @@ class it_access(osv.osv):
             return {'value':{'partner_id': equipment_inst.partner_id.id }}
         return False
 
-    #Public method
     def get_random_password(self, cr, uid, ids, context=None):
         for access in self.browse(cr, uid, ids, context=context):
             longitud = 16
             valores = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<=>@#%&+"
             p = ""
             p = p.join([choice(valores) for i in range(longitud)])
-            self.write(cr, uid, ids, {'password': p})
+            self.write(cr, uid, ids, {'password': p, 'encrypted': False })
+        return True
 
-            # Save password on password change history
-            change_obj = self.pool.get('it.access.change')
-            vals = {}
-            vals['name'] = p
-            vals['access_id'] = access.id
-            vals['note'] = 'AUTO GENERATED'
-            change_obj.create(cr, uid, vals, context=context)
+    def onchange_password(self, cr, uid, ids, encrypted, context={}):
+        return {'value':{'encrypted': False}}
+
+
+    def encrypt_password(self, cr, uid, ids, *args):
+        try:
+            from Crypto.Cipher import ARC4
+        except ImportError:
+            raise osv.except_osv(_('Error !'), _('Package python-crypto no installed.'))
+                
+        val = self.pool.get('ir.config_parameter').get_param(cr, uid, 'it_passkey')
+        if not val:
+            raise osv.except_osv(_('Error !'), _('For Encryptation you must set a system parameter with key "it_passkey" and fill in value a passkey'))
+            
+        for rec in self.browse(cr, uid, ids):
+
+            if not rec.encrypted:
+                enc = ARC4.new(val)
+                try:
+                    encripted = base64.b64encode(enc.encrypt(rec.password))
+                except UnicodeEncodeError:
+                    break
+                self.write(cr, uid, [rec.id], {'password': encripted, 'encrypted': True})
+            else:
+                raise osv.except_osv(_('Error !'), _('Password already encrypted'))
+            
+        return True
+
+
+    def decrypt_password(self, cr, uid, ids, *args):
+        try:
+            from Crypto.Cipher import ARC4
+        except ImportError:
+            raise osv.except_osv(_('Error !'), _('Package python-crypto no installed.'))
+                
+        val = self.pool.get('ir.config_parameter').get_param(cr, uid, 'it_passkey')
+        if not val:
+            raise osv.except_osv(_('Error !'), _('For Encryptation you must set a system parameter with key "it_passkey" and fill in value a passkey'))
+            
+        for rec in self.browse(cr, uid, ids):
+            dec = ARC4.new(val)
+            try:
+                desencripted = dec.decrypt(base64.b64decode(rec.password))
+                unicode(desencripted, 'ascii')
+                raise osv.except_osv(_('Decrypt password:'), desencripted)
+            except UnicodeDecodeError:
+                raise osv.except_osv(_('Error !'), _('Wrong encrypt/decrypt password.'))
+
         return True
 
     _columns = {
@@ -77,24 +111,28 @@ class it_access(osv.osv):
         'user_id': fields.many2one('res.users', 'Created by', readonly=True),
         'application': fields.char('Application', size=64),
         'user': fields.char('User', size=64),
-        'password': fields.char('Password', size=64),
+        'password': fields.char(string='Password'),
+        'encrypted': fields.boolean('Encrypted'),
         'port': fields.char('Port'),
         'partner_id': fields.many2one('res.partner', 'Partner', required=True, domain="[('manage_it','=',1)]"),
         'description': fields.char('Description', size=120),
         'link': fields.char('Link', size=120),
         'creation_date': fields.date('Creation Date',readonly=True),
         'active': fields.boolean('Active'),
-        'ssl_csr': fields.binary('CSR',filters='*.csr'),
-        'ssl_cert': fields.binary('Cert',filters='*'),
-        'ssl_publickey': fields.binary('Public Key',filters='*'),
-        'ssl_privatekey': fields.binary('Private Key',filters='*'),
-        'change_ids': fields.one2many('it.access.change','access_id','Access Changes'),
+        'ssl_csr': fields.binary('CSR',filters='*.csr', filename="ssl_csr_filename"),
+        'ssl_csr_filename': fields.char('CSR Filename'),
+        'ssl_cert': fields.binary('Cert',filters='*', filename="ssl_cert_filename"),
+        'ssl_cert_filename': fields.char('Cert Filename'),
+        'ssl_publickey': fields.binary('Public Key',filters='*', filename="ssl_publickey_filename"),
+        'ssl_publickey_filename': fields.char('Public Key Filename'),
+        'ssl_privatekey': fields.binary('Private Key',filters='*', filename="ssl_privatekey_filename"),
+        'ssl_privatekey_filename': fields.char('Private Key Filename'),
         'note': fields.text('Note'),
 
     }
 
     _defaults = {
-
+        'encrypted': False,
         'creation_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
         'active': True,
         'company_id': lambda self,cr,uid,ctx: self.pool['res.company']._company_default_get(cr,uid,object='it.equipment',context=ctx),

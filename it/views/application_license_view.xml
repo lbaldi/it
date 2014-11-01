@@ -25,12 +25,14 @@
         <record model="ir.ui.view" id="it_application_license_form">
             <field name="name">it.application.license.form</field>
             <field name="model">it.application.license</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="License">
-                    <field name="name" colspan="4"/>
-                    <newline/>
-                    <field name="copy"/>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="copy"/>
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>
@@ -39,7 +41,6 @@
         <record model="ir.ui.view" id="it_application_license_tree">
             <field name="name">it.application.license.tree</field>
             <field name="model">it.application.license</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="License">
                     <field name="name" colspan="4"/>

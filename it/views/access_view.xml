@@ -25,7 +25,6 @@
         <record model="ir.ui.view" id="it_access_tree">
             <field name="name">it.access.tree</field>
             <field name="model">it.access</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Access">
                     <field name="partner_id"/>
@@ -34,6 +33,7 @@
                     <field name="application"/>
                     <field name="user"/>
                     <field name="password"/>
+                    <field name="encrypted"/>
                     <field name="port"/>
                     <field name="link" widget="url"/>
                     <field name="description" />
@@ -44,43 +44,65 @@
         <record model="ir.ui.view" id="it_access_form">
             <field name="name">it.access.form</field>
             <field name="model">it.access</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Access" version="7.0">
+                <form string="Access">
                     <sheet>
                         <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name"/>
+                            </div>
                             <h1>
-                                <field name="name" placeholder="NAME"/>
-                                <field name="equipment_id" placeholder="EQUIPMENT" on_change="onchange_equipment(equipment_id)"/>
-                                <field name="partner_id" placeholder="OWNER"/>
+                                <field name="name"/>
+                            </h1>
+                            <div class="oe_edit_only">
+                                <label for="equipment_id"/>
+                            </div>
+                            <h1>
+                                <field name="equipment_id"/>
+                            </h1>
+                            <div class="oe_edit_only">
+                                <label for="partner_id"/>
+                            </div>
+                            <h1>
+                                <field name="partner_id"/>
                             </h1>
                         </div>
                         <group>
                             <!--fields-->
                         </group>
-                        <separator string="Note"/>
-                        <field colspan="4" name="note" nolabel="1"/>
+                        <field colspan="4" name="note" nolabel="1" placeholder="Write a note.."/>
                         <notebook>
                             <page string="Information">
                                 <group col="4">
                                     <field name="user"/>
-                                    <newline/>
-                                    <field name="password" on_change="onchange_password(password)"/>
-                                    <button name="get_random_password" string="Generate" type="object" groups="it.group_it_mod"
-                                            confirm="Are you sure?"/>
-                                    <newline/>
                                     <field name="application"/>
                                     <field name="port"/>
                                     <field name="description"/>
                                     <field name="link" widget="url" />
                                 </group>
+                                <newline/>
+                                <group col="5">
+                                    <field name="password" on_change="onchange_password(encrypted)"/>
+                                    <button name="get_random_password" string="Generate" type="object" groups="it.group_it_mod"
+                                            confirm="Are you sure?" colspan="1" icon="gtk-convert"/>
+                                    <button name="encrypt_password" type="object" string="Encrypt" confirm="Are you sure?"
+                                            icon="gtk-execute" colspan="1"  attrs="{'invisible': [('encrypted', '=', True)]}"/>
+                                    <button name="decrypt_password" type="object" string="Decrypt" icon="gtk-print"
+                                            colspan="1" attrs="{'invisible': [('encrypted', '=', False)]}"/>
+                                    <newline/>
+                                    <field name="encrypted" readonly="True"/>
+                                </group>
                             </page>
                             <page string="SSL">
                                 <group label="SSL">
-                                    <field name="ssl_csr"/>
-                                    <field name="ssl_cert"/>
-                                    <field name="ssl_publickey"/>
-                                    <field name="ssl_privatekey"/>
+                                    <field name="ssl_csr" filename="ssl_csr_filename"/>
+                                    <field name="ssl_csr_filename" invisible="1"/>
+                                    <field name="ssl_cert" filename="ssl_cert_filename"/>
+                                    <field name="ssl_cert_filename" invisible="1"/>
+                                    <field name="ssl_publickey" filename="ssl_publickey_filename"/>
+                                    <field name="ssl_publickey_filename" invisible="1"/>
+                                    <field name="ssl_privatekey" filename="ssl_privatekey_filename"/>
+                                    <field name="ssl_privatekey_filename" invisible="1"/>
                                 </group>
                             </page>
                             <page string="Audit Data" groups="it.group_it_mod">
@@ -88,17 +110,6 @@
                                     <group>
                                         <field name="user_id"/>
                                         <field name="creation_date" />
-                                    </group>
-                                    <newline/>
-                                    <group>
-                                        <field name="change_ids">
-                                            <tree string="Changes" editable="bottom">
-                                                <field name="name"/>
-                                                <field name="user_id"/>
-                                                <field name="creation_date"/>
-                                                <field name="note"/>
-                                            </tree>
-                                        </field>
                                     </group>
                                 </group>
                             </page>
@@ -128,10 +139,12 @@
                     <field name="application" string="Application"/>
                     <!--Filters-->
                     <filter domain="[('user_id','=',uid)]" help="Registered by my"/>
+                    <filter domain="[('encrypted','=',True)]" help="Encrypted"/>
+                    <filter domain="[('encrypted','=',False)]" help="Decrypted"/>
                     <group expand="0" string="Group By...">
                         <filter string="Partner" icon="terp-personal+" domain="[]" context="{'group_by':'partner_id'}"/>
-                        <filter string="Equipment" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'equipment_id'}"/>
-                        <filter string="Application" icon="terp-go-home" domain="[]" context="{'group_by':'application'}" />
+                        <filter string="Application" icon="terp-go-home" domain="[]" context="{'group_by':'application'}"/>
+                        <filter string="Crypt" icon="terp-go-home" domain ="[]" context="{'group_by':'encrypted'}"/>
                         <filter string="Registrant" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}"/>
                     </group>
                 </search>

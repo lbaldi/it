@@ -25,10 +25,18 @@
         <record model="ir.ui.view" id="it_equipment_function_form">
             <field name="name">it.equipment.function.form</field>
             <field name="model">it.equipment.function</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Function">
-                    <field name="name" colspan="4"/>
+                    <sheet>
+                        <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name"/>
+                            </div>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                    </sheet>
                 </form>
             </field>
         </record>
@@ -37,7 +45,6 @@
         <record model="ir.ui.view" id="it_equipment_function_tree">
             <field name="name">it.equipment.function.tree</field>
             <field name="model">it.equipment.function</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Function">
                     <field name="name" colspan="4"/>

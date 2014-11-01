@@ -26,11 +26,11 @@ from openerp.osv import fields, osv
 from openerp import tools
 _logger = logging.getLogger(__name__)
 
-class it_equipment_change(osv.osv):
+class it_equipment_worklog(osv.osv):
 
-    _name = 'it.equipment.change'
+    _name = 'it.equipment.worklog'
 
-    _description = 'Equipment Change'
+    _description = 'Equipment Worklog'
 
     _order = 'date desc'
 
@@ -38,7 +38,8 @@ class it_equipment_change(osv.osv):
 
         'name': fields.char('Short Description', size=64, required=True),
         'description': fields.text('Long Description'),
-        'date': fields.datetime('Change date'),
+        'date': fields.datetime('Date'),
+        'spent_time': fields.float('Spent Time'),
         'equipment_id': fields.many2one('it.equipment','Equipment', ondelete='cascade'),
         'user_id': fields.many2one('res.users', 'User', required=True),
 
@@ -51,6 +52,6 @@ class it_equipment_change(osv.osv):
 
     }
 
-it_equipment_change()
+it_equipment_worklog()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

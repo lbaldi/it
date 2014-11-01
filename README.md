@@ -1,11 +1,11 @@
-# ODOO INFRASTRUCTURE MODULE [v7]
+# ODOO INFRASTRUCTURE MODULE [v8]
 
 This module is used for Infrastructure management. You can registry several types of equipments, access, backups and applications.
 
 
 ## EQUIPMENTS
 
-![Alt Text](/docs/img/server_example.jpg?raw=true "Server Example")
+![Alt Text](/docs/img/equipment.png?raw=true "Equipment Example")
 
 ### GENERAL DATA FOR EQUIPMENTS
 * Identification ( Owner - Name )
@@ -47,16 +47,13 @@ This module is used for Infrastructure management. You can registry several type
 * Firewall & Proxy Server
 * DHCP Server
 * Access Point
-
-![Alt text](/docs/img/router_example.jpg?raw=true "Router Example")
-
 * Domain Controller: Add page for domain data.
 * Fileserver: Add page for fileserver where can registry mappings and permissions.
 
 
 ## ACCESS
 
-![Alt text](/docs/img/access_example.jpg?raw=true "Access Example")
+![Alt text](/docs/img/access.png?raw=true "Access Example")
 
 ### GENERAL DATA FOR ACCESS
 * Name
@@ -82,7 +79,7 @@ This module is used for Infrastructure management. You can registry several type
 
 ## BACKUPS
 
-![Alt text](/docs/img/backup_example.jpg?raw=true "Backup Example")
+![Alt text](/docs/img/backup.png?raw=true "Backup Example")
 
 ### GENERAL DATA FOR BACKUPS
 * Name
@@ -107,7 +104,7 @@ This module is used for Infrastructure management. You can registry several type
 
 ## APPLICATIONS
 
-![Alt text](/docs/img/application_example.jpg?raw=true "Application Example")
+![Alt text](/docs/img/application.png?raw=true "Application Example")
 
 ### GENERAL DATA FOR APPLICATIONS
 * Name
@@ -127,7 +124,6 @@ This module is used for Infrastructure management. You can registry several type
 * If ClosedSource is selected:
   * Key
   * Keygen (binary)
-  * Crack (binary)
 
 
 ## ROLES:
@@ -135,11 +131,12 @@ Restrictc menu, equipment, access and backups, etc.
 * User ( 1,0,0,0)
 * Moderator (1,1,1,0)
 * Manager (1,1,1,1)
+* Portal (only models related to partner)
 
 ## PARTNERS
 Quick data access from partners.
 
-![Alt text](/docs/img/partner_example.jpg?raw=true "Partner Example")
+![Alt text](/docs/img/partner.png?raw=true "Partner Example")
 
 
 

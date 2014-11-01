@@ -27,20 +27,20 @@
         <record model="ir.ui.view" id="it_equipment_partition_form">
             <field name="name">it.equipment.partition.form</field>
             <field name="model">it.equipment.partition</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Enter a partition entry">
-                    <separator string="Partition entry" colspan="4" />
-                    <field name="name" colspan="4" select="1" />
-                    <field name="disks"/>
-                    <field name="type"/>
-                    <field name="format"/>
-                    <field name="mount_ids">
-                        <tree string="Mounts" editable="bottom">
-                            <field name="name"/>
-                            <field name="size"/>
-                        </tree>
-                    </field>
+                    <group>
+                        <field name="name"/>
+                        <field name="disks"/>
+                        <field name="type"/>
+                        <field name="format"/>
+                        <field name="mount_ids">
+                            <tree string="Mounts" editable="bottom">
+                                <field name="name"/>
+                                <field name="size"/>
+                            </tree>
+                        </field>
+                    </group>
                 </form>
             </field>
         </record>
@@ -49,7 +49,6 @@
         <record model="ir.ui.view" id="it_equipment_partition_tree">
             <field name="name">it.equipment.partition.tree</field>
             <field name="model">it.equipment.partition</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Partitions">
                     <field name="name"/>

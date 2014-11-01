@@ -25,7 +25,6 @@
         <record model="ir.ui.view" id="it_backup_tree">
             <field name="name">it.backup.tree</field>
             <field name="model">it.backup</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Backup">
                     <field name="equipment_id"/>
@@ -43,21 +42,30 @@
         <record model="ir.ui.view" id="it_backup_form">
             <field name="name">it.backup.form</field>
             <field name="model">it.backup</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Backup" version="7.0">
+                <form string="Backup">
                     <sheet>
                         <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name"/>
+                            </div>
                             <h1>
-                                <field name="name" placeholder="NAME"/>
-                                <field name="equipment_id" placeholder="EQUIPMENT"/>
-                                <field name="type"/>
+                                <field name="name"/>
                             </h1>
+                            <div class="oe_edit_only">
+                                <label for="equipment_id"/>
+                            </div>
+                            <h1>
+                                <field name="equipment_id"/>
+                            </h1>
+                            <div class="oe_edit_only">
+                                <label for="type"/>
+                            </div>
+                            <field name="type"/>
                         </div>
                         <group>
                             <!--fields-->
                         </group>
-                        <separator string="Note"/>
                         <field colspan="4" name="note" nolabel="1"/>
                         <notebook>
                             <page string="Information">
@@ -66,7 +74,8 @@
                                     <field name="frequency"/>
                                     <field name="source"/>
                                     <field name="time_schedule" widget="float_time"/>
-                                    <field name="script" />
+                                    <field name="script" filename="script_filename" />
+                                    <field name="script_filename" invisible="1"/>
                                     <field name="script_location" widget="url"/>
                                 </group>
                             </page>

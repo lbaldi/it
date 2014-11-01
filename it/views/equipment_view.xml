@@ -50,7 +50,6 @@
         <record model="ir.ui.view" id="it_equipment_tree">
             <field name="name">it.equipment.tree</field>
             <field name="model">it.equipment</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Equipments">
                     <field name="identification"/>
@@ -64,37 +63,58 @@
         <record model="ir.ui.view" id="it_equipment_form">
             <field name="name">it.equipment.form</field>
             <field name="model">it.equipment</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Equipments" version="7.0">
+                <form string="Equipments">
                     <sheet>
-                        <div class="oe_left oe_avatar">
-                            <field name="image" class="oe_left oe_avatar" widget="image"/>
-                        </div>
+                        <field name="image" class="oe_left oe_avatar" widget="image"/>
                         <div class="oe_title">
+                            <div class="oe_edit_only oe_left">
+                                <label for="name"/>
+                            </div>
                             <h1>
-                            <field name="name" placeholder="NAME"/>
-                            <field name="description" placeholder="DESCRIPTION"/>
-                            <field name="partner_id" placeholder="OWNER"/>
-                            <field name="function_ids" widget="many2many_tags" placeholder="Functions..."/>
+                                <field name="name"/>
+                            </h1>
+                            <div class="oe_edit_only">
+                                <label for="description"/>
+                            </div>
+                            <h1>
+                                <field name="description"/>
+                            </h1>
+                            <div class="oe_edit_only">
+                                <label for="partner_id"/>
+                            </div>
+                            <h1>
+                                <field name="partner_id"/>
+                            </h1>
+                            <div class="oe_edit_only">
+                                <label for="function_ids"/>
+                            </div>
+                            <h1>
+                                <field name="function_ids" widget="many2many_tags" placeholder="Functions..."/>
                             </h1>
                         </div>
-                        <div class="oe_right oe_button_box" name="button_box">
+                        <div class="oe_right oe_button_box" name="buttons">
                             <button name="%(act_equipment_2_access)d"
-                                    string="Access"
+                                    class="oe_inline oe_stat_button"
+                                    icon="fa-key"
                                     type="action"
-                                    attrs="{'invisible':[('is_access','=', False )]}"
-                            />
+                                    attrs="{'invisible':[('is_access','=', False )]}">
+                                        <field name="access_count" widget="statinfo"/>
+                            </button>
                             <button name="%(act_equipment_2_equipment)d"
-                                    string="Virtuals"
+                                    class="oe_inline oe_stat_button"
+                                    icon="fa-th"
                                     type="action"
-                                    attrs="{'invisible': [('function_host','=', False )]}"
-                            />
+                                    attrs="{'invisible': [('function_host','=', False )]}">
+                                        <field name="virtual_count" widget="statinfo"/>
+                            </button>
                             <button name="%(act_equipment_2_backup)d"
-                                    string="Backups"
+                                    class="oe_inline oe_stat_button"
+                                    icon="fa-floppy-o"
                                     type="action"
-                                    attrs="{'invisible':[('is_backup','=', False )]}"
-                            />
+                                    attrs="{'invisible':[('is_backup','=', False )]}">
+                                        <field name="backup_count" widget="statinfo"/>
+                            </button>
                         </div>
                         <separator/>
                         <group>
@@ -104,8 +124,7 @@
                             </group>
                             -->
                         </group>
-                        <separator string="Note"/>
-                        <field colspan="4" name="note" nolabel="1"/>
+                        <field colspan="4" name="note" nolabel="1" placeholder="Write a note ..."/>
                         <notebook>
                             <page string="Physical Information" attrs="{'invisible':[('equipment_type','!=', 'bundle' )]}">
                                 <group>
@@ -309,8 +328,20 @@
                                     <field name="application_ids" nolabel="1" colspan="4"/>
                                 </group>
                             </page>
-                            <page string="Changes" >
-                                <field name="change_ids" nolabel="1" colspan="4"/>
+                            <page string="Configuration Files" attrs="{'invisible':[('is_config_file','=', False )]}">
+                                <group>
+                                    <field name="configuration_file_ids">
+                                        <tree string="Configuration Files" editable="bottom">
+                                            <field name="name"/>
+                                            <field name="date"/>
+                                            <field name="config_file" filename="config_file_filename"/>
+                                            <field name="config_file_filename" invisible="1"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Worklog" >
+                                <field name="worklog_ids" nolabel="1" colspan="4"/>
                             </page>
                             <page string="Audit Data" groups="it.group_it_mod">
                                 <group>
@@ -336,6 +367,7 @@
                                         <field name="is_contracted"/>
                                         <field name="is_static_ip"/>
                                         <field name="is_partitioned"/>
+                                        <field name="is_config_file"/>
                                         <field name="is_os"/>
                                     </group>
                                     <group string="Function Configuration">
