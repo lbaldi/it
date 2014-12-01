@@ -148,7 +148,7 @@ class it_equipment(osv.osv):
         # Audit Page
         'creation_date': fields.date('Creation Date',readonly=True),
         'user_id': fields.many2one('res.users', 'Created by',readonly=True),
-        'pin': fields.char('PIN', readonly=True, required=True),
+        'pin': fields.char('PIN', readonly=True, required=True, copy=False),
 
         # Worklogs Page
         'worklog_ids': fields.one2many('it.equipment.worklog','equipment_id','Worklogs on this equipment'),
